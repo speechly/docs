@@ -1,0 +1,52 @@
+{{ $here := .RelPermalink }}
+{{ $currentPage := . }}
+{{ define "links" }}
+{{ $here := .here }}
+
+{{ end }}
+
+<nav class="nav is-sticky">
+  <header class="nav-header">
+    <nav class="level is-size-5">
+      <div class="level-left">
+        <div class="level-item">
+          <p class="nav-header-title has-text-weight-bold">
+            <a href="/">Documentation</a>
+          </p>
+        </div>
+        <div class="level-item">
+          <span class="icon has-text-primary">
+            {{ partial "components/icon.html" (dict "icon" "apps") }}
+          </span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="nav-container is-scrollable">
+    <div class="nav-section">
+      {{ range .Site.Menus.sidebar }} 
+        <header class="nav-section-header">     
+          <a href="{{.URL}}">
+            {{ .Title }}
+          </a>
+          </header>
+          {{ if .HasChildren }} 
+            {{ if or ($currentPage.IsMenuCurrent "sidebar" .) ($currentPage.HasMenuCurrent "sidebar" .)}} 
+              <ul class="nav-section-links">
+                {{ range .Children }}
+                <li>
+                  <a href="{{.URL}}">
+                    {{ .Title }}
+                  </a>
+                </li>
+                {{end }}
+              </ul>
+            {{ end }}
+          {{ end }} 
+        {{ end }}
+    </div>
+
+    
+  </div>
+</nav>

@@ -1,0 +1,19 @@
+kind: pipeline
+name: default
+
+trigger:
+  branch:
+  - master
+
+steps:
+- name: build
+  image: gcr.io/sg-slu/sitepublisher
+  commands:
+  - hugo --cleanDestinationDir
+
+- name: publish
+  image: gcr.io/sg-slu/builder
+  commands:
+  - gsutil -m cp -r docs/* gs://www.speechly.com/docs/
+  when:
+    event: push

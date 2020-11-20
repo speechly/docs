@@ -1,0 +1,22 @@
+{{ with .GitInfo }}
+{{ $author    := .AuthorName }}
+{{ $authorUrl := printf "https://github.com/%s" $author }}
+{{ $commit := .Hash }}
+{{ $img       := printf "%s.png" $authorUrl }}
+{{ $commitLink  := printf "https://github.com/speechly/documentation/commit/%s" $commit }}
+{{ $issuesLink := printf "https://github.com/speechly/documentation/issues/new" }}
+{{ $updated   := dateFormat "January 2, 2006 at 15:04 MST" .AuthorDate }}
+<hr>
+<section class="section gitinfo">
+  <div class="container">
+    <figure class="image is-32x32 is-inline-block">
+      <img class="is-rounded" src="{{ $img }}" alt="Profile image for {{$author}}">
+    </figure>
+
+    <p style="display: inline-block; position: relative; top: -10px; left: 5px" class="is-size-7">
+      {{ T "last_updated_by" }} <a href="https://github.com/{{$author}}">{{ $author }}</a> {{ T "on" }}  <a href="{{$commitLink }}" target="_blank">{{ $updated }}</a>
+    </p>
+    <p class="is-size-7">Found an error on our documentation? Please <a href="https://github.com/speechly/documentation/issues/new">file an issue</a> or <a href="https://github.com/speechly/documentation/">make a pull request</a></p>
+  </div>
+</section>
+{{ end }}

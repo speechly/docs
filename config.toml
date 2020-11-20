@@ -1,0 +1,68 @@
+title = "Speechly Docs"
+theme = "speechly-docs"
+publishDir = "docs"
+baseUrl = "https://docs.speechly.com/"
+canonifyURLs = true
+copyright = "Speechly"
+languageCode = "en"
+enableGitInfo = true
+[taxonomies]
+  category = "categories"
+
+
+[params]
+description = "Developer tools for next-generation voice user interfaces"
+icon_set = "ionicons"
+
+
+[params.colors]
+secondary = "#302666"
+primary = "#53A3F9"
+
+[markup.highlight]
+style = "emacs"
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[[params.fonts]]
+name = "Avenir"
+sizes = [400]
+type = "sans_serif"
+
+[[params.fonts]]
+name = "Sansation"
+sizes = [800]
+type = "bold"
+
+[[params.fonts]]
+name = "Roboto Mono"
+sizes = [400]
+type = "monospace"
+
+[[menu.main]]
+name = "Docs"
+identifier = "docs"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Getting started"
+parent = "docs"
+url = "/quick-start/"
+weight = 1
+
+[[menu.main]]
+name = "API Reference"
+url = "/speechly-api/api-reference/"
+weight = 2
+
+[[menu.main]]
+name = "Speechly website"
+url = "https://www.speechly.com/"
+weight = 4
+
+[[menu.main]]
+name = "GitHub" 
+url = "https://github.com/speechly/"
+weight = 3

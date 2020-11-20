@@ -1,0 +1,99 @@
+{{ $isI18n   := gt (len site.Languages) 0 }}
+{{ $indexUrl := cond $isI18n (printf "%s/index.json" .Lang) "index.json" | relURL }}
+{{ $result   := T "result" }}
+{{ $results  := T "results" }}
+{{ $found    := T "found" }}
+<script>
+  const numFound = (num, results, found) => {
+    return `<div class="dropdown-item has-text-weight-bold">
+      ${num} ${results} ${found}
+    </div>
+    <span class="dropdown-divider"></span>`;
+  }
+
+  const result = (url, title, section) => {
+    return `<a class="dropdown-item" href="${url}">
+      <p class="has-text-grey is-tiny">
+        ${section}
+      </p>
+      <p>
+        ${title}
+      </p>
+    </a>`;
+  }
+
+  $(() => {
+    const searchBar = $('#search-bar'),
+      searchMenu = $('#search-menu'),
+      searchContent = $('#search-content');
+
+      const options = {
+        shouldSort: true,
+        threshold: 0.6,
+        maxPatternLength: 32,
+        minMatchCharLength: 2,
+        keys: [
+          {
+            name: 'title',
+            weight: 0.4
+          },
+          {
+            name: 'tags',
+            weight: 0.2
+          },
+          {
+            name: 'summary',
+            weight: 0.3,
+          },
+          {
+            name: 'body',
+            weight: 0.1
+          }
+        ]
+      }
+
+      fetch('{{ $indexUrl }}')
+        .then((res) => {
+          return res.json();
+        })
+        .then((idx) => {
+          const fuse = new Fuse(idx, options);
+
+          searchBar.on('focusin', () => {
+            searchBar.on('keyup', () => {
+              const term = searchBar.val().toLowerCase();
+              
+              if (term) {
+                const results = fuse.search(term);
+                const numResults = results.length;
+
+                if (numResults > 0) {
+                  searchMenu.show();
+                  searchContent.empty();
+
+                  var numAdded = 0;
+
+                  const numTerm = (numResults == 1) ? '{{ $result }}' : '{{ $results }}';
+
+                  const numItems = numFound(numResults, numTerm, '{{ $found }}');
+
+                  searchContent.append(numItems);
+
+                  results.forEach((res) => {
+                    console.log(res.url);
+
+                    const item = result(res.url, res.title, res.section);
+
+                    searchContent.append(item);
+
+                    searchContent.show();
+                  });
+                }
+              } else {
+                searchMenu.hide();
+              }
+            });
+          });
+        });
+  });
+</script>

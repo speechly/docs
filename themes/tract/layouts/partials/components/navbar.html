@@ -1,0 +1,50 @@
+{{ $home   := site.Home.RelPermalink }}
+{{ $title  := site.Title }}
+{{ $menu   := site.Menus.main }}
+{{ $social := site.Params.social }}
+{{ $i18n   := site.IsMultiLingual }}
+{{ $color  := .color | default "white" }}
+{{ $wide   := .wide | default false }}
+{{ $shadow := .shadow | default false }}
+{{ $fixed  := .fixed | default true }}
+<nav class="navbar is-expanded is-{{ $color }}{{ if $fixed }} is-fixed-top{{ end }}{{ if $shadow }} has-shadow{{ end }}" role="navigation" aria-label="dropdown-navigation">
+  {{ if not $wide }}<div class="container">{{ end }}
+    <div class="navbar-brand">
+      <a class="navbar-item is-size-5 is-size-6-mobile has-text-weight-bold" href="{{ $home }}">
+        {{ $title }}
+      </a>
+
+      {{ partial "components/search-dropdown.html" . }}
+
+
+      {{ if $menu }}
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+      {{ end }}
+    </div>
+
+    {{ if or $menu $i18n $social }}
+    <div class="navbar-menu" id="navbar-menu">
+      <div class="navbar-end">
+        {{ with $menu }}
+        {{ partial "components/navbar-menu.html" . }}
+        {{ end }}
+
+        {{ if $i18n }}
+        {{ partial "components/lang-selector.html" . }}
+        {{ end }}
+
+        {{ with $social }}
+        <div class="navbar-item">
+          {{ partial "components/social-buttons.html" (dict "buttons" .) }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  {{ if not $wide }}</div>{{ end }}
+</nav>

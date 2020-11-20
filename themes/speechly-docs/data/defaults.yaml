@@ -1,0 +1,8 @@
+sans_serif_font: Avenir
+bold_font: Sansation
+monospace_font: Roboto Mono
+primary_color: '#2962ff'
+secondary_color: '#c51162'
+font_awesome_version: '5.11.2'
+icon_set: ionicons
+home_hero_color: white

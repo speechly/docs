@@ -1,0 +1,34 @@
+$border: 2px solid $primary
+  
+.nav
+  a
+    color: $nav-link-color
+
+    &:hover
+      color: $nav-link-hover-color
+
+    &.is-active
+      +semi-bold
+      color: $primary
+
+      &:hover
+        color: $nav-link-hover-color
+
+  &-container
+    margin-top: 1.25rem
+
+  &-section
+    & + &
+      margin-top: .5rem
+
+    &-header
+      font-size: 1.2rem
+
+    &-links
+      margin: 0.25rem 0 0.5rem 1rem
+.navbar-logo 
+  margin-right: 0.25rem
+.navbar-title 
+  padding-top: 2px
+  padding-left: 2px
+  font-family: $family-bold

@@ -1,0 +1,8 @@
+{{ $url := (.Get 0) }}
+{{ $size    := 1 | default "normal" }}
+{{ $inv     := false }}
+{{ $icon := (.Get 1) }}
+{{ $color := (.Get 2) | default "green" }}
+{{ $text := (.Get 3) }}
+
+{{ partial "components/button.html" (dict "url" $url "icon" $icon "color" $color "inverted" $inv "size" $size "text" $text ) .}}

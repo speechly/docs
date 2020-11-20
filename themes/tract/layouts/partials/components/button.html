@@ -1,0 +1,28 @@
+{{ $size     := .size  | default "normal" }}
+{{ $color    := .color | default "white" }}
+
+{{ if .url }}
+{{ $url := .url | relLangURL }}
+{{ $isExternal := hasPrefix .url "http" }}
+{{ $radius := .radius | default true }}
+<a class="button is-{{ $size }} is-{{ $color }}{{ if not $radius }} is-radiusless{{ end }}{{ if .inverted }} is-inverted{{ end }}{{ if .outlined }} is-outlined{{ end }}" href="{{ $url }}"{{ if $isExternal }} target="_blank"{{ end }}>
+  {{ with .icon }}
+  <span class="icon">
+    {{ partial "components/icon.html" (dict "icon" .) }}
+  </span>
+  {{ end }}
+  {{ with .text }}
+  <span>
+    {{ . }}
+  </span>
+  {{ end }}
+</a>
+{{ else }}
+<span class="button is-{{ $size }} is-{{ $color }}{{ if not $radius }} is-radiusless{{ end }}{{ if .inverted }} is-inverted{{ end }}{{ if .outlined }} is-outlined{{ end }}">
+  {{ with .icon }}
+  <span class="icon">
+    {{ partial "components/icon.html" (dict "icon" .) }}
+  </span>
+  {{ end }}
+</span>
+{{ end }}

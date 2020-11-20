@@ -1,0 +1,31 @@
+{{ if or .Next .Prev }}
+<section class="section">
+  <div class="container">
+    <div class="pagination has-restricted-width">
+      <!-- Actually previous (bug in Hugo) -->
+      {{ with .Next }}
+      <a class="button is-primary" href="{{ .RelPermalink }}">
+        <span class="icon">
+          {{ partial "components/icon.html" (dict "icon" "arrow-back") }}
+        </span>
+        <span>
+          <strong>Previous</strong>&nbsp;|&nbsp;{{ .Title }}
+        </span>
+      </a>
+      {{ end }}
+    
+      <!-- Actually next (bug in Hugo) -->
+      {{ with .Prev }}
+      <a class="button is-primary" href="{{ .RelPermalink }}">
+        <span>
+          <strong>Next</strong>&nbsp;|&nbsp;{{ .Title }}
+        </span>
+        <span class="icon">
+          {{ partial "components/icon.html" (dict "icon" "arrow-forward") }}
+        </span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,61 @@
+// Red border for dev/debugging purposes
+=x
+  border: 2px solid $red
+
+=flex-size($w)
+  flex: 0 0 $w
+
+.is-sticky
+  position: sticky
+  position: -webkit-sticky
+  top: $navbar-height + $sticky-top-margin
+
+.is-scrollable
+  overflow-y: auto
+
+=fixed
+  position: fixed
+
+=semi-bold
+  font-weight: 600
+
+.has-border-top
+  border-top: $border
+
+.has-border-right
+  border-right: $border
+
+.has-border-left
+  border-left: $border
+
+.has-restricted-width
+  max-width: $max-character-width
+
+.is-dashboard-fixed
+  top: 0
+  position: sticky
+
+.is-tagline
+  font-weight: 400
+
+  +desktop
+    font-size: 1.5rem
+  +mobile
+    font-size: 1.25rem
+
+.page
+  +column
+  min-height: 100vh
+  
+  .main
+    +fill
+
+.is-tiny
+  font-size: $tiny-font-size
+
+.has-bottom-padding
+  padding-bottom: $content-bottom-padding
+
+=underlined
+  margin-bottom: 0.5rem
+  border-bottom: 2px solid $white-bis

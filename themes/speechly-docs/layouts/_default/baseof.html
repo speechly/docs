@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode }}">
+  <head>
+    {{ partial "meta.html" . }}
+    <title>
+      {{ block "title" . }}
+      {{ site.Title }}
+      {{ end }}
+    </title>
+    {{ partial "css.html" . }}
+    {{ partial "head-js.html" . }}
+  </head>
+  <body class="has-navbar-fixed-top">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PH9VTM2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {{ block "main" . }}
+    {{ end }}
+
+    {{ partial "javascript.html" . }}
+    {{ partial "search.html" . }}
+  </body>
+</html>

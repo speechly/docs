@@ -1,0 +1,67 @@
+{{ $here := .RelPermalink }}
+
+{{ define "header" }}
+{{ $isHere := eq .here .url }}
+<header class="nav-section-header">
+  <a{{ if $isHere }} class="is-active"{{ end }} href="{{ .url }}">
+    {{ .title }}
+  </a>
+</header>
+{{ end }}
+
+{{ define "links" }}
+{{ $here := .here }}
+<ul class="nav-section-links">
+  {{ range .links }}
+  {{ $isHere := eq $here .RelPermalink }}
+  <li>
+    <a{{ if $isHere }} class="is-active"{{ end }} href="{{ .RelPermalink }}">
+      {{ .Title }}
+    </a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+
+{{ with .FirstSection }}
+<nav class="nav is-sticky">
+  <header class="nav-header">
+    <nav class="level is-size-5">
+      <div class="level-left">
+        <div class="level-item">
+          <p class="nav-header-title has-text-weight-bold">
+            Docs
+          </p>
+        </div>
+        <div class="level-item">
+          <span class="icon has-text-primary">
+            {{ partial "components/icon.html" (dict "icon" "apps") }}
+          </span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="nav-container is-scrollable">
+    <div class="nav-section">
+      {{ template "header" (dict "title" .Title "url" .RelPermalink "here" $here) }}
+
+      {{ with .RegularPages }}
+      {{ template "links" (dict "links" . "here" $here) }}
+      {{ end }}
+    </div>
+
+    {{ with .Sections }}
+    {{ range . }}
+    <div class="nav-section">
+      {{ template "header" (dict "title" .Title "url" .RelPermalink "here" $here) }}
+
+      {{ with .RegularPages }}
+      {{ template "links" (dict "links" . "here" $here) }}
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</nav>
+{{ end }}

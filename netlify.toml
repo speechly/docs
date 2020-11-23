@@ -1,4 +1,4 @@
 [build]
   publish = "docs"
   command = "hugo --gc --minify"
-  HUGO_VERSION = "0.78""
+  HUGO_VERSION = "0.78"

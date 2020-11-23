@@ -2,7 +2,6 @@ title = "Speechly Docs"
 theme = "speechly-docs"
 publishDir = "docs"
 baseUrl = "https://docs.speechly.com/"
-canonifyURLs = true
 copyright = "Speechly"
 languageCode = "en"
 enableGitInfo = true

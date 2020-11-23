@@ -5,10 +5,9 @@ weight: 9
 display: article
 category: "User guide"
 menu:
-  sidebar:
-    title: "iOS Client"
+  integrations:
+    title: "iOS"
     weight: 5
-    parent: "Client Libraries"
 ---
 
 <!-- {{< button "/client-libraries/ios/tutorial/" "flash-outline" "light" "React Tutorial" >}} -->

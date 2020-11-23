@@ -1,8 +1,11 @@
-
 ---
 title: React Microphone Component
 description: Ready-made microphone component for React
 display: article
+menu:
+  integrations:
+    parent: "React"
+    title: UI Components
 ---
 
 # Speechly Push-to-Talk Button Beta

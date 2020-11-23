@@ -3,17 +3,16 @@ title: Browser Client
 description: The official Speechly client libraries for browser clients.
 display: article
 menu:
-  sidebar:
-    title: "Browser Client"
-    weight: 1
-    parent: "Client Libraries"
+  integrations:
+    title: "Browser"
+    weight: 2
 ---
 
 {{< button "/client-libraries/web-client/tutorial/" "flash-outline" "light" "Browser Client Tutorial" >}}
 
 {{< button "https://github.com/speechly/browser-client" "logo-github" "light" "GitHub" >}}
 
-{{< info title="See it in action" >}} You can see the Speechly Browser Client in action [here](https://speechly.github.io/browser-client-example/).
+{{< info title="See it in action" >}} You can see a basic Speechly Browser Client application [here](https://speechly.github.io/browser-client-example/).
  {{< /info >}}
 
 ## Web Client Quick Start

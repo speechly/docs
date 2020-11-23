@@ -3,12 +3,11 @@ title: React Client Tutorial
 description: Get started with React and Speechly
 display: article
 weight: 1
-aliases: ["/client-libraries/react-client/"]
 menu:
-  sidebar:
-    title: "React Client Tutorial"
+  integrations:
+    title: "Tutorial Guide"
     weight: 1
-    parent: "React Client"
+    parent: "React"
 ---
 
 ### Introduction

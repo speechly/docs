@@ -3,10 +3,6 @@ title: Welcome to Speechly Docs
 description: "Speechly is a developer tool for real-time voice user interfaces. 
 This official Speechly documentation covers everything you need to know from learning the basics to building sophisticated voice user interfaces and training your Spoken Language Understanding models."
 display: article
-menu:
-  sidebar:
-    title: "What is Speechly?"
-    weight: 1
 ---
 
 {{< button "/quick-start/" "flash-outline" "light" "Quick start" >}}

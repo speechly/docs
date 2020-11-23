@@ -1,13 +1,9 @@
 ---
-title: Client Libraries
+title: Integration
 description: The official Speechly client libraries for various platforms enable you to get up and running with integrating Speechly quickly.
 weight: 9
 display: article
 category: "User guide"
-menu:
-  sidebar:
-    title: "Integrations"
-    weight: 5
 ---
 
 {{< warning title="Requires a Speechly App ID" >}}

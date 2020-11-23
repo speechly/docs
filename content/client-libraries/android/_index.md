@@ -5,10 +5,9 @@ weight: 9
 display: article
 category: "User guide"
 menu:
-  sidebar:
-    title: "Android Client"
+  integrations:
+    title: "Android"
     weight: 5
-    parent: "Client Libraries"
 ---
 
 ## Coming soon!

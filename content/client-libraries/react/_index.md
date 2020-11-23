@@ -1,14 +1,12 @@
 ---
-title: React Client
+title: "React"
 description:  The official Speechly client libraries for React clients. 
 display: article
 weight: 1
 aliases: ["/client-libraries/react-client/"]
 menu:
-  sidebar:
-    title: "React Client"
-    weight: 1
-    parent: "Client Libraries"
+  integrations:
+    weight: 3
 ---
 
 {{< button "/client-libraries/react/tutorial/" "flash-outline" "light" "React Tutorial" >}}
@@ -17,7 +15,7 @@ menu:
 
 Speechly is a developer tool for building real-time voice user interfaces for touch screen and web applications.
 
-After you've [configured your application](/quick-start/) and have it's App ID available, you can integrate it to your application. 
+After you've [configured your application](/quick-start/) and have it's App ID available, you can integrate it to your application. This documentation is about integrating Speechly to your React application.
 
 {{< youtube "xI68NT8D1m8" >}}
 *e-Commerce demo built on Speechly React Client* 

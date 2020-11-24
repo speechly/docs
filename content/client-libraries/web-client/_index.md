@@ -4,7 +4,7 @@ description: The official Speechly client libraries for browser clients.
 display: article
 menu:
   integrations:
-    title: "Browser"
+    title: "Web Browser"
     weight: 2
 ---
 

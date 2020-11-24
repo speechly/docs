@@ -13,21 +13,12 @@ menu:
 
 This page is about the basics of Speechly Annotation Language (SAL). SAL is the annotation language that is used to configure the model. 
 
-On this page, you'll learn about:
-
-- Intents and entites
-- Annotating your first utterances
-- Inline lists and variables that you can use to make your configuration more robust
-- Optional input
-- Numbers
-- Multi-intent utterances
-- List weights
-- Permutation
+On this page, you'll learn about configuring your application through example utterances, basic concepts intents and entities and the Speechly Dashboard basic functionalities
 
 {{< info title="Example configurations" >}} If you want to get up and running fast, you can copypaste our [example configurations](/slu-examples/example-configuration/) and try them out.{{< /info >}}
 
 
-## Introduction
+## Example utterances
 
 The Speechly SLU applications are built by specifying a set of example utterances, for which we use our Speechly Annotation Language (SAL). The example utterances should, as accurately as possible, reflect what your users might say to your application. Your examples are then fed as training data to a fairly complex machine learning system, which takes care of building all the bits and pieces required for a computer to understand human speech.
 

@@ -10,8 +10,6 @@ menu:
     weight: 2
 ---
 
-
-
 # What is Speechly?
 
 Speechly is a tool for building real-time multi modal voice user interfaces for touch screens and web applications. 
@@ -21,6 +19,8 @@ Speechly improves your application's user experience by adding a natural and int
 This tutorial walks you through building your first Speechly voice application and testing it out in Speechly Playground. 
 
 You can read more on [Speechly website](https://www.speechly.com/).
+
+{{< figure src="developing-applications-docs.png">}}
 
 --- 
 **Are you a developer? Jump straight into a tutorial!**

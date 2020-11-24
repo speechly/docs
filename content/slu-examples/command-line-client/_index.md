@@ -5,9 +5,9 @@ weight: 5
 category: "User guide"
 menu:
   sidebar:
-    title: "Command Line Configuration Tool"
-    weight: 1
-    parent: "Configure"
+    title: "CLI Configuration Tool"
+    weight: 8
+    parent: "Configuring Your Application"
 ---
 
 Once you've created your first application on the [Speechly Dashboard](https://www.speechly.com/dashboard/) and start inviting more developers to collaborate with your configuration, you might find yourself missing `Git` and other familiar collaboration tools. 

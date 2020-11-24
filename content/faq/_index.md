@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently Asked Questions about the Speechly SLU platform and API. 
 weight: 9
-category: "FAQ"
+display: article
 menu:
   sidebar:
     title: "FAQ"

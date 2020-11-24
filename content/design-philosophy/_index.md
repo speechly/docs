@@ -8,7 +8,7 @@ menu:
     weight: 5
 ---
 
-Speechly is solving voice in a completely novel way. Our API is fully streaming to enable a few key concepts that we think are the missing piece in voice.
+Speechly is solving voice in a completely novel way. Our API is fully streaming to enable a few key concepts that we think are the missing piece in voice. When developing your application, follow these best practices for best user experience.
 
 ## Real-time visual feedback
 
@@ -21,13 +21,22 @@ Speechly starts returning results right after the user starts talking to enable 
 {{< youtube xI68NT8D1m8 >}}
 *Example of real time visual feedback in voice eCommerce*
 
-## Push-to-talk
+## Show transcript in field of vision
+
+Show the transcript of user utterance in a central place in the field of vision of the user. This is important so that the end-user can be sure that their input is being received correctly. In case of error, the transcript is the only way for the user to know why the error happened.
+
+This is why the transcript needs to be **always visible** when voice commands are being uttered.
+
+{{< figure src="transcript.png" title="Always show transcript in the users' field of vision">}}
+
+
+## Use push-to-talk for activating voice
 
 Instead of wakewords, we prefer users to explicitly activate the voice functions by pressing and holding the microphone button.
 
 This approach is more privacy-sensitive and offers lower latency. While this means that the application can't be used hands-free, this is often the best solution. 
 
-And of course, you can use wake words with Speechly, too.
+And of course, you can use third party wake word systems with Speechly, too. Most often you shouldn't. 
 
 ## Use voice for commands
 
@@ -35,7 +44,7 @@ End users are not using the voice functionalities because they want to talk with
 
 Configure your Speechly model for various ways how users can use your application, but don't make them conversate. Voice is used to make your application faster and more efficient to use, not for dialogue.
 
-## Multi-modality
+## Support multi-modality
 
 Your application should not be voice-only. Voice should be used to complement your current user interface, not to replace it altogether. 
 

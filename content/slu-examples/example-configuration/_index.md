@@ -6,7 +6,7 @@ aliases: [/editing-nlu-examples/example-configuration/]
 menu:
   sidebar:
     title: "Example Configurations"
-    weight: 5
+    weight: 8
     parent: "Configuring Your Application"
 ---
 

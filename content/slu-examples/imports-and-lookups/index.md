@@ -1,18 +1,18 @@
 ---
-title: Imports and lookup entity type
+title: Importing data from CSV files
 description: Imports are an advanced SAL feature that enables you to define variables outside the SAL view, improving readability. The lookup entity type allows you to define a canonical output value for entities with synonyms.
 weight: 3
 category: "User guide"
 aliases: [/editing-nlu-examples/imports-and-lookup/]
 menu:
   sidebar:
-    title: "Imports and lookup entity type"
+    title: "Importing data from CSVs"
     parent: "Configuring Your Application"
 ---
 
-{{< info title="Learn more" >}} This part of the documentation expands on what we've previously written about the SLU examples and the Speechly Annotation Language. The best way to start learning Speechly is to complete [Quick Start](/quick-start). You might want to learn about the [Advanced syntax features](/slu-examples/editing-slu-examples/#advanced-syntax-features/) too.{{< /info >}}
+{{< info title="Advanced use" >}} This part of the documentation deals with data heavy applications.{{< /info >}}
 
-## Import a list variable
+## Importing a list variable from CSV
 
 The imports feature enables you to define a SAL variable list outside the SAL configuration. Normally, the list variables are written in plain SAL, like the following:
 ```
@@ -22,17 +22,24 @@ $my_sal_list # here using the list
 With the imports, you can put these items in a CSV file and import them to your app configuration. Just add the following lines to your app configuration:
 ```
 imports: 
-  - name: my_sal_list
-    source: my_sal_list_items.csv
+  - name: products
+    source: product_list.csv
     field: 1
 templates: |
-    $my_sal_list # here using the list
+    $add_to_cart Add $produdcts to cart 
 ```
-Now one list variable is imported: `my_sal_list`. The key *source* is the path to the file that contains the variable, and the *field* defines the number of the column where the variable is located (direction from left to right, "1" standing for the *first* column). The imported variable can be used in the familiar manner by prepending the dollar (`$`) sign to the variable name: `$my_sal_list`.
+Now one list variable is imported: `products`. The key *source* is the path to the file that contains the variable, and the *field* key defines the number of the column where the variable is located (direction from left to right, "1" standing for the *first* column). The imported variable can be used in the familiar manner by prepending the dollar (`$`) sign to the variable name: `$products`.
 
-## Lookup entity type
+## Using lookup tables for synonyms
 
-The lookup entity type enables defining special outputs for recognized entity values. This is useful, for instance, if you want the Speechly API to return product codes for uttered products.
+The lookup entity type enables defining special outputs for recognized entity values. This is useful, for instance, if you want the Speechly API to return product codes when user uses a name of the product. This feature can also be used for synonyms, such as always returning `TV` for utterances that contain "television", "TV", or "telly".
+
+>   Example SAL: `*add_to_cart Add $product(product) to cart`  
+>   Example utterance: "Add iPhone XS to cart"   
+>   Speechly API returns:   
+>   intent: add_to_cart   
+>   product: ASG241F
+
 To use the lookup entity type, add the following lines to your app configuration along with your imports and entities:
 ```
 imports:

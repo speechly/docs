@@ -6,7 +6,7 @@ category: "User guide"
 aliases: [/editing-nlu-examples/standard-variables/]
 menu:
   sidebar:
-    title: "Standard Variables and Data Types"
+    title: "Standard Variables (dates, numbers, identifiers etc)"
     weight: 3
     parent: "Configuring Your Application"
 ---

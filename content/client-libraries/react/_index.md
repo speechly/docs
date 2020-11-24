@@ -1,28 +1,23 @@
 ---
-title: "React"
-description:  The official Speechly client libraries for React clients. 
+title: Speechly React client
+description: The official Speechly client for React apps
 display: article
 weight: 1
 aliases: ["/client-libraries/react-client/"]
 menu:
   integrations:
-    weight: 3
+    title: React
+    weight: 2
 ---
 
-{{< button "/client-libraries/react/tutorial/" "flash-outline" "light" "React Tutorial" >}}
-
+{{< button "/client-libraries/react/tutorial/" "flash-outline" "light" "Tutorial" >}}
 {{< button "https://github.com/speechly/react-client" "logo-github" "light" "GitHub" >}}
 
-Speechly is a developer tool for building real-time voice user interfaces for touch screen and web applications.
+Speechly React client uses the power of React Context and React Hooks to make it super easy to integrate Speechly into your app.
 
-After you've [configured your application](/quick-start/) and have it's App ID available, you can integrate it to your application. This documentation is about integrating Speechly to your React application.
+## Installation
 
-{{< youtube "xI68NT8D1m8" >}}
-*e-Commerce demo built on Speechly React Client* 
-
-## Usage
-
-Install the package:
+You can use NPM or Yarn to install the client, here's how:
 
 ```shell
 # Create a new React app
@@ -32,11 +27,13 @@ create-react-app .
 npm install --save @speechly/react-client
 ```
 
-Start using the client:
+## Usage
+
+Using the client is super simple, just import the context provider and a hook, pass the app id and the language and your good to go!
 
 ```typescript
-import React from 'react'
-import { SpeechProvider, useSpeechContext } from '@speechly/react-client'
+import React from "react";
+import { SpeechProvider, useSpeechContext } from "@speechly/react-client";
 
 export default function App() {
   return (
@@ -45,25 +42,24 @@ export default function App() {
         <SpeechlyApp />
       </SpeechProvider>
     </div>
-  )
+  );
 }
 
 function SpeechlyApp() {
-  const { speechState, segment, toggleRecording } = useSpeechContext()
+  const { speechState, segment, toggleRecording } = useSpeechContext();
 
   return (
     <div>
       <div className="status">{speechState}</div>
-      {segment ? <div className="segment">{segment.words.map(w => w.value).join(' ')}</div> : null}
+      {segment ? (
+        <div className="segment">
+          {segment.words.map((w) => w.value).join(" ")}
+        </div>
+      ) : null}
       <div className="mic-button">
         <button onClick={toggleRecording}>Record</button>
       </div>
     </div>
-  )
+  );
 }
 ```
-
-Check out the [react-example-repo-filtering](https://github.com/speechly/react-example-repo-filtering) repository for a demo app built using this client.
-
-
-

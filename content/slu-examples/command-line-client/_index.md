@@ -5,7 +5,7 @@ weight: 5
 category: "User guide"
 menu:
   sidebar:
-    title: "CLI Configuration Tool"
+    title: "Configuration Tool"
     weight: 8
     parent: "Configuring Your Application"
 ---

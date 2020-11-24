@@ -1,5 +1,5 @@
 ---
-title: SAL Cheat Sheet
+title: Syntax Cheat Sheet
 description: All supported SAL features and when to use them
 menu:
   sidebar:
@@ -35,6 +35,8 @@ category = [
 ```
 
 Variables are defined by `variable = []` notation and used by `$variable`. Variables can contain all valid SAL syntax.
+
+{{< warning title="Define variables before using them" >}} Variables need to be defined before you use them in your examples. {{</warning >}}
 
 ## Inline lists
 
@@ -77,3 +79,12 @@ You can define multiple intents in one sentence. This example would return two i
 *Supports end user utterance such as "Add ABC123 to cart" or "Add 4FG13L to cart"
 
 `$SPEECHLY.IDENTIFIER_SHORT, $SPEECHLY.IDENTIFIER_MEDIUM and $SPEECHLY.IDENTIFIER_LONG` are [standard entity](/slu-examples/standard-variables/) types for alphanumeric sequences of various lengths. These can be used for product codes, license plates or other identifiers.
+
+## Permutations
+
+`*book Book a ticket ![[from Helsinki](from) | [to London](to) | for [two](amount)]`
+
+*Supports end user utterances such as "Book a ticket for two from Helsinki to London" or "Book a ticket for two to Helsinki from London"
+
+Permutations enable users to utter the parts of the utterance in any order.
+

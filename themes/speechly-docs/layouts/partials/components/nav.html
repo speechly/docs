@@ -35,7 +35,7 @@
             {{ if or ($currentPage.IsMenuCurrent "sidebar" .) ($currentPage.HasMenuCurrent "sidebar" .)}} 
               <ul class="nav-section-links">
                 {{ range .Children }}
-                <li>
+                <li class="nav-subitem">
                   <a href="{{.URL}}">
                     {{ .Title }}
                   </a>
@@ -58,7 +58,7 @@
           {{ if or ($currentPage.IsMenuCurrent "integrations" .) ($currentPage.HasMenuCurrent "integrations" .)}} 
               <ul class="nav-section-links">
                 {{ range .Children }}
-                <li>
+                <li class="nav-subitem">
                   <a href="{{.URL}}">
                      {{ .Title }}
                   </a>

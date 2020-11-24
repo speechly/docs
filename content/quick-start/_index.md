@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-description: The Speechly Quick Start helps you get started on developing with Speechly. 
+description: The Speechly Quick Start helps you get started on developing with Speechly Dashboard. 
 weight: -999
 display: article
 category: "User guide"

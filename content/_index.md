@@ -9,7 +9,7 @@ display: article
 {{< button "/client-libraries/" "list" "light" "Client Libraries" >}}
 {{< button "https://www.speechly.com/" "home-outline" "light" "Speechly Home" >}}
 
----
+
 
 This documentation site is a part of Speechly's Spoken Language Understanding developer tools. The documentation is divided into five different sections, each of which have a number of subsections for further learning.
 
@@ -49,6 +49,7 @@ Getting started with Speechly is easy! You just need to create an account and de
 
 Once you've completed the tutorial, you can read more about [SLU Examples](#) to improve your example template. Then you can move on to integrating your SLU model to your application with the help of our [Client Libraries](/client-libraries/).
 
-You can also use our [React Client](/client-libraries/react/tutorial/) tutorial/) to build a simple application with Speechly.
+You can also use our [React Client](/client-libraries/react/tutorial/) to build a simple application with Speechly.
 
-{{< button "/quick-start/" "flash-outline" "primary" "Proceed to Quick start" >}}
+{{< button "/quick-start/" "flash-outline" "light" "Proceed to Quick start" >}}
+{{< button "/client-libraries/react/tutorial" "flash-outline" "light" "Proceed to React tutorial" >}}

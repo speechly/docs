@@ -4,7 +4,7 @@ description: "How Speechly should be used to improve your application's user exp
 display: article
 menu:
   sidebar:
-    title: "Best Practices"
+    title: "Design"
     weight: 5
 ---
 

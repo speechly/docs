@@ -1,22 +1,22 @@
 ---
-title: React Client Tutorial
+title: Speechly React tutorial
 description: Get started with React and Speechly
 display: article
 weight: 1
 menu:
   integrations:
-    title: "Tutorial Guide"
+    title: Tutorial
     weight: 1
-    parent: "React"
+    parent: Speechly React client
 ---
 
-### Introduction
+## Introduction
 
 This tutorial will help you to get up and running with Speechly by guiding you through the process of building a simple voice filtering web app with Speechly and React.
 
 You can find the source code for this tutorial [on GitHub](https://github.com/speechly/react-example-repo-filtering) and you can also try out the final result [hosted on GitHub Pages](http://speechly.github.io/react-example-repo-filtering/).
 
-### Prerequisites
+## Prerequisites
 
 Since we'll be using [create-react-app](https://create-react-app.dev/docs/getting-started) for this tutorial, we'll need the following tools:
 
@@ -27,7 +27,7 @@ You can also download and use our [React microphone component](/client-libraries
 
 Note that this tutorial also uses TypeScript, so feel free to check out [TypeScript documentation](https://www.typescriptlang.org/docs) if you're not familiar with it.
 
-### 1. Creating an app
+## Create an app
 
 Let's get started by creating an app and installing its dependencies:
 
@@ -39,7 +39,7 @@ npm i
 
 Now that you've created the app, you can check it out by running `npm start` - it should open a browser tab with your app running in it.
 
-### 2. Adding data and layout
+## Add data and layout
 
 Since we are building a filtering app, let's add some data to filter and layout to display it.
 
@@ -251,7 +251,7 @@ function App(): JSX.Element {
 export default App;
 ```
 
-### 3. Adding Speechly client and a microphone button
+## Add Speechly client and a microphone button
 
 Before we proceed with the app, let's take a quick detour and train a very simple and not very useful Speechly app, so that we can use it to test our integration later on.
 
@@ -401,7 +401,7 @@ Now you can go ahead and try talking to the app and see what you get back in the
 
 However, we still need to implement the filtering functionality, so let's go ahead and update our Speechly app configuration to support that.
 
-### 4. Configuring Speechly app
+## Configure Speechly app
 
 Now that we've integrated the API into the app, it's time to make our Speechly app useful. Let's add a couple of simple commands for manipulating the data we see in the table:
 
@@ -470,7 +470,7 @@ As you can see from the comments, this configuration will make our Speechly app 
 
 Once you've deployed your new version of the Speechly app, let's continue to parsing the results.
 
-### 5. Parsing intents and entities
+## Parse intents and entities
 
 Now that we've trained a version of Speechly app with proper entities and intents, let's parse the results. First let's add our parsing logic to `src/parser.ts`:
 
@@ -605,7 +605,7 @@ function parseSegment(segment: SpeechSegment) {
 
 Here we define a `parseSegment` function that is called every time a segment changes by using React's `useEffect` hook. Since segment might come as `undefined` (this happens after the user stops speaking and the API sends its final response), we want to check for that before trying to parse it. The function checks for the intent and then calls the appropriate entity parser (or no entity parser at all if the intent was to reset the filters). For now, we are just going to log the results of the parser, but to use them, we'll have to add some filters. Let's continue with that!
 
-### 6. Adding and applying filters
+## Add and apply the filters
 
 In order to apply filters, we'd need to implement some filtering logic, so let's do just that and add it as `src/filter.ts`:
 
@@ -761,7 +761,7 @@ function parseSegment(segment: SpeechSegment): Filter {
 
 Here we use React's `useState` hook to create a couple of stateful variables for storing filtered results and last filters (you can append them by saying "Show me all Go repos" first and then following up with "Sort by start"). Every time we get a new state of `segment` from the API, we call our `parseSegment` to parse the filters from it and then append those filters to the ones we've saved in the state. Then we also apply new filters to the list of repositories before passing them on to rendering.
 
-### Conclusion
+## Conclusion
 
 And that's it! Now you can go ahead and try out your app - you can filter the repos by language, apply a sorting order, and reset the filters.
 

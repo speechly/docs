@@ -15,6 +15,8 @@ menu:
 
 Speechly React client uses the power of React Context and React Hooks to make it super easy to integrate Speechly into your app.
 
+{{< info title="Supported browsers">}} Please refer to [Supported Browsers](/client-libraries/supported-browsers/) to learn about compability. {{</info>}}
+
 ## Installation
 
 You can use NPM or Yarn to install the client, here's how:

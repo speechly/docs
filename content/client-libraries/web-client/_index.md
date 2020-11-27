@@ -17,6 +17,8 @@ menu:
 
 ## Web Client Quick Start
 
+{{< info title="Supported browsers">}} Please refer to [Supported Browsers](/client-libraries/supported-browsers/) to learn about compability. {{</info>}}
+
 {{<warning title="Developing on Windows?">}}If you are developing on Windows, you can install Linux on a virtual machine by following [these instructions](https://itsfoss.com/install-linux-in-virtualbox/). {{</warning>}}
 
 0. In order to install the Speechly Browser Client, you'll first need to have some common developer tools installed. These include [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [NodeJS](https://nodejs.org/en/). You'll also need a Speechly app ID, which you get by signing up to the [Speechly Dashboard](/quick-start).

@@ -16,7 +16,7 @@ Let’s play chess by using voice! In this tutorial, we’ll build a simple ches
 
 After completing this tutorial, you will be able to create a [Speechly](https://www.speechly.com/) voice interface for a new project or integrate it to an existing one in Javascript.
 
-Chessboard consists of rows and columns, or in the language of chess ranks and files. The files (rows) are identified by the letters a to h and the ranks (columns) by the numbers 1 to 8. In this tutorial, we will be using the [chess game  notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)): “e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6”. Upper-case letters N and B stand for the knight and bishop.
+Chessboard consists of rows and columns, or in the language of chess ranks and files. The files (columns) are identified by the letters a to h and the ranks (rows) by the numbers 1 to 8. In this tutorial, we will be using the [chess game  notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)): “e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6”. Upper-case letters N and B stand for the knight and bishop.
 
 You say “knight f3" and Speechly will provide you with a javascript object of intent
 ```

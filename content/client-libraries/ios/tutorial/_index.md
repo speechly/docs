@@ -1,13 +1,12 @@
 ---
-title: Speechly iOS tutorial
+title: iOS client tutorial
 description: Get started with iOS and Speechly
 display: article
 weight: 1
 menu:
   integrations:
     title: Tutorial
-    weight: 1
-    parent: Speechly iOS client
+    parent: iOS client
 ---
 
 ## Introduction

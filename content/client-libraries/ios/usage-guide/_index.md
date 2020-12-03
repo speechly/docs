@@ -1,5 +1,5 @@
 ---
-title: iOS usage guide
+title: iOS client usage guide
 description: A guide for using Speechly on iOS
 display: article
 weight: 2
@@ -81,7 +81,7 @@ extension SpeechlyManager: SpeechClientDelegate {
 }
 ```
 
-Once created, you can use the manager together with `@ObservedObject` attributed in your SwiftUI `App`, e.g. like this:
+Once created, you can use the manager together with `@ObservedObject` attribute in your SwiftUI `App`, e.g. like this:
 
 ```swift
 import Foundation

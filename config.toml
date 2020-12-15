@@ -5,14 +5,14 @@ baseUrl = "https://docs.speechly.com/"
 copyright = "Speechly"
 languageCode = "en"
 enableGitInfo = true
-[taxonomies]
-  category = "categories"
+disablePathToLower = true
 
+[taxonomies]
+category = "categories"
 
 [params]
 description = "Developer tools for next-generation voice user interfaces"
 icon_set = "ionicons"
-
 
 [params.colors]
 secondary = "#302666"

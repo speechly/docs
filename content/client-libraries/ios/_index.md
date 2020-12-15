@@ -1,13 +1,12 @@
 ---
-title: Speechly iOS client
+title: iOS client
 description: The official Speechly client for iOS apps
 display: article
-weight: 1
+weight: 3
 aliases: ["/client-libraries/ios-client/"]
 menu:
   integrations:
     title: iOS
-    weight: 3
 ---
 
 {{< button "/client-libraries/ios/tutorial/" "flash-outline" "light" "Tutorial" >}}

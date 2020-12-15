@@ -10,6 +10,12 @@ menu:
     parent: Speechly React client
 ---
 
+{{< info title="Clone and try" >}}
+  Try out the app by cloning the repository and using the appid `014ce3a6-9bbf-4605-976f-087a8f3ec178`
+{{< /info >}}
+
+{{< button "https://github.com/speechly/react-example-repo-filtering" "logo-github" "light" "Tutorial Repository" >}}
+
 ## Introduction
 
 This tutorial will help you to get up and running with Speechly by guiding you through the process of building a simple voice filtering web app with Speechly and React.

@@ -1,6 +1,6 @@
 ---
 title: Browser Client Tutorial
-description: Get started with React and Speechly
+description: Get started with Javascript and Speechly
 display: article
 weight: 1
 menu:
@@ -9,6 +9,12 @@ menu:
     weight: 1
     parent: "Browser Client"
 ---
+
+{{< info title="Clone and try" >}}
+  Try out the app by cloning the repository and using the appid `6e61df24-2fbe-4cd9-b560-3c39842bafea`
+{{< /info >}}
+
+{{< button "https://github.com/speechly/speech-to-chess/" "logo-github" "light" "Tutorial Repository" >}}
 
 # SpeechToChess tutorial
 

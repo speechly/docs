@@ -70,7 +70,7 @@ The deploying should take 1-2 minutes.
 
 {{< figure src="utterance-intent-entities.png" title="An utterance annotated using the Speechly Annotation Language." alt="A figure explaining one utterance with its intent and entities tagged by using Speechly Annotation Language">}}
 
-{{< info title="Advanced SLU Examples" >}} Please take a look at [advanced SLU examples](https://www.speechly.com/docs/slu-examples/editing-slu-examples/#advanced-syntax-features) to learn more about the [SAL syntax](/slu-examples/editing-slu-examples/).{{< /info >}}
+{{< info title="Advanced SLU Examples" >}} Please take a look at [advanced SLU examples](https://docs.speechly.com/slu-examples/editing-slu-examples/#advanced-syntax-features) to learn more about the [SAL syntax](/slu-examples/editing-slu-examples/).{{< /info >}}
 
 ### 3 Trying out the application
 

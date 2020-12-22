@@ -8,7 +8,12 @@
       <div class="container">
         <div class="columns is-vcentered">
           <div class="column">
-            {{ partial "components/title.html" (dict "title" $title "description" $desc "scale" 4 "title_color" "white-bis" "desc_color" "light") }}
+            <<h1 class="title is-size-4 is-size-5-mobile has-text-white-bis has-text-weight-light is-spaced">
+              Speechly Docs
+            </h1>
+            <p class="subtitle is-size-6 is-size-6-mobile has-text-light">
+              Developer tools for next-generation voice user interfaces
+            </p>
 
             {{ with $social }}
             {{ partial "components/social-buttons.html" (dict "buttons" . "size" "small" "hero" true "inverted" true) }}

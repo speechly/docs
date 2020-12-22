@@ -55,7 +55,7 @@ You can delete all user data from the Admin Dashboard. If you want a verificatio
 
 ### How is my data protected? 
 
-We protect all data using industry best practices. Speechly can use the data you provide us to train our own models in free tier. You can revisit our privacy policy [here](https://www.speechly.com/privacy).
+We protect all data using industry best practices. Speechly can use the data you provide us to train our own models in free tier. You can revisit our privacy policy [here](https://www.speechly.com/privacy/).
 
 ## Developing on Speechly
 
@@ -71,7 +71,7 @@ The easiest way to start developing on Speechly is our Quick Start tutorial or t
 
 ### How can I integrate Speechly to my app built on another platform?
 
-You can either use our [API reference](/speechly-api/api-reference) or [contact us](mailto:hello@speechly.com).
+You can either use our [API reference](/speechly-api/api-reference/) or [contact us](mailto:hello@speechly.com).
 
 ### What is device ID and why do I need that?
 

@@ -11,7 +11,7 @@ menu:
 
 ## Overview
 
-The Speechly API consists of three services: the [`SLU`](/speechly-api/api-reference#slu-service) provides spoken language understanding, the [`WLU`](/speechly-api/api-reference#wlu-service) written language understanding, and the [`Identity`](/speechly-api/api-reference/#identity-service) provides authentication and identity service.
+The Speechly API consists of three services: the [`SLU`](/speechly-api/api-reference/#slu-service) provides spoken language understanding, the [`WLU`](/speechly-api/api-reference/#wlu-service) written language understanding, and the [`Identity`](/speechly-api/api-reference/#identity-service) provides authentication and identity service.
 
 The difference between SLU and WLU is that the former is used for audio data, whereas the latter works with text. The SLU provides speech recognition (ASR) and natural language understanding (NLU) by extracting intents and entities from the voice data. The WLU works with the same model but only provides natural language understanding.
 

@@ -52,4 +52,4 @@ Once you've completed the tutorial, you can read more about [SLU Examples](#) to
 You can also use our [React Client](/client-libraries/react/tutorial/) to build a simple application with Speechly.
 
 {{< button "/quick-start/" "flash-outline" "light" "Proceed to Quick start" >}}
-{{< button "/client-libraries/react/tutorial" "flash-outline" "light" "Proceed to React tutorial" >}}
+{{< button "/client-libraries/react/tutorial/" "flash-outline" "light" "Proceed to React tutorial" >}}

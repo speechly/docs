@@ -47,9 +47,9 @@ and an array of entities
 
 Building [voice user interfaces](https://www.speechly.com/blog/voice-application-design-guide/) starts from the declaration of the intents and entities. In our chess example, the most common user intent is to move a piece on the board. This intent has two entities (modifiers for this intent): piece and square where this piece will be moved.  
 
-Go to [Speechly Dashboard](https://www.speechly.com/dashboard/), login and click on the “Create app” button. 
+Go to [Speechly Dashboard](https://api.speechly.com/dashboard/), login and click on the “Create app” button. 
 
-{{< info title="Quick Start to Dashboard" >}}If you are unsure on how to use the Speechly Dashboard, see our [Quick Start](/quick-start){{</info>}}
+{{< info title="Quick Start to Dashboard" >}}If you are unsure on how to use the Speechly Dashboard, see our [Quick Start](/quick-start/){{</info>}}
 
 Set a name for the app. Now you can see the editor where you can write your SAL code.
 Like mentioned,the intents in chess are moves. There is a list of intents on the right side of the screen, type the name of the first intent “move” and click on “Add” button.

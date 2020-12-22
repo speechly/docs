@@ -14,17 +14,17 @@ menu:
   Try out the app by cloning the repository and using the appid `014ce3a6-9bbf-4605-976f-087a8f3ec178`
 {{< /info >}}
 
-{{< button "https://github.com/speechly/react-example-repo-filtering" "logo-github" "light" "Tutorial Repository" >}}
+{{< button "https://github.com/speechly/react-example-repo-filtering/" "logo-github" "light" "Tutorial Repository" >}}
 
 ## Introduction
 
 This tutorial will help you to get up and running with Speechly by guiding you through the process of building a simple voice filtering web app with Speechly and React.
 
-You can find the source code for this tutorial [on GitHub](https://github.com/speechly/react-example-repo-filtering) and you can also try out the final result [hosted on GitHub Pages](http://speechly.github.io/react-example-repo-filtering/).
+You can find the source code for this tutorial [on GitHub](https://github.com/speechly/react-example-repo-filtering/) and you can also try out the final result [hosted on GitHub Pages](http://speechly.github.io/react-example-repo-filtering/).
 
 ## Prerequisites
 
-Since we'll be using [create-react-app](https://create-react-app.dev/docs/getting-started) for this tutorial, we'll need the following tools:
+Since we'll be using [create-react-app](https://create-react-app.dev/docs/getting-started/) for this tutorial, we'll need the following tools:
 
 - Node.js 8.10+
 - npm 5.2+
@@ -261,7 +261,7 @@ export default App;
 
 Before we proceed with the app, let's take a quick detour and train a very simple and not very useful Speechly app, so that we can use it to test our integration later on.
 
-Go to https://speechly.com/dashboard and login (or sign up if you haven't yet) and create a new app (you can [check our Speechly Dashboard quickstart guide](/quick-start/) if you feel lost). Feel free to use any configuration you want, even an almost empty configuration with just "Hello world" will suffice, but make sure your app is deployed!
+Go to https://api.speechly.com/dashboard/ and login (or sign up if you haven't yet) and create a new app (you can [check our Speechly Dashboard quickstart guide](/quick-start/) if you feel lost). Feel free to use any configuration you want, even an almost empty configuration with just "Hello world" will suffice, but make sure your app is deployed!
 
 {{< figure src="hello_world_config.png" alt="A simple Speechly configuration example" title="A simple Speechly configuration example" >}}
 
@@ -415,7 +415,7 @@ Now that we've integrated the API into the app, it's time to make our Speechly a
 - A command to sort the results in a specific order, e.g., "Sort the results by forks," will sort the repos by the number of forks it has.
 - A command to reset the filters, e.g., "Reset the filters to default," will remove the language filter and reset the sorting to some default.
 
-Let's go back to [Speechly dashboard](https://speechly.com/dashboard) and update the configuration of our app with the following:
+Let's go back to [Speechly dashboard](https://api.speechly.com/dashboard/) and update the configuration of our app with the following:
 
 ```
 # Which languages we can filter by

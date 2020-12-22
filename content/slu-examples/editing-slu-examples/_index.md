@@ -24,7 +24,7 @@ The Speechly SLU applications are built by specifying a set of example utterance
 
 Luckily, to build an SLU app with Speechly, you don't have to understand what's going on under the hood. It is useful, however, to know a bit what the example utterances are used for. You can think of them as a way to explain to the computer what a particular sentence means and which words or phrases in the utterance are important.
 
-{{< info title="Feeling lost?" >}} This part of the documentation expands on what we've previously written about models, intents, and entities. The best way to start learning Speechly is by completing the [Quick Start](/quick-start). You might want to learn about the [SLU basics](/slu-examples/) too.{{< /info >}}
+{{< info title="Feeling lost?" >}} This part of the documentation expands on what we've previously written about models, intents, and entities. The best way to start learning Speechly is by completing the [Quick Start](/quick-start/). You might want to learn about the [SLU basics](/slu-examples/) too.{{< /info >}}
 
 We'll use a simple home automation application as a running example when walking through the different SAL features. Let's start with something simple, and then progressively move on to more complicated stuff.
 

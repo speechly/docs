@@ -277,4 +277,4 @@ extension SpeechlyManager: SpeechClientDelegate {
 }
 ```
 
-If you need help with specific client APIs, please check out [the API reference](/client-libraries/ios/api-reference).
+If you need help with specific client APIs, please check out [the API reference](/client-libraries/ios/api-reference/).

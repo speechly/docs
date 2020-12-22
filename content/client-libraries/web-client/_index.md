@@ -10,7 +10,7 @@ menu:
 
 {{< button "/client-libraries/web-client/tutorial/" "flash-outline" "light" "Browser Client Tutorial" >}}
 
-{{< button "https://github.com/speechly/browser-client" "logo-github" "light" "GitHub" >}}
+{{< button "https://github.com/speechly/browser-client/" "logo-github" "light" "GitHub" >}}
 
 {{< info title="See it in action" >}} You can see a basic Speechly Browser Client application [here](https://speechly.github.io/browser-client-example/).
  {{< /info >}}
@@ -21,9 +21,9 @@ menu:
 
 {{<warning title="Developing on Windows?">}}If you are developing on Windows, you can install Linux on a virtual machine by following [these instructions](https://itsfoss.com/install-linux-in-virtualbox/). {{</warning>}}
 
-0. In order to install the Speechly Browser Client, you'll first need to have some common developer tools installed. These include [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [NodeJS](https://nodejs.org/en/). You'll also need a Speechly app ID, which you get by signing up to the [Speechly Dashboard](/quick-start).
+0. In order to install the Speechly Browser Client, you'll first need to have some common developer tools installed. These include [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [NodeJS](https://nodejs.org/en/). You'll also need a Speechly app ID, which you get by signing up to the [Speechly Dashboard](/quick-start/).
 
-1.  Clone the `browser-client-example` [Github repository](https://github.com/speechly/browser-client-example) to your home directory, and move on to the directory where the `browser-client-example` is cloned.
+1.  Clone the `browser-client-example` [Github repository](https://github.com/speechly/browser-client-example/) to your home directory, and move on to the directory where the `browser-client-example` is cloned.
 
 ```terminfo
 $ cd ~ && git clone https://github.com/speechly/browser-client-example/ && cd browser-client-example
@@ -58,6 +58,6 @@ $ yarn start
 
 7. If your browser doesn't do it automatically, open your browser and navigate to the address visible in the terminal window. This address is likely to be `http://localhost:3000` .
 
-8. Click `Connect`, and give permission to allow your browser to use the microphone. Then click and hold the `Record` button, and say utterances that your model understands. Once you start speaking, you should be able to see the tentative transcript, intents, and entities, until finalized as per Speechly [SLU loop](/speechly-api/#slu-event-loop). 
+8. Click `Connect`, and give permission to allow your browser to use the microphone. Then click and hold the `Record` button, and say utterances that your model understands. Once you start speaking, you should be able to see the tentative transcript, intents, and entities, until finalized as per Speechly [SLU loop](/speechly-api/#slu-event-loop/). 
 
 {{<videoloop src="book-demo-no-sound.mp4">}}

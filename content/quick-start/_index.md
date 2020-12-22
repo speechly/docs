@@ -20,7 +20,7 @@ This tutorial walks you through building your first Speechly voice application a
 
 You can read more on [Speechly website](https://www.speechly.com/).
 
-{{< figure src="developing-applications-docs.png">}}
+{{< figure src="developing-applications-docs.png" alt="Developing voice apps with Speechly" >}}
 
 --- 
 **Are you a developer? Jump straight into a tutorial!**

@@ -82,10 +82,10 @@ menu:
 
 # Global Functions
 
-- [makeChannel(addr:​loopCount:​)](<makeChannel(addr:loopCount:)>):
+- [makeChannel(addr:​loopCount:​)](makeChannel_addr_loopCount_):
   A function that creates a new gRPC channel for the provided address.
   It will also create a NIO eventloop group with the specified loop count.
-- [makeChannel(addr:​group:​)](<makeChannel(addr:group:)>):
+- [makeChannel(addr:​group:​)](makeChannel_addr_group):
   A function that creates a new gRPC channel for the provided address.
-- [makeTokenCallOptions(token:​)](<makeTokenCallOptions(token:)>):
+- [makeTokenCallOptions(token:​)](makeTokenCallOptions)
   A function that creates new gRPC call options (metadata) that contains an authorisation token.

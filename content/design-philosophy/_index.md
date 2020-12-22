@@ -27,7 +27,7 @@ Show the transcript of user utterance in a central place in the field of vision 
 
 This is why the transcript needs to be **always visible** when voice commands are being uttered.
 
-{{< figure src="transcript.png" title="Always show transcript in the users' field of vision">}}
+{{< figure src="transcript.png" title="Always show transcript in the users' field of vision" alt="Voice UI app with transcript visible in the users' field of vision" >}}
 
 
 ## Use push-to-talk for activating voice

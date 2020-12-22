@@ -16,7 +16,7 @@ menu:
 
 {{< button "https://github.com/speechly/speech-to-chess/" "logo-github" "light" "Tutorial Repository" >}}
 
-# SpeechToChess tutorial
+## SpeechToChess tutorial
 
 Let’s play chess by using voice! In this tutorial, we’ll build a simple chess game with JavaScript that can be controlled by using voice commands.
 
@@ -43,7 +43,7 @@ and an array of entities
   }
 ]
 ```
-## Define intents in SAL - Speechly Annotation Language
+### Define intents in SAL - Speechly Annotation Language
 
 Building [voice user interfaces](https://www.speechly.com/blog/voice-application-design-guide/) starts from the declaration of the intents and entities. In our chess example, the most common user intent is to move a piece on the board. This intent has two entities (modifiers for this intent): piece and square where this piece will be moved.  
 
@@ -83,13 +83,13 @@ Curly braces wrap the optional values. You can refer to [Cheat Sheet for SAL syn
 
 You can see the App ID under the application name. You’ll need to use it when integrating the project. 
 
-## Deploy Speechly app and try
+### Deploy Speechly app and try
 
 Now you can play around with your configuration. Press “Deploy” and wait for about 2 minutes.
 
 When you see the status “Deployed”, press “Try”. The Playground screen will show up. Press space and hold it to say something like “KNIGHT E4”, “KNIGHT takes PAWN on E5", “castle”.
 
-## Create a plain javascript project
+### Create a plain Javascript project
 
 Now we can start building our Javascript application.
 
@@ -128,7 +128,7 @@ Now you can run the bundler `yarn run webpack`. As a result you will get the mai
 
 Open the index.html file in Chrome browser. You will see the ‘Microphone’ button on the screen and the greeting in the console.
 
-## Client is a key
+### Client is a key
 
 Create a new Client and initialize it: 
 ```
@@ -315,7 +315,7 @@ client.onSegmentChange((segment) => {
   }
 }
 ```
-## Enjoy the game
-Now you can run your application by running ´yarn start´ 9. Oress the ‘Microphone’ button and say ‘E4’ and release the button. Repeat with ‘E5’, ‘knight f3’, ‘knight c6’ etc.
+### Enjoy the game
+Now you can run your application by running the index.html. Press the ‘Microphone’ button and say ‘E4’ and release the button. Repeat with ‘E5’, ‘knight f3’, ‘knight c6’ etc.
 
 Have a great game!

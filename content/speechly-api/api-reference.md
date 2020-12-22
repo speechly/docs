@@ -10,7 +10,7 @@ menu:
     parent: "Speechly API"
 ---
 
-# Description 
+## Description 
 
 The Speechly SLU service provides spoken language understanding in a bidirectional stream. It takes the [`SLURequest`]({{< relref "api-reference.md#slurequest">}}) stream as an input and outputs the [`SLUResponse`]({{< relref "api-reference.md#sluresponse" >}}) stream in real-time.
 
@@ -42,7 +42,7 @@ When the client sends the [`SLUevent.START`](/speechly-api/api-reference#slueven
 * WLUResponse
  -->
 
-# Identity service
+## Identity service
 
 {{< highlight "protocol buffer" >}}
 
@@ -97,7 +97,7 @@ message LoginResponse {
 |intent|string|An access token to be used for the [`SLU`]({{< relref "api-reference.md#slu-service" >}}) and [`WLU`]({{< relref "api-reference.md#wlu-service" >}}) services.
 
 
-# SLU service
+## SLU service
 
 {{< highlight "protocol buffer">}}
 service SLU {

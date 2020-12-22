@@ -1,5 +1,6 @@
 ---
-title: iOS client API reference
+title: Speechly iOS client API reference
+description: The full API reference for the Speechly iOS Client Library
 weight: 5
 display: article
 menu:
@@ -8,7 +9,7 @@ menu:
     parent: iOS client
 ---
 
-# Types
+## Types
 
 - [AudioRecorder](AudioRecorder):
   An audio recorder implementation that uses AVFoundation audio engine for capturing the input.
@@ -58,7 +59,7 @@ menu:
 - [SpeechTranscript](SpeechTranscript):
   A speech transcript.
 
-# Protocols
+## Protocols
 
 - [AudioRecorderProtocol](AudioRecorderProtocol):
   A protocol for capturing audio data from input sources (microphones).
@@ -80,7 +81,7 @@ menu:
 - [SpeechClientDelegate](SpeechClientDelegate):
   Delegate called when a speech client handles messages from the API or catches an error.
 
-# Global Functions
+## Global Functions
 
 - [makeChannel(addr:​loopCount:​)](makeChannel_addr_loopCount_):
   A function that creates a new gRPC channel for the provided address.

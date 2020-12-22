@@ -10,7 +10,7 @@ menu:
     weight: 2
 ---
 
-# What is Speechly?
+## What is Speechly?
 
 Speechly is a tool for building real-time multi modal voice user interfaces for touch screens and web applications. 
 
@@ -29,7 +29,7 @@ You can read more on [Speechly website](https://www.speechly.com/).
 
 --- 
 
-## Welcome to Speechly Quick Start!
+### Welcome to Speechly Quick Start!
 
 {{<youtube PVYEMqnykro>}}
 
@@ -60,7 +60,7 @@ Name your application, select English as the language and `Home Automation` as t
 
 {{< figure src="new_application.png" title="New Speechly application screenshot." alt="Screenshot from the Speechly Dashboard New Application screen">}}
 
-### 2 Deploying your first SLU model
+#### 2 Deploying your first SLU model
 
 {{< figure src="rule-editor.png" title="The SLU Example configuration view." alt="Screenshot from the Speechly Dashboard SLU Example configuration view">}}
 
@@ -72,7 +72,7 @@ The deploying should take 1-2 minutes.
 
 {{< info title="Advanced SLU Examples" >}} Please take a look at [advanced SLU examples](https://docs.speechly.com/slu-examples/editing-slu-examples/#advanced-syntax-features) to learn more about the [SAL syntax](/slu-examples/editing-slu-examples/).{{< /info >}}
 
-### 3 Trying out the application
+#### 3 Trying out the application
 
 Once the application has been deployed, the `Try` button next to `Deploy` should turn active, and the status bar shows a green dot reading "Deployed". Now it's time to test your application, so click `Try` to go to the Playground.
 

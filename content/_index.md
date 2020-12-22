@@ -19,7 +19,7 @@ This documentation site is a part of Speechly's Spoken Language Understanding de
 - [Speechly API](/speechly-api/) contains description of our API and API references for our APIs
 - [FAQ](/faq/) is for the Frequently Asked Questions
 
-# What is Speechly?
+## What is Speechly?
 
 Speechly offers a full suite of developer tools that enable adding real-time Spoken Language Understanding (SLU) features easily to any product or service across different platforms. The suite consists of:
 
@@ -43,7 +43,7 @@ Simple way to build a real Speechly application is to follow our [React tutorial
 
 Speechly currently supports English and Finnish.
 
-# How to get started?
+## How to get started?
 
 Getting started with Speechly is easy! You just need to create an account and design your first SLU example template in order to start playing around with your newly created voice UI. Follow the instructions in the [Getting Started](/quick-start/) section to get up to speed.
 

@@ -5,3 +5,7 @@
 [build.environment]
   HUGO_VERSION = "0.78.2"
 
+[[redirects]]
+  from = "https://docs.speechly.com/client-libraries/react-client/"
+  to = "https://docs.speechly.com/client-libraries/react/"
+  status = 301

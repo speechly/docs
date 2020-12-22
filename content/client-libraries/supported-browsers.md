@@ -5,7 +5,7 @@ weight: 9
 display: article
 ---
 
-[Speechly Browser Client](/client-libraries/web-browser/) and [Speechly React Client](/client-libraries/react/) are both supported in the same set of browsers. 
+[Speechly Browser Client](/client-libraries/web-client/) and [Speechly React Client](/client-libraries/react/) are both supported in the same set of browsers. 
 
 ## Mobile browsers
 

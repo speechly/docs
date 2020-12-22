@@ -125,4 +125,4 @@ class SpeechlyManager: ObservableObject {
 }
 ```
 
-You can take a closer look at lifecycle methods in out [best practices guide](/client-libraries/ios/best-practices/).
+You can take a closer look at lifecycle methods in out [best practices guide](/client-libraries/ios/advanced-tricks/).

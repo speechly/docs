@@ -771,7 +771,7 @@ Here we use React's `useState` hook to create a couple of stateful variables for
 
 And that's it! Now you can go ahead and try out your app - you can filter the repos by language, apply a sorting order, and reset the filters.
 
-Next step could be adding our [React microphone component](/client-libraries/react-client/react-microphone-component/) to your application.
+Next step could be adding our [React microphone component](/client-libraries/react-client/ui-components/) to your application.
 
 If you want to delve into the details, go ahead and check out [our documentation](https://docs.speechly.com/) and [our public GitHub](https://github.com/speechly).
 

@@ -3,7 +3,6 @@ title: Speechly React client
 description: The official Speechly client for React apps
 display: article
 weight: 1
-aliases: ["/client-libraries/react-client/"]
 menu:
   integrations:
     title: React

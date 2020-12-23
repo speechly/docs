@@ -1,6 +1,6 @@
 ---
 title: Advanced tips and tricks
-description: A detailed look into more advanced concepts
+description: A detailed look into more advanced Speechly concepts on iOS
 display: article
 weight: 4
 menu:

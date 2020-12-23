@@ -1,6 +1,6 @@
 ---
 title: iOS client usage guide
-description: A guide for using Speechly on iOS
+description: A guide and best practices for using Speechly on iOS
 display: article
 weight: 2
 menu:

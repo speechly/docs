@@ -1,6 +1,6 @@
 ---
 title: Error handling
-description: Making sure you handle all corner cases
+description: Making sure you handle all corner cases when developing Speechly applications on iOS
 display: article
 weight: 3
 menu:

@@ -29,7 +29,7 @@ Since we'll be using [create-react-app](https://create-react-app.dev/docs/gettin
 - Node.js 8.10+
 - npm 5.2+
 
-You can also download and use our [React microphone component](/client-libraries/react-client/react-microphone-component/), but that's totally optional.
+You can also download and use our [React microphone component](/client-libraries/react/ui-components/), but that's totally optional.
 
 Note that this tutorial also uses TypeScript, so feel free to check out [TypeScript documentation](https://www.typescriptlang.org/docs) if you're not familiar with it.
 
@@ -261,7 +261,7 @@ export default App;
 
 Before we proceed with the app, let's take a quick detour and train a very simple and not very useful Speechly app, so that we can use it to test our integration later on.
 
-Go to https://api.speechly.com/dashboard/ and login (or sign up if you haven't yet) and create a new app (you can [check our Speechly Dashboard quickstart guide](/quick-start/) if you feel lost). Feel free to use any configuration you want, even an almost empty configuration with just "Hello world" will suffice, but make sure your app is deployed!
+Go to [Speechly Dashboard](https://api.speechly.com/dashboard/) and login (or sign up if you haven't yet) and create a new app (you can [check our Speechly Dashboard quickstart guide](/quick-start/) if you feel lost). Feel free to use any configuration you want, even an almost empty configuration with just "Hello world" will suffice, but make sure your app is deployed!
 
 {{< figure src="hello_world_config.png" alt="A simple Speechly configuration example" title="A simple Speechly configuration example" >}}
 
@@ -771,8 +771,8 @@ Here we use React's `useState` hook to create a couple of stateful variables for
 
 And that's it! Now you can go ahead and try out your app - you can filter the repos by language, apply a sorting order, and reset the filters.
 
-Next step could be adding our [React microphone component](/client-libraries/react-client/ui-components/) to your application.
+Next step could be adding our [React microphone component](/client-libraries/react/ui-components/) to your application.
 
 If you want to delve into the details, go ahead and check out [our documentation](https://docs.speechly.com/) and [our public GitHub](https://github.com/speechly).
 
-You can also check the source code for this tutorial at https://github.com/speechly/react-example-repo-filtering. Feel free to navigate through individual commits - they refer to each section of this tutorial.
+You can also check the source code for this tutorial on [GitHub](https://github.com/speechly/react-example-repo-filtering). Feel free to navigate through individual commits - they refer to each section of this tutorial.

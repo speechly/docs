@@ -577,7 +577,7 @@ Go ahead and build the project and then check out the `ContentView` preview. You
 
 Before we proceed with the app, let's take a quick detour and create our Speechly app.
 
-Go to https://api.speechly.com/dashboard and login (or sign up if you haven't yet) and create a new app (you can [check our Speechly Dashboard quickstart guide](/quick-start/) if you feel lost).
+Go to [Speechly Dashboard](https://api.speechly.com/dashboard/) and login (or sign up if you haven't yet) and create a new app (you can [check our Speechly Dashboard quickstart guide](/quick-start/) if you feel lost).
 
 Let's add a couple of simple commands for manipulating the data we see in the table:
 

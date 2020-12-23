@@ -28,3 +28,6 @@ Coming soon!
 
 [React Native](/client-libraries/react-native/)
 Coming soon!
+
+[Flutter](/client-libraries/flutter/)
+Coming soon!

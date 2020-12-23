@@ -27,6 +27,10 @@ You can read more on [Speechly website](https://www.speechly.com/).
 
 {{< button "/client-libraries/react/tutorial" "flash-outline" "light" "React Tutorial" >}}
 
+{{< button "/client-libraries/web-client/tutorial" "flash-outline" "light" "Browser Tutorial" >}}
+
+{{< button "/client-libraries/ios/tutorial" "flash-outline" "light" "iOS Tutorial" >}}
+
 --- 
 
 ### Welcome to Speechly Quick Start!

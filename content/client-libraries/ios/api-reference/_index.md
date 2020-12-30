@@ -1,11 +1,11 @@
 ---
 title: Speechly iOS client API reference
 description: The full API reference for the Speechly iOS Client Library
-weight: 5
 display: article
+weight: 4
 menu:
   integrations:
-    title: API reference
+    title: API Reference
     parent: iOS client
 ---
 

@@ -15,7 +15,7 @@ in the required sample rate, channel count and format.
 
 ## Initializers
 
-### `init(sampleRate:channels:format:audioQueue:delegateQueue:prepareOnInit:)`
+ `init(sampleRate:channels:format:audioQueue:delegateQueue:prepareOnInit:)`
 
 Create a new audio recorder.
 
@@ -23,7 +23,6 @@ Create a new audio recorder.
 public init(sampleRate: Double, channels: UInt32, format: AVAudioCommonFormat = .pcmFormatInt16, audioQueue: DispatchQueue = DispatchQueue(label: "com.speechly.iosclient.AudioRecorder.audioQueue"), delegateQueue: DispatchQueue = DispatchQueue(label: "com.speechly.iosclient.AudioRecorder.delegateQueue"), prepareOnInit: Bool = true) throws
 ```
 
-> 
 
 #### Parameters
 

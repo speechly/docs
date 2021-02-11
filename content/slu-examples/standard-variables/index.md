@@ -54,14 +54,26 @@ Now one neither has to make the effort to define how the dates look like nor det
 |`$SPEECHLY.IDENTIFIER_MEDIUM`      | 5-8 character identifier  | _a b one two dash nine x_, _delta foxtrot five seven dash two_ |
 |`$SPEECHLY.IDENTIFIER_LONG`        | 9-12 character identifier | _one two seven dot zero dot zero dot one slash x y_ |
 |`$SPEECHLY.IDENTIFIER`             | 1-12 character identifier | _two seven_, _one two seven dot zero dot zero dot one slash x y_ |
+|`$SPEECHLY.PHONE_NUMBER`           | Phone numbers             | _plus three five eight four zero one two three four five six_, _one two three four five six_ |
+|`$SPEECHLY.PERSON_NAME`            | Person names              | _amelia m earhart_, _john smith_, _c o n a n o'brien |
+|`$SPEECHLY.EMAIL_ADDRESS`          | Email addresses           | _hello at speechly dot com_, _john dot smith at company dot com_ |
+|`$SPEECHLY.WEB_ADDRESS`            | Website addresses         | _w w w dot speechly dot com_, _h t t p s colon slash slash docs dot speechly dot com_ |
 
 Data Types
 
-* `Date` — expressions that define a date are converted into ISO-8601 as a string (e.g., _January fifth twenty twenty_ → _2020-01-05_). Relative expressions like _tomorrow_ or _next Friday_ are parsed relative to the current date. If the year is missing from the expression, the current year will be used.
+* `Date` — expressions that define a date are converted into ISO-8601 as a string (e.g., _January fifth twenty twenty_ → _2020-01-05_). Relative expressions like _tomorrow_ or _next Friday_ are parsed relative to the current date. If the year is missing from the expression, the current year will be used. Works together with the `$SPEECHLY.DATE` standard variable.
 
-* `Number` normalizes all the number Standard Variables into digits (e.g., _five six four nine_ → _5649_, _seventeen point five_ → _17.5_, _three hundred thousand_ → _300000_, _three quarters_ → _0.75_).
+* `Number` normalizes all numeric utterances into digits (e.g., _five six four nine_ → _5649_, _seventeen point five_ → _17.5_, _three hundred thousand_ → _300000_, _three quarters_ → _0.75_). Works together with `$SPEECHLY.*_NUMBER` standard variables.
 
-* `Identifier` should be used together with alphanumeric identifiers (sequences) that are spelled out one character at a time. Entities of this type are normalized into character sequences representing the identifier (e.g., _zero zero seven x_ → _007x_, _one two seven dot zero dot zero dot one slash x y_ → _127.0.0.1/xy_).
+* `Identifier` should be used together with alphanumeric identifiers (sequences) that are spelled out one character at a time. Entities of this type are normalized into character sequences representing the identifier (e.g., _zero zero seven x_ → _007x_, _one two seven dot zero dot zero dot one slash x y_ → _127.0.0.1/xy_). Works together with `$SPEECHLY.IDENTIFIER*` standard variables.
+
+* `Phone` is the recommended data type for expressions that are phone numbers. Entities with this type are formatted according to common conventions for writing telephone numbers (_plus four four two oh seven seven three oh one two three four_ → _+44 207 730 1234_). Works together with `$SPEECHLY.PHONE_NUMBER` standard variable.
+
+* `Person Name` is a data type that should be used with entities that are person names. The returned entity value should in most cases have appropriate capitalization, and parts of the name that were spelled letter by letter should be combined to a single word (_c o n a n o'brien_ → _Conan O'Brien_). Works together with `$SPEECHLY.PERSON_NAME` standard variable.
+
+* `Email` formats the returned entity value as an email address (_john dot smith at company dot com_ → _john.smith@company.com_, this data type also supports spelling parts of the entity: _a n t t i at speechly dot com_ → _antti@speechly.com_). Works together with `$SPEECHLY.EMAIL_ADDRESS` standard variable.
+
+* `Website` formats the returned entity value as a website URL (_h t t p s colon slash slash docs dot speechly dot com_ → _https://docs.speechly.com_). Works together with `$SPEECHLY.WEB_ADDRESS` standard variable.
 
 
 ### Dates

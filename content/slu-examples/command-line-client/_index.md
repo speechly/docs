@@ -51,12 +51,13 @@ The latest context added will be used as the current context.
 - `config` manage the Speechly API access configurations
 - `create` create a new application in the current context (project)
 - `delete` delete an existing application
-- `deploy` deploy to upload a directory containing configuration file(s), train a model out of them and take the model into use.
+- `deploy` deploy to upload a directory containing SAL configuration file(s), train a model out of them and take the model into use.
 - `describe` describe apps to get their status
 - `list` list apps in project
-- `validate` validate the given configuration for syntax errors
+- `sample` sample a set of examples from the given SAL configuration
+- `validate` validate the given SAL configuration for syntax errors
 
-The versioning of the configuration files should be done properly, i.e., keep them in a version control system. Consider the deploy/download functionality to be a tool for the training pipeline instead of collaboration or versioning.
+The versioning of the SAL configuration files should be done properly, i.e., keep them in a version control system. Consider the deploy/download functionality to be a tool for the training pipeline instead of collaboration or versioning.
 
 ## Suggested workflow
 

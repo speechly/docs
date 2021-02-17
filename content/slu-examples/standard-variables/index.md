@@ -42,6 +42,7 @@ Now one neither has to make the effort to define how the dates look like nor det
 | Standard Variable                 | Recognizes                | Examples                                                 |
 | --------------------------------- | ------------------------- | -------------------------------------------------------- |
 |`$SPEECHLY.DATE`                   | Arbitrary dates           | _tomorrow_, _next Friday_, _January fifth twenty twenty_ |
+|`$SPEECHLY.TIME`                   | Time expressions          | _three thirty pm_, _quarter past eleven_, _fifteen twenty five_ |
 |`$SPEECHLY.NUMBER`                 | Arbitrary numbers         | _five million five hundred twenty-eight thousand eight point twelve_, _minus zero point zero five_, _eleven thousand_ | 
 |`$SPEECHLY.CARDINAL_NUMBER`        | Arbitrary cardinals       | _five million five hundred twenty-eight thousand eight_, _minus three_, _eleven hundred eleven_       |
 |`$SPEECHLY.SMALL_NUMBER`           | Small numbers             | _seventeen point five_, _minus five_ |
@@ -62,6 +63,8 @@ Now one neither has to make the effort to define how the dates look like nor det
 Data Types
 
 * `Date` — expressions that define a date are converted into ISO-8601 as a string (e.g., _January fifth twenty twenty_ → _2020-01-05_). Relative expressions like _tomorrow_ or _next Friday_ are parsed relative to the current date. If the year is missing from the expression, the current year will be used. Works together with the `$SPEECHLY.DATE` standard variable.
+
+* `Time` - expressions that define a time of day are returned as a `hh:mm` formatted string using a 24-hour clock (e.g., _three thirty pm_ → _15:30_, _quarter past two in the morning_ → _02:15_, _twenty past nine pm_ → _21:20_). Works together with `$SPEECHLY.TIME`.
 
 * `Number` normalizes all numeric utterances into digits (e.g., _five six four nine_ → _5649_, _seventeen point five_ → _17.5_, _three hundred thousand_ → _300000_, _three quarters_ → _0.75_). Works together with `$SPEECHLY.*_NUMBER` standard variables.
 

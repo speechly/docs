@@ -57,7 +57,11 @@ You can verify everything is working (alt tags correctly placed, no incorrect ur
 
 ## Automatic page generation with `./build-docs.sh`
 
-Fetches docs content from other sources (e.g. GitHub repositories) and transforms it to Speechly Docs pages. The page files are modified "in place", so you can check the diffs with `git status` and `git diff` before committing and pushing.
+Fetches docs content from other sources (e.g. GitHub repositories) and transforms it to Speechly Docs pages. The generated page files are put in their respective places in the Docs folder, so you can check the diffs with `git status` and `git diff` before committing and pushing.
+
+The source addresses and pages are defined in `build-docs.sh` file.
+
+If there is an error fetching the content (e.g. content is not available), an error will be displayed.
 
 ### Generated pages
 

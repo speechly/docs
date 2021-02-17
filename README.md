@@ -54,3 +54,13 @@ If you want to add a subpage, create a new directory under the page directory un
 ## Commiting changes
 
 You can verify everything is working (alt tags correctly placed, no incorrect urls etc) by using (`htmlproofer`)[https://github.com/gjtorikian/html-proofer/blob/master/bin/htmlproofer] Once you are happy with the changes in your local environment, do `git add . && git commit -m 'commit message'` followed by `git push`. 
+
+## Automatic page generation with `./build-docs.sh`
+
+Fetches data from other sources (e.g. GitHub repositories) and modifies the content for Docs. The pages are modified "in place", so you can check the diffs with `git status` and `git diff` before committing and pushing.
+
+### Generated pages
+
+- content/client-libraries/react/ui-components
+
+Requires a Unix-like environment with `bash`, `curl` and `cat` commands.

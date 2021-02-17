@@ -57,10 +57,10 @@ You can verify everything is working (alt tags correctly placed, no incorrect ur
 
 ## Automatic page generation with `./build-docs.sh`
 
-Fetches data from other sources (e.g. GitHub repositories) and modifies the content for Docs. The pages are modified "in place", so you can check the diffs with `git status` and `git diff` before committing and pushing.
+Fetches docs content from other sources (e.g. GitHub repositories) and transforms it to Speechly Docs pages. The page files are modified "in place", so you can check the diffs with `git status` and `git diff` before committing and pushing.
 
 ### Generated pages
 
-- content/client-libraries/react/ui-components
+- `content/client-libraries/react/ui-components`
 
 Requires a Unix-like environment with `bash`, `curl` and `cat` commands.

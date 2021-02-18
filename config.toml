@@ -52,6 +52,36 @@ url = "/quick-start/"
 weight = 1
 
 [[menu.main]]
+name = "Configuration"
+parent = "docs"
+url = "/slu-examples/"
+weight = 2
+
+[[menu.main]]
+name = "Design"
+parent = "docs"
+url = "/design-philosophy/"
+weight = 3
+
+[[menu.main]]
+name = "FAQ"
+parent = "docs"
+url = "/faq/"
+weight = 4
+
+[[menu.main]]
+name = "Release notes"
+parent = "docs"
+url = "/release-notes/"
+weight = 6
+
+[[menu.main]]
+name = "Integrations"
+parent = "docs"
+url = "/integrations/"
+weight = 5
+
+[[menu.main]]
 name = "API Reference"
 url = "/speechly-api/api-reference/"
 weight = 2

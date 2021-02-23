@@ -38,16 +38,33 @@ New debugging feature in Speechly CLI tool displays example utterances for a giv
 
 Typically Speechly SLU models are adapted for a specific use case, which helps improve speech recognition accuracy. Now you can also use unadapted ASR for pure transcription use cases. You can test the speech recognition performance [here](https://api.speechly.com/dashboard/#/playground/ead4b9e7-e5c4-48ed-9dae-3c530916ed76?language=en-US)
 
+##### Support for new entities
+
+Speechly Annotation Language supports natively phone numbers, emails, person names and website addresses. This enables developers to easily build voice experiences that contain these data types, for example something like "Add contact with name Jack Johnston and email address jack dot johnston at gmail dot com"
+
+##### Minor bugfixes
+
 ### 22th of February 2021
 
 ##### iOS UI Components
 
 Ready-made [UI components](/client-libraries/ios/ui-components/) for microphone and transcript for hastened development on iOS. 
 
+##### Android Client
+
+An Android client for easy integration with Speechly is [now available](https://github.com/speechly/android-client/).
+
+The Android client enables quick and efficient development of Speechly applications for native Android applications.
 
 ##### Support for new entities
 
-Speechly Annotation Language supports natively phone numbers, emails, person names and website addresses. This enables developers to easily build voice experiences that contain these data types, for example something like "Add contact with name Jack Johnston and email address jack dot johnston at gmail dot com"
+Support for natural time expressions such as "fifteen thirty", "20 past nine" or "5 minutes after midnight" with $SPEECHLY.TIME standard variable and entity type Time.
+
+##### Minor bugfixes
+
+- Better support for long utterances
+- Other fixes
+
 
 
 

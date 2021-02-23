@@ -9,7 +9,7 @@ menu:
     weight: 999
 ---
 
-In this page, we'll publish improvements and fixes to Speechly products bi-weeklygit . 
+In this page, we'll publish improvements and fixes to Speechly products bi-weekly. 
 
 ### 11th of January 2021
 

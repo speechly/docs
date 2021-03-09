@@ -11,6 +11,20 @@ menu:
 
 In this page, we'll publish improvements and fixes to Speechly products bi-weekly. 
 
+### 5th of March
+
+##### Training time estimates
+
+Changed the way how we estimate deployment times when training the models.
+
+##### Playground
+
+Pressing 'alt' temporarily enables the Try-button so that one can use the Playground with an old model while a new one is being trained.
+
+##### Model deployment
+
+More robust tranining infrastructure that reduces model training times in certain situations.
+
 ### 22th of February 2021
 
 ##### iOS UI Components

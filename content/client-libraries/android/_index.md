@@ -10,8 +10,31 @@ menu:
     weight: 5
 ---
 
-## Coming soon!
+{{< button "https://github.com/speechly/android-repo-filtering" "flash-outline" "light" "Tutorial" >}}
+{{< button "https://github.com/speechly/android" "logo-github" "light" "GitHub" >}}
 
-We are currently developing our Android client libraries. The library will be released in a few days. [Contact us](https://www.speechly.com/get-started/) if you want to get a heads up when we release the client.
+This is the documentation for Speechly Android client library for building natural user interfaces with Android.
 
-In the mean time, you can try out our [other client libraries](/client-libraries/).
+### Requirements
+
+* Android 8.0 (API level 26) and above
+
+## Usage
+
+### Configuration
+
+Add android-client to your build.gradle dependencies.
+
+```gradle
+dependencies {
+  implementation 'com.speechly:android-client:0.1.7'
+}
+```
+
+### Client usage
+
+```kotlin
+val speechlyClient: Client = Client.fromActivity(activity = this, UUID.fromString("yourkey"))
+```
+
+Check out the [example repo filtering app](https://github.com/speechly/android-repo-filtering) for a demo app built using this client.

@@ -10,8 +10,8 @@ menu:
     weight: 5
 ---
 
-## Coming soon!
+## Just released!
 
-We are currently developing our Android client libraries. The library will be released in a few days. [Contact us](https://www.speechly.com/get-started/) if you want to get a heads up when we release the client.
+We have just released our Android SDK, and you can find it from Github: https://github.com/speechly/android-client
 
-In the mean time, you can try out our [other client libraries](/client-libraries/).
+We are currently working on this documentation section and will update it soon. 

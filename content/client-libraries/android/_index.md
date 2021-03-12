@@ -12,6 +12,6 @@ menu:
 
 ## Just released!
 
-We have just released our Android SDK, and you can find it from Github: https://github.com/speechly/android-client
+We have just released our Android SDK, and you can find it from GitHub: https://github.com/speechly/android-client
 
 We are currently working on this documentation section and will update it soon. 

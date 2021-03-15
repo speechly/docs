@@ -24,6 +24,7 @@ menu:
 - [PushToTalkButton component](#push-to-talk-button-component)
 - [BigTranscript component](#bigtranscript-component)
 - [ErrorPanel component](#errorpanel-component)
+- [Notifications](#notifications)
 
 ## Installation
 
@@ -85,7 +86,7 @@ If you have already trained your own custom speech model, replace the `appId` wi
 
 ## Push-to-Talk Button component
 
-`<PushToTalkButton/>` is a holdable button to control listening for voice input. The icon on the button shows the voice system state.
+`<PushToTalkButton/>` is a holdable button to control listening for voice input.
 
 The Push-to-Talk button is intended to be placed as a floating button at the lower part of the screen using `<PushToTalkButtonContainer/>` so mobile users can reach it with ease.
 
@@ -99,15 +100,17 @@ The placement, size and colors of the button can be customised.
 
 ### States
 
-1. **Offline** (Power-on icon): Pressing the button initialises the Speechly API and may trigger the browser's microphone permission prompt.
+The icon on the button displays the Speechly system state:
 
-2. **Ready** (Mic icon). Waiting for user to press and hold the button to start listening.
+1. **Offline** (Power-on icon): Pressing the button initialises the Speechly API and may trigger the browser's microphone permission prompt. Shown during `SpeechlyState.Idle`
 
-3. **Listening** (Highlighted mic). This state is displayed when the component is being held down and Speechly listens for audio input.
+2. **Ready** (Mic icon). Waiting for user to press and hold the button to start listening. Shown during `SpeechlyState.Ready`
 
-4. **Receiving transcript** (Pulsating mic). This state may be briefly displayed when the button is released and Speechly finalizes the stream of results.
+3. **Listening** (Highlighted mic). This state is displayed when the component is being held down and Speechly listens for audio input. Shown during `SpeechlyState.Recording`
 
-5. **Error** (Broken mic icon). In case of an error (usually during initialisation), the button turns into a broken mic symbol. If you have the optional `<ErrorPanel/>` component in your hierarchy, a description of the problem is displayed. Otherwise, you'll need to look into the browser console to discover the reason for the error.
+4. **Receiving transcript** (Pulsating mic). This state may be briefly displayed when the button is released and Speechly finalizes the stream of results. Shown during `SpeechlyState.Loading`
+
+5. **Error** (Broken mic icon). In case of an error (usually during initialisation), the button turns into a broken mic symbol. If you have the optional `<ErrorPanel/>` component in your hierarchy, a description of the problem is displayed. Otherwise, you'll need to look into the browser console to discover the reason for the error. Shown in case of `SpeechlyState.Failed`, `SpeechlyState.NoAudioConsent`, `SpeechlyState.NoBrowserSupport`
 
 ### Customisation
 
@@ -174,3 +177,50 @@ It automatically shows if there is problem detected upon pressing the `<PushToTa
   > Use `<ErrorPanel/>` to help users diagnose and recover from voice-related issues
   > 
 
+## Notifications
+
+Notifications are small messages that are intended to be momentarily displayed.
+
+They are shown inside `<BigTranscriptContainer/>` at the top-left of the screen so it needs to be a part of your DOM.
+
+Notifications can be cleared either programmatically or by tapping on them.
+
+  >
+  > Use Notifications to provide utterance examples and feedback, especially when the app is unable to respond to the user's utterance
+  >
+
+### Installation
+
+`pubsub-js` package is used to communicate with the notification manager.
+
+```
+npm install --save pubsub-js
+```
+
+### Usage
+
+Add the following lines to your header:
+
+```
+import PubSub from "pubsub-js";
+import { SpeechlyUiEvents } from "@speechly/react-ui/types";
+```
+
+### Publishing a notification
+
+```
+PubSub.publish(SpeechlyUiEvents.Notification, {
+  message: `Please say again`,
+  footnote: `Try: "Blue jeans"`
+});
+```
+
+The notification consists of a short main message (displayed in big typeface) and an optional footnote (displayed in smaller typeface).
+
+One notification can be displayed at a time. A successive call will instantly replace the previous notification.
+
+### Clearing all notifications
+
+```
+PubSub.publish(SpeechlyUiEvents.DismissNotification);
+````

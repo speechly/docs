@@ -1,6 +1,6 @@
 ---
 title: API Reference
-description: API reference for the Speechly API 
+description: API reference for the Speechly API
 weight: 99
 category: "References"
 display: article
@@ -10,601 +10,452 @@ menu:
     parent: "Speechly API"
 ---
 
-## Description 
+# Speechly gRPC Api Reference
 
-The Speechly SLU service provides spoken language understanding in a bidirectional stream. It takes the [`SLURequest`]({{< relref "api-reference.md#slurequest">}}) stream as an input and outputs the [`SLUResponse`]({{< relref "api-reference.md#sluresponse" >}}) stream in real-time.
+The following lists the most important APIs which are used for spoken language understanding. This document is created based on the API definitions in Github: [https://github.com/speechly/api](https://github.com/speechly/api).
 
-A new stream is started by initializing the SLU engine with a `config` value. 
+APIs:
+- [Spoken Language Understanding, SLU](#speechly.slu.v1.SLU)
+- Access management, login: [Identity](#speechly.identity.v2.IdentityAPI)
 
-The Speechly API requires that a user has an access token from the [`Identity`]({{< relref "api-reference.md#identity-service" >}}) service. The token must be included in the metadata as an `Authorization` key with value `Bearer TOKEN_HERE`.
+<a name="speechly.slu.v1.SLU"></a>
+# speechly.slu.v1.SLU
 
-When a new `SLU.Stream` is started, the client must first send the `config` value, which configures the SLU engine. Should it not be the first message sent, the stream closes with an error.
+Service that implements Speechly SLU (Spoken Language Understanding) API.
 
-When the client sends the [`SLUevent.START`](/speechly-api/api-reference#sluevent) message to start the audio stream and starts sending data, the server responds with [`SLUResponse`]({{< relref "api-reference.md#sluresponse" >}}) messages until the stream gets ended by the client sending [`SLUEvent.STOP`]({{< relref "api-reference.md#sluevent" >}}).
-
-{{< warning title="Stream requires config" >}} If the first message to the [`SLU`](/speechly-api/api-reference#slu-service) service is not `config`, the stream closes with an error. You'll need a Speechly app ID for creating the configuration. You can get your app ID by signing up to the Speechly Dashboard. {{< /warning >}}
-
-<!-- ## Services
-* Identity
-* SLU
-* WLU
-
-## Requests
-
-* LoginRequest
-* SLURequest
-* WLURequest
-
-## Responses
-
-* LoginResponse
-* SLUResponse
-* WLUResponse
- -->
-
-## Identity service
-
-{{< highlight "protocol buffer" >}}
-
-service Identity {
-    rpc Login(LoginRequest) returns (LoginResponse) {}
-}
-{{</ highlight >}}
-
-The Identity service provides client login. When successful, it returns an access token to access the [`SLU`]({{< relref "api-reference.md#slu-service" >}}) and [`WLU`]({{< relref "api-reference.md#wlu-service" >}}) services.
-
-### LoginRequest
-
-{{< highlight "protocol buffer" >}}
-
-message LoginRequest {
-    string device_id = 1;
-    string app_id = 2;
-}
-{{</ highlight >}}
-
-
-|Name|Type|Description|
-|---|---|---|
-|intent|string|A unique identifier for the end-user. | required |
-|intent|string|An application ID registered with Speechly. | required |
-
-#### Example
-
-```javascript
-
-const identity = new Speechly.v1.Identity(host, credentials);
-identity.login({ appId, deviceId }, (err, response) => {
-  if (err) {
-    return reject(err);
-  }
-  const token = response.token;
-});
+To use this service you MUST use an access token from Speechly Identity API.
+The token MUST be passed in gRPC metadata with `Authorization` key and `Bearer $ACCESS_TOKEN` as value, e.g. in Go:
 
 ```
+ctx := context.Background()
+ctx = metadata.AppendToOutgoingContext(ctx, "Authorization", "Bearer "+accessToken)
+stream, err := speechlySLUClient.Stream(ctx)
+```
 
-### LoginResponse
+## Methods
 
-{{< highlight "protocol buffer" >}}
-
-message LoginResponse {
-    string token = 1; 
-}
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|intent|string|An access token to be used for the [`SLU`]({{< relref "api-reference.md#slu-service" >}}) and [`WLU`]({{< relref "api-reference.md#wlu-service" >}}) services.
+| name | request | response | description |
+| ---- | ------- | -------- | ----------- |
+| Stream | [SLURequest stream](#speechly.slu.v1.SLURequest) | [SLUResponse stream](#speechly.slu.v1.SLUResponse) | Performs bidirectional streaming speech recognition: receive results while sending audio.<br/><br/>First request MUST be an SLUConfig message with the configuration that describes the audio format being sent.<br/><br/>This RPC can handle multiple logical audio segments with the use of `SLUEvent_START` and `SLUEvent_STOP` messages,<br/>which are used to indicate the beginning and the end of a segment.<br/><br/>A typical call timeline will look like this:<br/><br/>1. Client starts the RPC.<br/>2. Client sends `SLUConfig` message with audio configuration.<br/>3. Client sends `SLUEvent.START`.<br/>4. Client sends audio and receives responses from the server.<br/>5. Client sends `SLUEvent.STOP`.<br/>6. Client sends `SLUEvent.START`.<br/>7. Client sends audio and receives responses from the server.<br/>8. Client sends `SLUEvent.STOP`.<br/>9. Client closes the stream and receives responses from the server until EOF is received.<br/><br/>NB: the client does not have to wait until the server acknowledges the start / stop events,<br/>this is done asynchronously. The client can deduplicate responses based on the audio context ID,<br/>which will be present in every response message. |
 
 
-## SLU service
+<a name="speechly.slu.v1.WLU"></a>
+# speechly.slu.v1.WLU
 
-{{< highlight "protocol buffer">}}
-service SLU {
-    rpc Stream(stream SLURequest) returns (stream SLUResponse) {}
-}
-{{</ highlight >}}
+Service that implements Speechly WLU (Written Language Understanding).
 
-```javascript
-const metadata = new grpc.Metadata();
-metadata.add("Authorization", `Bearer ${token}`);
-const client = new Speechly.v1.SLU(host, credentials);
-const slu = client.Stream(metadata);
-````
+To use this service you MUST use an access token from Speechly Identity API.
+The token MUST be passed in gRPC metadata with `Authorization` key and `Bearer $ACCESS_TOKEN` as value, e.g. in Go:
+
+```
+ctx := context.Background()
+ctx = metadata.AppendToOutgoingContext(ctx, "Authorization", "Bearer "+accessToken)
+res, err := speechlyWLUClient.Text(ctx, req)
+```
+
+## Methods
+
+| name | request | response | description |
+| ---- | ------- | -------- | ----------- |
+| Text | [WLURequest](#speechly.slu.v1.WLURequest) | [WLUResponse](#speechly.slu.v1.WLUResponse) | Performs recognition of a text with specified language. |
 
 ## Messages
 
-### SLURequest
-
-{{< highlight "protocol buffer"  >}}
-message SLURequest {
-    oneof streaming_request {
-        SLUConfig config = 1;
-        SLUEvent event = 2;
-        bytes audio = 3;
-    }
-}
-{{< /highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|config|SLUConfig|Provides the configuration for initializing the SLU service.|
-|event|SLUEvent|Either ´START´ or ´STOP´ to begin or end the stream.|
-|audio|bytes|The actual audio stream.|
-
-#### Example 
-
-{{< highlight "protocol buffer"  >}}
-
-slu.write({ config: { channels: 1, sampleRateHertz: 16000 } });
-slu.write({ event: { event: "START" } });
-const audio = new wav.Reader();
-audio.on("data", audioData => {
-  if (slu.writable) {
-    slu.write({ audio: audioData });
-  }
-});
-slu.on("data", data => {
-  console.dir(data, { depth: null });
-});
-audio.on("end", () => {
-  slu.write({ event: { event: "STOP" } });
-  slu.end();
-});
-fs.createReadStream("../audio.wav").pipe(audio);
-{{< /highlight >}}
+- [SLUConfig](#speechly.slu.v1.SLUConfig)
+- [SLUEntity](#speechly.slu.v1.SLUEntity)
+- [SLUError](#speechly.slu.v1.SLUError)
+- [SLUEvent](#speechly.slu.v1.SLUEvent)
+- [SLUFinished](#speechly.slu.v1.SLUFinished)
+- [SLUIntent](#speechly.slu.v1.SLUIntent)
+- [SLURequest](#speechly.slu.v1.SLURequest)
+- [SLUResponse](#speechly.slu.v1.SLUResponse)
+- [SLUSegmentEnd](#speechly.slu.v1.SLUSegmentEnd)
+- [SLUStarted](#speechly.slu.v1.SLUStarted)
+- [SLUTentativeEntities](#speechly.slu.v1.SLUTentativeEntities)
+- [SLUTentativeTranscript](#speechly.slu.v1.SLUTentativeTranscript)
+- [SLUTranscript](#speechly.slu.v1.SLUTranscript)
+- [WLUEntity](#speechly.slu.v1.WLUEntity)
+- [WLUIntent](#speechly.slu.v1.WLUIntent)
+- [WLURequest](#speechly.slu.v1.WLURequest)
+- [WLUResponse](#speechly.slu.v1.WLUResponse)
+- [WLUSegment](#speechly.slu.v1.WLUSegment)
+- [WLUToken](#speechly.slu.v1.WLUToken)
 
 
-See the complete example.
-
+<a name="speechly.slu.v1.SLUConfig"></a>
 ### SLUConfig
 
-{{< highlight "protocol buffer"  >}}
-message SLURequest {
-    enum Encoding {
-        LINEAR16 = 0; 
-    }
-    Encoding encoding = 1;
-    int32 channels = 2;
-    int32 sample_rate_hertz = 3;
-    string language_code = 4;
-  }
-}
-{{< /highlight >}}
+Describes the configuration of the audio sent by the client.
+Currently the API only supports single-channel Linear PCM with sample rate of 16 kHz.
 
-|Name|Type|Description|
-|---|---|---|
-|encoding|Encoding|The choice of audio encoding as an object; ´LINEAR16 = 0´ is for raw, linear 16-bit PCM audio. | required |
-|channels|int32|The number of channels in the audio stream must be at least 1.| required |
-|sample_rate_hertz|int32|The audio stream sampling rate must be at least 8000Hz, but 16000Hz is preferred. | required |
-|language_code|string|A valid language code, such as `en_US`. Must match one of the languages defined in the app ID configuration. | required |
+#### Fields
 
-### SLUEvent
-
-The `SLUEvent` is a control event sent by the client in the `SLU.Stream` RPC.
-
-{{< highlight "protocol buffer"  >}}
-message SLUEvent {
-    enum Event {
-        START = 0; 
-        STOP = 1; 
-    }
-    Event event = 1;
-}
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|enum|Event|Either START or STOP to start and stop the audio stream.|
+| name | type | description |
+| ---- | ---- | ----------- |
+| encoding | [Encoding](#speechly.slu.v1.SLUConfig.Encoding) | The encoding of the audio data sent in the stream.<br/>Required. |
+| channels | [int32](#int32) | The number of channels in the input audio data.<br/>Required. |
+| sample_rate_hertz | [int32](#int32) | Sample rate in Hertz of the audio data sent in the stream.<br/>Required. |
+| language_code | [string](#string) | The language of the audio sent in the stream as a BCP-47 language tag (e.g. "en-US").<br/>Defaults to the target application language. |
 
 
-### SLUResponse
-
-
-{{< highlight "protocol buffer"  >}}
-
-message SLUResponse {
-    string audio_context = 1;  
-    int32 segment_id = 2;
-    oneof streaming_response {
-        SLUTranscript transcript = 3;
-        SLUEntity entity = 4;
-        SLUIntent intent = 5;
-        SLUSegmentEnd segment_end = 6;
-
-        SLUTentativeTranscript tentative_transcript = 7;
-        SLUTentativeEntities tentative_entities = 8;
-        SLUIntent tentative_intent = 9;
-
-        SLUStarted started = 10;
-        SLUFinished finished = 11;
-    }
-}
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|audio_context|string|The identifier to match the server response to the audio context. 
-|segment_id|int32|The identifier to match the server reponse to the segment context.
-|streaming_response|oneof|One of nine possible streaming responses from the server.
-|transcript|SLUTranscript|The final transcript of an utterance, once the segment is finished.
-|entity|SLUEntity|The final entity of the segment.
-|intent|SLUIntent|The final intent of the segment.
-|tentative_transcript|SLUTentativeTranscript|The tentative transcript of the utterance. Sent continuosly while a segment is being processed. Subject to change.
-|tentative_entities|SLUTentativeEntities|The tentative entities in the utterance. Sent continously while a segment is being processed. Subject to change.
-|tentative_intent|SLUIntent|The tentative intent of a segment. Subject to change.
-|started|SLUStarted|Sent when the server is ready to receive audio stream.
-|finished|SLUFinished|Sent when the server has closed the audio stream.
-
-
-Responses sent by the server in the `SLU.Stream` RPC when receiving audio stream. The stream always starts with `SLUStarted`, and either ends to an error or in `SLUFinished`. 
-
-The actual responses are either tentative or final. The tentative responses are subject to change until finalized. They are discarded once the server has sent the final response.
-
-### SLUTentativeTranscript
-
-{{< highlight "protocol buffer"  >}}
-
-message SLUTentativeTranscript {
-    string tentative_transcript = 1;
-    repeated SLUTranscript tentative_words = 2;
-}
-
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|tentative_transcript|string|The tentative transcript of the utterance. 
-|tentative_words|SLUTranscript|The array of words in the transcript. 
-
-The message sent by the server for the tentative transcript of the voice data before the SLU stream is finished either by an error or the client sending `SLUEvent.STOP`.
-
-{{< info title="Tentative results can change" >}} The tentative results are subject to change until the SLU stream is finished. {{< /warning >}}
-
-
-### SLUTentativeEntities
-
-{{< highlight "protocol buffer"  >}}
-message SLUTentativeEntities {
-    repeated SLUEntity tentative_entities = 1;
-}
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|tentative_entities|SLUEntity|The array of entities in the transcript. 
-
-The message sent by the server for the tentative entitites in an utterance.
-
-{{< info title="Tentative results can change" >}} Tentative results are subject to change until the SLU stream is finished. {{< /warning >}}
-
+<a name="speechly.slu.v1.SLUEntity"></a>
 ### SLUEntity
 
-{{< highlight "protocol buffer"  >}}
+Describes an SLU entity.
 
-message SLUEntity {
-    string entity = 1;
-    string value = 2;
-    int32 start_position = 3;
-    int32 end_position = 4;
-}
+An entity is a specific object in the phrase that falls into some kind of category,
+e.g. in a SAL example "*book book a [burger restaurant](restaurant_type) for [tomorrow](date)"
+"burger restaurant" would be an entity of type `restaurant_type`,
+and "tomorrow" would be an entity of type `date`.
 
-{{</ highlight >}}
+An entity has a start and end indices which map to the indices of words in SLUTranscript messages,
+e.g. in the example "book a [burger restaurant](restaurant_type) for [tomorrow](date)" it would be:
 
-|Name|Type|Description|
-|---|---|---|
-|tentative_transcript|string|An entity from the utterance. 
-|value|string|The value of the entity.
-|start_position|int32|The starting position of the entity in the transcript. Inclusive.
-|end_position|int32|The ending position of the entity in the transcript. Exclusive. 
+- Entity "burger restaurant" - `start_position = 2, end_position = 3`
+- Entity "tomorrow" - `start_position = 5, end_position = 5`
 
-The message sent by the server for the final entity results. 
+The start index is inclusive, but the end index is exclusive, i.e. the interval is `[start_position, end_position)`.
 
+#### Fields
 
-### SLUIntent
-
-{{< highlight "protocol buffer"  >}}
-
-message SLUIntent {
-    string intent = 1;
-}
-
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|intent|string|The intent of the segment.  
-
-The message sent by the server for the final intent results.
-
-### SLUSegmentEnd 
-
-{{< highlight "protocol buffer"  >}}
-
-message SLUSegmentEnd {
-}
-{{</ highlight >}}
+| name | type | description |
+| ---- | ---- | ----------- |
+| entity | [string](#string) | The type of the entity, e.g. `restaurant_type` or `date`. |
+| value | [string](#string) | The value of the entity, e.g. `burger restaurant` or `tomorrow`. |
+| start_position | [int32](#int32) | The starting index of the entity in the phrase, maps to the `index` field in `SLUTranscript`.<br/>Inclusive. |
+| end_position | [int32](#int32) | The finishing index of the entity in the phrase, maps to the `index` field in `SLUTranscript`.<br/>Exclusive. |
 
 
-The message sent by the server at the end of a SLU segment.
-
-### SLUStarted 
-
-{{< highlight "protocol buffer"  >}}
-
-message SLUStarted {
-}
-
-{{</ highlight >}}
-
-
-The message sent by the server when the audio context is initialized. Once initialized, the server sends the `SluStarted` message, which contains the `audio_context` for matching the rest of the response messages to that specific utterance.
-
-While processing the audio, the server sends `SLUTentativeEvents` messages continuously. 
-
-### SLUFinished
-
-{{< highlight "protocol buffer" >}}
-
-message SLUFinished {
-    // If the audio context finished with an error, then this field
-    // contains a value.
-    SLUError error = 2;
-}
-
-{{</ highlight >}}
-
-The message sent by the server when the audio context is finished either by an error or the client sending `SLUEvent.STOP`. If the context is finished due to an error, the `SLUError` contains an error message. 
-
+<a name="speechly.slu.v1.SLUError"></a>
 ### SLUError
 
-{{< highlight "protocol buffer" >}}
+Describes the error that happened when processing an audio context.
+DEPRECATED: Will not be returned. Any errors are returned as gRCP status codes with detail messages.
 
-message SLUError {
-    string code = 1; 
-    string message = 2; 
-}
+#### Fields
 
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|code|string|The error code.
-|message|string|A human-readable error message.
+| name | type | description |
+| ---- | ---- | ----------- |
+| code | [string](#string) | Error code (refer to documentation for specific codes). |
+| message | [string](#string) | Error message. |
 
 
-## Example code 
+<a name="speechly.slu.v1.SLUEvent"></a>
+### SLUEvent
 
-### JavaScript
+Indicates the beginning and the end of a logical audio segment (audio context in Speechly terms).
 
-{{< highlight javascript >}}
+#### Fields
 
-const fs = require("fs");
-const protoLoader = require("@grpc/proto-loader");
-const grpc = require("grpc");
-const wav = require("wav");
-
-const appId = process.env.APP_ID;
-if (appId === undefined) {
-  throw new Error("APP_ID environment variable needs to be set");
-}
-
-let host = "api.speechgrinder.com";
-let credentials = grpc.credentials.createSsl();
-
-const SgGrpc = grpc.loadPackageDefinition(
-  protoLoader.loadSync("../sg.proto", {
-    keepCase: false,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true
-  })
-);
-
-const login = (deviceId, appId) => {
-  return new Promise((resolve, reject) => {
-    const identity = new SgGrpc.speechgrinder.sgapi.v1.Identity(host, credentials);
-    identity.login({ appId, deviceId }, (err, response) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(response.token);
-    });
-  });
-};
-
-const start = slu => {
-  const audio = new wav.Reader();
-
-  slu.write({ config: { channels: 1, sampleRateHertz: 16000 } });
-  slu.write({ event: { event: "START" } });
-
-  audio.on("data", audioData => {
-    if (slu.writable) {
-      slu.write({ audio: audioData });
-    }
-  });
-  slu.on("data", data => {
-    console.dir(data, { depth: null });
-  });
-  audio.on("end", () => {
-    slu.write({ event: { event: "STOP" } });
-    slu.end();
-  });
-  fs.createReadStream("../audio.wav").pipe(audio);
-};
-
-Promise.resolve()
-  .then(() => login("node-simple-test", appId))
-  .catch(err => {
-    console.error(err);
-    process.exit();
-  })
-  .then(token => {
-    const metadata = new grpc.Metadata();
-    metadata.add("Authorization", `Bearer ${token}`);
-    const client = new SgGrpc.speechgrinder.sgapi.v1.Slu(host, credentials);
-    const slu = client.Stream(metadata);
-    return start(slu);
-  })
-  .catch(err => {
-    console.error(err);
-  });
-
-  {{</ highlight >}}
-
-### Python
-
-{{< highlight python >}}
-
-import os
-import wave
-import uuid
-
-import grpc
-
-from speechly_pb2 import SLURequest, SLUConfig, SLUEvent, LoginRequest
-from speechly_pb2_grpc import IdentityStub as IdentityService
-from speechly_pb2_grpc import SLUStub as SLUService
-
-chunk_size = 8000
-
-def audio_iterator():
-    yield SLURequest(config=SLUConfig(channels=1, sample_rate_hertz=16000))
-    yield SLURequest(event=SLUEvent(event='START'))
-    with wave.open('output.wav', mode='r') as audio_file:
-        audio_bytes = audio_file.readframes(chunk_size)
-        while audio_bytes:
-            yield SLURequest(audio=audio_bytes)
-            audio_bytes = audio_file.readframes(chunk_size)
-    yield SLURequest(event=SLUEvent(event='STOP'))
-
-with grpc.secure_channel('api.speechly.com', grpc.ssl_channel_credentials()) as channel:
-    token = IdentityService(channel) \
-        .Login(LoginRequest(device_id=str(uuid.uuid4()), app_id=os.environ['APP_ID'])) \
-        .token
-
-with grpc.secure_channel('api.speechly.com', grpc.ssl_channel_credentials()) as channel:
-    slu = SLUService(channel)
-    responses = slu.Stream(
-        audio_iterator(),
-        None,
-        [('authorization', 'Bearer {}'.format(token))])
-    for response in responses:
-        print(response)
-
-{{</ highlight >}}
+| name | type | description |
+| ---- | ---- | ----------- |
+| event | [Event](#speechly.slu.v1.SLUEvent.Event) | The event type being sent. Required. |
+| app_id | [string](#string) | The `appId` for the utterance.<br/>Required in the `START` event if the authorization token is *project based*. The<br/>given application must be part of the project set in the token.<br/>Not required if the authorization token is *application based*. |
 
 
-# WLU service
+<a name="speechly.slu.v1.SLUFinished"></a>
+### SLUFinished
 
-The Speechly written language understanding service provides natural language understanding for written languages. It uses the same model as the `SLU` service; hence, it returns the same results for the same transcripts.
+Indicates that the API has stopped processing current audio context.
+It guarantees that no new messages for that context will be sent by the server.
 
-When a string is sent to the service, it returns with intents, entities, and transcripts for each segment as a response. The maximum size of a message is 16KB.
+#### Fields
 
-{{< highlight "protocol buffer" >}}
-service WLU { 
-    rpc Text(WLURequest) returns (WLUResponse) {}
-}
-{{</ highlight >}}
+| name | type | description |
+| ---- | ---- | ----------- |
+| error | [SLUError](#speechly.slu.v1.SLUError) | DEPRECATED<br/>An error which has happened when processing the context, if any. |
+
+
+<a name="speechly.slu.v1.SLUIntent"></a>
+### SLUIntent
+
+Describes an SLU intent.
+There can be only one intent per SLU segment.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| intent | [string](#string) | The value of the intent, as defined in SAL. |
+
+
+<a name="speechly.slu.v1.SLURequest"></a>
+### SLURequest
+
+Top-level message sent by the client for the `Stream` method.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| config | [SLUConfig](#speechly.slu.v1.SLUConfig) | Describes the configuration of the audio sent by the client.<br/>MUST be the first message sent to the stream. |
+| event | [SLUEvent](#speechly.slu.v1.SLUEvent) | Indicates the beginning and the end of a logical audio segment (audio context in Speechly terms).<br/>A context MUST be preceded by a start event and concluded with a stop event,<br/>otherwise the server WILL terminate the stream with an error. |
+| audio | [bytes](#bytes) | Contains a chunk of the audio being streamed. |
+
+
+<a name="speechly.slu.v1.SLUResponse"></a>
+### SLUResponse
+
+Top-level message sent by the server for the `Stream` method.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| audio_context | [string](#string) | The ID of the audio context that this response belongs to. |
+| segment_id | [int32](#int32) | The ID of the SLU segment that this response belongs to.<br/>This will be 0 for SLUStarted and SLUFinished responses. |
+| transcript | [SLUTranscript](#speechly.slu.v1.SLUTranscript) | Final SLU transcript. |
+| entity | [SLUEntity](#speechly.slu.v1.SLUEntity) | Final SLU entity. |
+| intent | [SLUIntent](#speechly.slu.v1.SLUIntent) | Final SLU intent. |
+| segment_end | [SLUSegmentEnd](#speechly.slu.v1.SLUSegmentEnd) | A special marker message that indicates that the segment with specified `segment_id`<br/>has been finalised and no new responses belonging to that segment will be sent.<br/>The client is expected to discard any tentative responses in this segment. |
+| tentative_transcript | [SLUTentativeTranscript](#speechly.slu.v1.SLUTentativeTranscript) | Tentative SLU transcript. |
+| tentative_entities | [SLUTentativeEntities](#speechly.slu.v1.SLUTentativeEntities) | Tentative SLU entities. |
+| tentative_intent | [SLUIntent](#speechly.slu.v1.SLUIntent) | Tentative SLU intent. |
+| started | [SLUStarted](#speechly.slu.v1.SLUStarted) | A special marker message that indicates that the audio context with specified `audio_context` id<br/>has been started by the API and all audio data sent by the client will be processed in that context.<br/>This message is an asynchronous acknowledgement for client-side SLUEvent_START message. |
+| finished | [SLUFinished](#speechly.slu.v1.SLUFinished) | A special marker message that indicates that the audio context with specified `audio_context` id<br/>has been stopped by the API and no new responses for that context will be sent.<br/>The client is expected to discard any non-finalised segments.<br/>This message is an asynchronous acknowledgement for client-side SLUEvent_STOP message. |
+
+
+<a name="speechly.slu.v1.SLUSegmentEnd"></a>
+### SLUSegmentEnd
+
+Indicates the end of the segment.
+Upon receiving this, the segment should be finalised and all future messages for that segment (if any) discarded.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+
+
+
+<a name="speechly.slu.v1.SLUStarted"></a>
+### SLUStarted
+
+Indicates that the API has started processing the portion of audio as new audio context.
+This does not guarantee that the server will not send any more messages for the previous audio context.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+
+
+
+<a name="speechly.slu.v1.SLUTentativeEntities"></a>
+### SLUTentativeEntities
+
+Describes tentative entities.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| tentative_entities | [SLUEntity](#speechly.slu.v1.SLUEntity) | A list of entities, which must be treated as tentative.<br/><br/>This is not an aggregate of all entities in the audio,<br/>but rather it ONLY contains entities that have not been finalised yet.<br/><br/>e.g. if at the start there are two tentatively recognised entities - ["burger restaurant", "tomorrow"]<br/>but then the API marks "burger restaurant" as final and recognises a new tentative entity "for two",<br/>this will contain ["tomorrow", "for two"]. |
+
+
+<a name="speechly.slu.v1.SLUTentativeTranscript"></a>
+### SLUTentativeTranscript
+
+Describes a tentative transcript.
+
+Tentative transcript is an interim recognition result, which may change over time,
+e.g. a phrase "find me a red t-shirt" can be tentatively recognised as "find me a tea",
+until the API processes the audio completely.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| tentative_transcript | [string](#string) | Aggregated tentative transcript from the beginning of the audio until current moment in time.<br/>Consecutive transcripts will have this value appended to,<br/>e.g. if in the first message it's "find me", in the next it may be "find me a t-shirt". |
+| tentative_words | [SLUTranscript](#speechly.slu.v1.SLUTranscript) | A list of individual words which compose `tentative_transcript`.<br/>All words must be considered tentative. |
+
+
+<a name="speechly.slu.v1.SLUTranscript"></a>
+### SLUTranscript
+
+Describes an SLU transcript.
+A transcript is a speech-to-text element of the phrase, i.e. a word recognised from the audio.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| word | [string](#string) | The word recongised from the audio. |
+| index | [int32](#int32) | The position of the word in the whole phrase, zero-based. |
+| start_time | [int32](#int32) | The end time of the word in the audio, in milliseconds from the beginning of the audio. |
+| end_time | [int32](#int32) | The end time of the word in the audio, in milliseconds from the beginning of the audio. |
+
+
+<a name="speechly.slu.v1.WLUEntity"></a>
+### WLUEntity
+
+Describes a single entity in a segment.
+
+An entity is a specific object in the phrase that falls into some kind of category,
+e.g. in a SAL example "*book book a [burger restaurant](restaurant_type) for [tomorrow](date)"
+"burger restaurant" would be an entity of type `restaurant_type`,
+and "tomorrow" would be an entity of type `date`.
+
+An entity has a start and end indices which map to the indices of words in WLUToken messages,
+e.g. in the example "book a [burger restaurant](restaurant_type) for [tomorrow](date)" it would be:
+
+- Entity "burger restaurant" - `start_position = 2, end_position = 3`
+- Entity "tomorrow" - `start_position = 5, end_position = 5`
+
+The start index is inclusive, but the end index is exclusive, i.e. the interval is `[start_position, end_position)`.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| entity | [string](#string) | The type of the entity, e.g. `restaurant_type` or `date`. |
+| value | [string](#string) | The value of the entity, e.g. `burger restaurant` or `tomorrow`. |
+| start_position | [int32](#int32) | The starting index of the entity in the phrase, maps to the `index` field in `SLUTranscript`.<br/>Inclusive. |
+| end_position | [int32](#int32) | The finishing index of the entity in the phrase, maps to the `index` field in `SLUTranscript`.<br/>Exclusive. |
+
+
+<a name="speechly.slu.v1.WLUIntent"></a>
+### WLUIntent
+
+Describes the intent of a segment.
+There can only be one intent per segment.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| intent | [string](#string) | The value of the intent, as defined in SAL. |
+
+
+<a name="speechly.slu.v1.WLURequest"></a>
+### WLURequest
+
+Top-level message sent by the client for the `Text` method.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| language_code | [string](#string) | The language of the text sent in the request as a BCP-47 language tag (e.g. "en-US").<br/>Required. |
+| text | [string](#string) | The text to recognise.<br/>Required. |
+
+
+<a name="speechly.slu.v1.WLUResponse"></a>
+### WLUResponse
+
+Top-level message sent by the server for the `Text` method.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| segments | [WLUSegment](#speechly.slu.v1.WLUSegment) | A list of WLU segments. |
+
+
+<a name="speechly.slu.v1.WLUSegment"></a>
+### WLUSegment
+
+Describes a WLU segment.
+A segment is a logical portion of text denoted by its intent,
+e.g. in a phrase "book me a flight and rent a car"
+there would be a segment for "book me a flight" and another for "rent a car".
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| text | [string](#string) | The portion of text that contains this segment. |
+| tokens | [WLUToken](#speechly.slu.v1.WLUToken) | The list of word tokens which are contained in this segment. |
+| entities | [WLUEntity](#speechly.slu.v1.WLUEntity) | The list of entities which are contained in this segment. |
+| intent | [WLUIntent](#speechly.slu.v1.WLUIntent) | The intent that defines this segment. |
+
+
+<a name="speechly.slu.v1.WLUToken"></a>
+### WLUToken
+
+Describes a single word token in a segment.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| word | [string](#string) | The value of the word. |
+| index | [int32](#int32) | Position of the token in the text. |
+
+
+
+<a name="speechly.identity.v2.IdentityAPI"></a>
+# speechly.identity.v2.IdentityAPI
+
+Service that implements Speechly Identity API (https://speechly.com/docs/api/identity).
+
+This service is used for generating access token for the Speechly API.
+
+## Methods
+
+| name | request | response | description |
+| ---- | ------- | -------- | ----------- |
+| Login | [LoginRequest](#speechly.identity.v2.LoginRequest) | [LoginResponse](#speechly.identity.v2.LoginResponse) | Performs a login of specific Speechly application.<br/>Returns an access token which can be used to access thee Speechly API. |
 
 ## Messages
 
-### WLURequest
-
-{{< highlight "protocol buffer" >}}
-
-message WLURequest {
-    string language_code = 1;
-    string text = 2;
-}
-
-{{</ highlight >}}
-
-|Name|Type|Description|
-|---|---|---|
-|language_code|string|A valid language for the model used in the application.  
-|text|string|The text from which the intents, entities, and transcripts are extracted.
-
-### WLUResponse
-
-{{< highlight "protocol buffer" >}}
-
-message WLUResponse {
-    repeated WLUSegment segments = 1;
-}
-
-{{</ highlight >}}
+- [ApplicationScope](#speechly.identity.v2.ApplicationScope)
+- [LoginRequest](#speechly.identity.v2.LoginRequest)
+- [LoginResponse](#speechly.identity.v2.LoginResponse)
+- [ProjectScope](#speechly.identity.v2.ProjectScope)
 
 
-|Name|Type|Description|
-|---|---|---|
-|segments|WLUSegment|Any number of segments extracted from a string sent to [`WLURequest`]({{< relref "api-reference.md#wlurequest" >}}).  
+<a name="speechly.identity.v2.ApplicationScope"></a>
+### ApplicationScope
 
-### WLUSegment
+Used as the scope in `LoginRequest` when the access is for a single Speechly application.
 
-{{< highlight "protocol buffer" >}}
+#### Fields
 
-message WLUSegment {
-    string text = 1;
-    repeated WLUToken tokens = 2;
-    repeated WLUEntity entities = 3;
-    WLUIntent intent = 4;
-}
-{{</ highlight >}}
+| name | type | description |
+| ---- | ---- | ----------- |
+| app_id | [string](#string) | Speechly application ID. The defined application can be accessed with the returned token.<br/>Required. |
+| config_id | [string](#string) | Define a specific model configuration to use.<br/>Defaults to the application's latest configuration. |
 
-|Name|Type|Description|
-|---|---|---|
-|text|string|A segment extracted from [`WLURequest`]({{< relref "api-reference.md#wlurequest" >}}). 
-|token|WLUToken|Any number of words extracted from the segment.  
-|entities|WLUEntity|Any number of entities extracted from the segment.
-|intent|WLUIntent|The intent of the segment. 
 
-### WLUToken
+<a name="speechly.identity.v2.LoginRequest"></a>
+### LoginRequest
 
-{{< highlight "protocol buffer" >}}
+Top-level message sent by the client for the `Login` method.
 
-message WLUToken {
-    string word = 1;
-    int32 index = 2;
-}
-{{</ highlight >}}
+#### Fields
 
-|Name|Type|Description|
-|---|---|---|
-|word|string|A word in a segment.  
-|index|int32|The position of the word in the segment.  
+| name | type | description |
+| ---- | ---- | ----------- |
+| device_id | [string](#string) | A unique end-user device identifier.<br/>Must be a `UUID`.<br/>Required. |
+| application | [ApplicationScope](#speechly.identity.v2.ApplicationScope) | Login scope application: use the given application context for all utterances. |
+| project | [ProjectScope](#speechly.identity.v2.ProjectScope) | Login scope project: define the target application per utterance.<br/>The target applications must be located in the same project. |
 
-### WLUEntity
 
-{{< highlight "protocol buffer" >}}
+<a name="speechly.identity.v2.LoginResponse"></a>
+### LoginResponse
 
-message WLUEntity {
-    string entity = 1;
-    string value = 2;
-    int32 start_position = 3;
-    int32 end_position = 4;
-}
-{{</ highlight >}}
+Top-level message returned by the server for the `Login` method.
 
-|Name|Type|Description|
-|---|---|---|
-|entity|string|An entity extracted from a segment.
-|value|string|The value of the entity. 
-|start_position|int32|The starting position of the word/words containing the entity and its value. Inclusive. 
-|end_position|int32|The ending position of the word/words containing the entity and its value. Exclusive.
+#### Fields
 
-### WLUIntent 
+| name | type | description |
+| ---- | ---- | ----------- |
+| token | [string](#string) | Access token which can used for the Speechly API.<br/>The token is a JSON Web Token and includes all standard claims, as well as custom ones.<br/>The token has expiration, so you should check whether it has expired before using it.<br/>It is safe to cache the token for future use until its expiration date. |
+| valid_for_s | [uint32](#uint32) | Amount of seconds the returned token is valid. |
+| expires_at_epoch | [uint64](#uint64) | Token expiration time in seconds after 1970-01-01 ("unix time"). |
+| expires_at | [string](#string) | ISO-formatted UTC timestamp of the expiration time of the returned token. |
 
-{{< highlight "protocol buffer" >}}
 
-message WLUIntent {
-    string intent = 1;
-}
-{{</ highlight >}}
+<a name="speechly.identity.v2.ProjectScope"></a>
+### ProjectScope
 
-|Name|Type|Description|
-|---|---|---|
-|intent|string|The intent of a segment.
+Used as the scope in `LoginRequest` when access is required for every application in a Speechly project.
+
+#### Fields
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| project_id | [string](#string) | Speechly project ID. Every application in the same project is accessible with the same token.<br/>Required. |
+
 

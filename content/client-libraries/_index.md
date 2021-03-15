@@ -24,7 +24,7 @@ We currently offer client libraries for the following platforms:
 ([GitHub](https://github.com/speechly/ios-client/)) ([Documentation](/client-libraries/ios/))
 
 [Android](/client-libraries/android/)
-Coming soon!
+([GitHub](https://github.com/speechly/android-client/)) ([Documentation](/client-libraries/android/))
 
 [React Native](/client-libraries/react-native/)
 Coming soon!

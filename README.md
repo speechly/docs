@@ -1,14 +1,14 @@
 # Speechly Documentation
 
-This repository serves the documentation website for the Speechly Spoken Language Understanding tools. You can find the website at [https://www.speechly.com/docs](https://www.speechly.com/docs). 
+This repository serves the documentation website for the Speechly Spoken Language Understanding tools. You can find the website at [https://www.speechly.com/docs](https://www.speechly.com/docs).
 
 ## How to contribute
 
-We are very happy to receive any contributions to our documentation. You can either send pull requests or create [issues](/issues/new). If you have no idea on how GitHub works, you can also [send us an email](mailto:hello@speechly.com) and we'll take it from there. 
+We are very happy to receive any contributions to our documentation. You can either send pull requests or create [issues](/issues/new). If you have no idea on how GitHub works, you can also [send us an email](mailto:hello@speechly.com) and we'll take it from there.
 
 ## License
 
-All content is licensed under Creative Commons [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license. If you make any contributions to this repository, your content will be licensed under the same license. 
+All content is licensed under Creative Commons [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license. If you make any contributions to this repository, your content will be licensed under the same license.
 
 ## Building the website
 
@@ -21,8 +21,8 @@ All content is under `/content/` in Markdown. To create a new page, create a new
 ```
 ---
 title: NLU Basics
-description: NLU or natural language understanding is a process of teaching computers to comperehend and understand human languages. It extracts meaning out of written texts and transforms it into structured form. 
-weight: 3 
+description: NLU or natural language understanding is a process of teaching computers to comperehend and understand human languages. It extracts meaning out of written texts and transforms it into structured form.
+weight: 3
 ---
 ```
 
@@ -48,12 +48,11 @@ You can add warning/note boxes by using the following shortcode.
 
 ### Adding subpages
 
-If you want to add a subpage, create a new directory under the page directory under `/content/` and create a new `_index.md` file. 
-
+If you want to add a subpage, create a new directory under the page directory under `/content/` and create a new `_index.md` file.
 
 ## Commiting changes
 
-You can verify everything is working (alt tags correctly placed, no incorrect urls etc) by using (`htmlproofer`)[https://github.com/gjtorikian/html-proofer/blob/master/bin/htmlproofer] Once you are happy with the changes in your local environment, do `git add . && git commit -m 'commit message'` followed by `git push`. 
+You can verify everything is working (alt tags correctly placed, no incorrect urls etc) by using (`htmlproofer`)[https://github.com/gjtorikian/html-proofer/blob/master/bin/htmlproofer] Once you are happy with the changes in your local environment, do `git add . && git commit -m 'commit message'` followed by `git push`.
 
 ## Automatic page generation with `./build-docs.sh`
 
@@ -66,5 +65,6 @@ If there is an error fetching the content (e.g. content is not available), an er
 ### Generated pages
 
 - `content/client-libraries/react/ui-components`
+- `content/speechly-api/api-reference.md`
 
 Requires a Unix-like environment with `bash`, `curl` and `cat` commands.

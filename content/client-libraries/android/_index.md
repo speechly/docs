@@ -1,6 +1,6 @@
 ---
 title: Android Client Library
-description:  The official Speechly client libraries for Anrdoid clients. 
+description:  The official Speechly client libraries for Android clients. 
 weight: 9
 display: article
 category: "User guide"

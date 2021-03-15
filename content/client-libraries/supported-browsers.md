@@ -15,6 +15,7 @@ display: article
 | ✔️             | Chrome               | 53+     |
 | ✔️             | iOS Safari           | 11+     |
 | ✔️             | Safari               | 11+     |
+| ✔️             | iOS Chrome               | 86+     |
 | ✔️             | Firefox              | 53+     |
 | ✔️             | Edge                 | 18+     |
 | ✔️             | Samsung Internet     | 6.2+    |

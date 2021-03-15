@@ -11,7 +11,7 @@ menu:
 ---
 
 {{< button "https://github.com/speechly/android-repo-filtering" "flash-outline" "light" "Tutorial" >}}
-{{< button "https://github.com/speechly/android" "logo-github" "light" "GitHub" >}}
+{{< button "https://github.com/speechly/android-client/" "logo-github" "light" "GitHub" >}}
 
 This is the documentation for Speechly Android client library for building natural user interfaces with Android.
 

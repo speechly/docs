@@ -1,3 +1,26 @@
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+
+    tabcontent = document.getElementsByClassName('code');
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName('tablinks');
+    for (i = 0; i < tablinks.length; i++) {
+        if (!tablinks[i].className.includes(tabName)) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        else {
+            tablinks[i].className += " active";
+        }
+    }
+
+    document.getElementById(tabName + '-import').style.display = "block";
+    document.getElementById(tabName + '-loadui').style.display = "block";
+    document.getElementById(tabName + '-callback').style.display = "block";
+}
+
 const navbarMenu = () => {
   const burger = $(".navbar-burger"),
         menu = $(".navbar-menu");

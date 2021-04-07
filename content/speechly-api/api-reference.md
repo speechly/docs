@@ -6,8 +6,8 @@ category: "References"
 display: article
 menu:
   sidebar:
-    title: "API Reference"
-    parent: "Speechly API"
+    title: "Speechly API Reference"
+    parent: "Speechly API References"
 ---
 
 # Speechly gRPC Api Reference

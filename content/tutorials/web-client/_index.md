@@ -1,37 +1,35 @@
 ---
-title: Browser Client Tutorial
-description: Get started with Javascript and Speechly
+title: Web Client Tutorial - SpeechToChess
+description: Let's play chess in a web browser by using voice!
 display: article
 weight: 1
 menu:
-  integrations:
-    title: "Tutorial Guide"
+  sidebar:
+    title: "Web Client"
     weight: 1
-    parent: "Browser Client"
+    parent: "How-to guides"
 ---
 
 {{< info title="Clone and try" >}}
-  Try out the app by cloning the repository and using the appid `6e61df24-2fbe-4cd9-b560-3c39842bafea`
+  Try out the app by cloning the [repository](https://github.com/speechly/speech-to-chess/) and using the appid `6e61df24-2fbe-4cd9-b560-3c39842bafea`
 {{< /info >}}
 
-{{< button "https://github.com/speechly/speech-to-chess/" "logo-github" "light" "Tutorial Repository" >}}
-
-## SpeechToChess tutorial
-
-Let’s play chess by using voice! In this tutorial, we’ll build a simple chess game with JavaScript that can be controlled by using voice commands.
+In this tutorial, we’ll build a simple chess game with JavaScript that can be controlled by using voice commands.
 
 After completing this tutorial, you will be able to create a [Speechly](https://www.speechly.com/) voice interface for a new project or integrate it to an existing one in Javascript.
 
-Chessboard consists of rows and columns, or in the language of chess ranks and files. The files (columns) are identified by the letters a to h and the ranks (rows) by the numbers 1 to 8. In this tutorial, we will be using the [chess game  notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)): “e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6”. Upper-case letters N and B stand for the knight and bishop.
+# Define the chessboard
+
+A chessboard consists of rows and columns, or in the language of chess ranks and files. The files (columns) are identified by the letters a to h and the ranks (rows) by the numbers 1 to 8. In this tutorial, we will be using the [chess game  notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)): “e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6”. Upper-case letters N and B stand for the knight and bishop.
 
 You say “knight f3" and Speechly will provide you with a javascript object of intent
-```
+```json
 {
  “intent”: “move”
 }
 ```
 and an array of entities
-```
+```json
 [
   {
     “type”: “piece”,
@@ -43,7 +41,7 @@ and an array of entities
   }
 ]
 ```
-### Define intents in SAL - Speechly Annotation Language
+# Define intents in SAL - Speechly Annotation Language
 
 Building [voice user interfaces](https://www.speechly.com/blog/voice-application-design-guide/) starts from the declaration of the intents and entities. In our chess example, the most common user intent is to move a piece on the board. This intent has two entities (modifiers for this intent): piece and square where this piece will be moved.  
 
@@ -83,13 +81,13 @@ Curly braces wrap the optional values. You can refer to [Cheat Sheet for SAL syn
 
 You can see the App ID under the application name. You’ll need to use it when integrating the project. 
 
-### Deploy Speechly app and try
+# Deploy Speechly app and try
 
 Now you can play around with your configuration. Press “Deploy” and wait for about 2 minutes.
 
 When you see the status “Deployed”, press “Try”. The Playground screen will show up. Press space and hold it to say something like “KNIGHT E4”, “KNIGHT takes PAWN on E5", “castle”.
 
-### Create a plain Javascript project
+# Create a plain Javascript project
 
 Now we can start building our Javascript application.
 
@@ -98,12 +96,12 @@ Create a new folder `mkdir MyVoiceApp` and run there `yarn init`. Add Speechly�
 Add index.js file to the src folder and index.html file to the dist folder.
 
 src/index.js
-```
+```javascript
 import { Client } from ‘@speechly/browser-client’;
 console.log(‘Hello Speechly!’);
 ```
 dist/index.html 
-```
+```html
 <html>
 <head>
   <style>
@@ -128,10 +126,10 @@ Now you can run the bundler `yarn run webpack`. As a result you will get the mai
 
 Open the index.html file in Chrome browser. You will see the ‘Microphone’ button on the screen and the greeting in the console.
 
-### Client is a key
+# Client is a key
 
 Create a new Client and initialize it: 
-```
+```javascript
 const client = new Client({
  appId: ‘HereIs-AppId-From-The-Dashbord’,
  language: ‘en-US’,
@@ -139,7 +137,7 @@ const client = new Client({
 client.initialize();
 ```
 Bind the ‘Microphone’ button to record and send voice audio:
-```
+```javascript
  window.onload = () => {
  document.getElementById(‘mic’).onmousedown = () => client.startContext();
  document.getElementById(‘mic’).onmouseup = () => client.stopContext();
@@ -147,7 +145,7 @@ Bind the ‘Microphone’ button to record and send voice audio:
 
 ```
 We will connect the game and the client by the onSegmentChange event handler:
-```
+```javascript
 client.onSegmentChange((segment) => {
   if (segment.intent && segment.isFinal) {
     // TODO: game logic
@@ -155,11 +153,11 @@ client.onSegmentChange((segment) => {
 }
 ```
 
-## State of the game, reducer and rendering
+# State of the game, reducer and rendering
 
 Create game object with the default position on the chessboard to store the state. Add reducer function to update the game state by incoming segments. Finally add a function to render the chessboard.
 
-```
+```javascript
 const defaultPosition = [
  [‘r’, ‘n’, ‘b’, ‘q’, ‘k’, ‘b’, ‘n’, ‘r’],
  [‘p’, ‘p’, ‘p’, ‘p’, ‘p’, ‘p’, ‘p’, ‘p’],
@@ -307,7 +305,7 @@ function renderBoard(position) {
 };
 ```
 Now you can call the game reducer on each event with a segment and render the chessboard.
-```
+```javascript
 client.onSegmentChange((segment) => {
   if (segment.intent && segment.isFinal) {
       game = reducer(game, segment);
@@ -315,7 +313,7 @@ client.onSegmentChange((segment) => {
   }
 }
 ```
-### Enjoy the game
+# Enjoy the game
 Now you can run your application by running the index.html. Press the ‘Microphone’ button and say ‘E4’ and release the button. Repeat with ‘E5’, ‘knight f3’, ‘knight c6’ etc.
 
 Have a great game!

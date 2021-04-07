@@ -1,13 +1,10 @@
 ---
 title: Android Client Library
+draft: true
 description:  The official Speechly client libraries for Android clients. 
 weight: 9
 display: article
 category: "User guide"
-menu:
-  integrations:
-    title: "Android"
-    weight: 5
 ---
 
 {{< button "https://github.com/speechly/android-repo-filtering" "flash-outline" "light" "Tutorial" >}}

@@ -1,85 +1,17 @@
 ---
-title: Speechly React UI components
-description: Ready-made UI components for React apps
+title: UI Components
+description: Configuration options for the Push-to-Talk Button as well as BigTranscript.
+weight: 2
+category: "References"
 display: article
+menu:
+  sidebar:
+    title: "UI components"
+    parent: "Client Libraries"
 ---
 
-{{< button "https://github.com/speechly/react-ui" "logo-github" "light" "GitHub" >}}
 
-&nbsp;
-
-## Introduction
-
-`@speechly/react-ui` package is an optional UI component library for speeding up voice-enabled web app development using React and Speechly.
-
-## Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [PushToTalkButton component](#push-to-talk-button-component)
-- [BigTranscript component](#bigtranscript-component)
-- [ErrorPanel component](#errorpanel-component)
-- [Notifications](#notifications)
-
-## Installation
-
-Create a React app (if starting from scratch), then install the required packages:
-
-```sh
-# Create a new React app in current folder
-create-react-app .
-
-# Install react-ui and react-client dependency
-npm install --save @speechly/react-client
-npm install --save @speechly/react-ui
-```
-
-## Usage
-
-Import the required components (e.g. in `App.jsx`):
-
-```tsx
-import {
-  SpeechProvider
-} from "@speechly/react-client";
-
-import {
-  PushToTalkButton,
-  PushToTalkButtonContainer,
-  BigTranscript,
-  BigTranscriptContainer,
-  ErrorPanel
-} from "@speechly/react-ui";
-```
-
-Place the components inside your `<SpeechProvider>` block since they depend on the context hook it provides.
-
-```tsx
-function App() {
-  return (
-    <SpeechProvider appId="014ce3a6-9bbf-4605-976f-087a8f3ec178" language="en-US">
-      <BigTranscriptContainer>
-        <BigTranscript />
-      </BigTranscriptContainer>
-
-      <PushToTalkButtonContainer>
-        <PushToTalkButton captureKey=" " />
-        <ErrorPanel/>
-      </PushToTalkButtonContainer>
-    </SpeechProvider>
-  );
-}
-```
-
-To test it, run the app with `npm start`. If you used the default `appId` (Home Automation Demo), hold the push-to-talk button and try saying "Turn off the lights in the kitchen".
-
-If you have already trained your own custom speech model, replace the `appId` with your own acquired from [Speechly Dashboard](https://speechly.com/dashboard).
-
-### Further reading
-
-- [Handling Speech Input in a React App in Speechly Blog](https://www.speechly.com/blog/handling-speech-input-in-a-react-app/)
-
-## Push-to-Talk Button component
+# Push-to-Talk Button component
 
 `<PushToTalkButton/>` is a holdable button to control listening for voice input.
 
@@ -93,7 +25,7 @@ The placement, size and colors of the button can be customised.
   > Use `<PushToTalkButton/>` to let users turn listening for voice input on and off
   > 
 
-### States
+## States
 
 The icon on the button displays the Speechly system state:
 
@@ -107,7 +39,7 @@ The icon on the button displays the Speechly system state:
 
 5. **Error** (Broken mic icon). In case of an error (usually during initialisation), the button turns into a broken mic symbol. If you have the optional `<ErrorPanel/>` component in your hierarchy, a description of the problem is displayed. Otherwise, you'll need to look into the browser console to discover the reason for the error. Shown in case of `SpeechlyState.Failed`, `SpeechlyState.NoAudioConsent`, `SpeechlyState.NoBrowserSupport`
 
-### Customisation
+## Customisation
 
 - `<PushToTalkButtonContainer>` is a convenience container that places the button at the lower part of the screen. You may replace it with your own `<div>` or similar.
 
@@ -123,7 +55,7 @@ The icon on the button displays the Speechly system state:
 <PushToTalkButton gradientStops={["#aaa", "#ddd"]} />
 ```
 
-## BigTranscript component
+# BigTranscript component
 
 `<BigTranscript/>` is an overlay-style component for displaying real-time speech-to-text transcript.
 
@@ -135,7 +67,7 @@ The placement, typography and colors of the button can be customised. Recognized
   > Use `<BigTranscript/>` to display real-time speech-to-text transcript for better feedback
   > 
 
-### Customisation
+## Customisation
 
 Styling like colors can be assigned to `.BigTranscript` container class and to different entity types by using `.Entity.<EntityName>` selector. Replace `<EntityName>` with the exact entity name defined in your SAL.
 
@@ -160,7 +92,7 @@ Styling like colors can be assigned to `.BigTranscript` container class and to d
 }
 ```
 
-## ErrorPanel component
+# ErrorPanel component
 
 `<ErrorPanel/>` is a normally hidden panel for voice-related error messages and recovery instructions when there is a problem with voice functions, e.g. when accessing site via http or if microphone permission is denied or unsupported in browser.
 
@@ -171,51 +103,3 @@ It automatically shows if there is problem detected upon pressing the `<PushToTa
   > 
   > Use `<ErrorPanel/>` to help users diagnose and recover from voice-related issues
   > 
-
-## Notifications
-
-Notifications are small messages that are intended to be momentarily displayed.
-
-They are shown inside `<BigTranscriptContainer/>` at the top-left of the screen so it needs to be a part of your DOM.
-
-Notifications can be cleared either programmatically or by tapping on them.
-
-  >
-  > Use Notifications to provide utterance examples and feedback, especially when the app is unable to respond to the user's utterance
-  >
-
-### Installation
-
-`pubsub-js` package is used to communicate with the notification manager.
-
-```
-npm install --save pubsub-js
-```
-
-### Usage
-
-Add the following lines to your header:
-
-```
-import PubSub from "pubsub-js";
-import { SpeechlyUiEvents } from "@speechly/react-ui/types";
-```
-
-### Publishing a notification
-
-```
-PubSub.publish(SpeechlyUiEvents.Notification, {
-  message: `Please say again`,
-  footnote: `Try: "Blue jeans"`
-});
-```
-
-The notification consists of a short main message (displayed in big typeface) and an optional footnote (displayed in smaller typeface).
-
-One notification can be displayed at a time. A successive call will instantly replace the previous notification.
-
-### Clearing all notifications
-
-```
-PubSub.publish(SpeechlyUiEvents.DismissNotification);
-````

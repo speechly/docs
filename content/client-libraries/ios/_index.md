@@ -1,12 +1,10 @@
 ---
 title: iOS client
+draft: true
 description: The official Speechly client for iOS apps
 display: article
 weight: 3
 aliases: ["/client-libraries/ios-client/"]
-menu:
-  integrations:
-    title: iOS
 ---
 
 {{< button "https://github.com/speechly/ios-repo-filtering" "flash-outline" "light" "Tutorial" >}}

@@ -7,7 +7,7 @@ aliases: [/editing-nlu-examples/]
 menu:
   sidebar:
     title: "Configuration"
-    weight: 3
+    weight: 4
 ---
 
 {{< figure src="speechly-api-image.png" title="A client sends audio and the SLU configuration defines the form of the results that are received from the API" alt="A figure explaining how Speechly configuration works">}}

@@ -7,6 +7,17 @@ languageCode = "en"
 enableGitInfo = true
 disablePathToLower = true
 
+[markup.goldmark.renderer]
+unsafe= true
+
+[markup.tableOfContents]
+startLevel = 1
+endLevel = 2
+ordered = false
+
+[markup.highlight]
+style = "solarized-dark"
+
 [taxonomies]
 category = "categories"
 
@@ -17,9 +28,6 @@ icon_set = "ionicons"
 [params.colors]
 secondary = "#302666"
 primary = "#53A3F9"
-
-[markup.highlight]
-style = "emacs"
 
 [outputs]
 home = ["HTML", "JSON"]
@@ -36,7 +44,7 @@ type = "bold"
 
 [[params.fonts]]
 name = "Roboto Mono"
-sizes = [400]
+sizes = [600]
 type = "monospace"
 
 [[menu.main]]
@@ -46,52 +54,16 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-name = "Getting started"
-parent = "docs"
-url = "/quick-start/"
-weight = 1
-
-[[menu.main]]
-name = "Configuration"
-parent = "docs"
-url = "/slu-examples/"
-weight = 2
-
-[[menu.main]]
-name = "Design"
-parent = "docs"
-url = "/design-philosophy/"
-weight = 3
-
-[[menu.main]]
-name = "FAQ"
-parent = "docs"
-url = "/faq/"
-weight = 4
-
-[[menu.main]]
-name = "Release notes"
-parent = "docs"
-url = "/release-notes/"
-weight = 6
-
-[[menu.main]]
-name = "Integrations"
-parent = "docs"
-url = "/integrations/"
-weight = 5
-
-[[menu.main]]
-name = "API Reference"
+name = "API References"
 url = "/speechly-api/api-reference/"
 weight = 2
-
-[[menu.main]]
-name = "Speechly website"
-url = "https://www.speechly.com/"
-weight = 4
 
 [[menu.main]]
 name = "GitHub" 
 url = "https://github.com/speechly/"
 weight = 3
+
+[[menu.main]]
+name = "Speechly website"
+url = "https://www.speechly.com/"
+weight = 4

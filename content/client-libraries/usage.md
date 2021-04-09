@@ -15,6 +15,7 @@ Import and instantiate the client library.
 <div class="tab">
   <button class="tablinks WebClient active" onclick="openTab(event, 'WebClient')">Web Browser</button>
   <button class="tablinks React" onclick="openTab(event, 'React')">React</button>
+  <button class="tablinks ios" onclick="openTab(event, 'ios')">iOS</button>
   <button class="tablinks Android" onclick="openTab(event, 'Android')">Android</button>
 </div>
 
@@ -30,13 +31,58 @@ Include the resources in your <code>head</code> block:
 </div>
 
 <div id="React-import" class="tabcontent code">
+Install the client with npm:
+{{< highlight bash >}}
+npm install --save @speechly/react-client
+{{< /highlight >}}
+And import the components into your application:
 {{< highlight typescript >}}
 import React from "react";
 import { SpeechProvider, useSpeechContext } from "@speechly/react-client";
 {{< /highlight >}}
 </div>
 
+<div id="ios-import" class="tabcontent code">
+The Speechly iOS client is distributed using Swift Package Manager,
+add it as a dependency to your <code>Package.swift</code>:
+{{< highlight swift >}}
+// swift-tools-version:5.3
+import PackageDescription
+
+let package = Package(
+    name: "MySpeechlyApp",
+    dependencies: [
+        .package(name: "speechly-ios-client", url: "https://github.com/speechly/ios-client.git", from: "0.3.0"),
+    ],
+    targets: [
+        .target(name: "MySpeechlyApp", dependencies: []),
+        .testTarget(name: "MySpeechlyAppTests", dependencies: ["MySpeechlyApp"]),
+    ]
+)
+{{< /highlight >}}
+
+Import the client...
+{{< highlight swift >}}
+import Speechly
+{{< /highlight >}}
+
+... and instantiate it in your manager class:
+{{< highlight swift >}}
+let client: Speechly.Client
+
+public init() {
+    client = try! Speechly.Client(
+        appId: UUID(uuidString: "your-speechly-app-id")!,
+    )
+    client.delegate = self
+    ...
+}
+{{< /highlight >}}
+</div>
+
 <div id="Android-import" class="tabcontent code">
+<p>First, obtain the client package from our Github repository:<br>
+<a href="https://github.com/speechly/android-client/releases/latest">https://github.com/speechly/android-client/releases/latest</a>.</p>
 Add android-client to your build.gradle dependencies.
 {{< highlight gradle >}}
 dependencies {
@@ -71,6 +117,7 @@ starting and stopping voice recording, and a display component for showing the r
 <div class="tab">
   <button class="tablinks WebClient active" onclick="openTab(event, 'WebClient')">Web Browser</button>
   <button class="tablinks React" onclick="openTab(event, 'React')">React</button>
+  <button class="tablinks ios" onclick="openTab(event, 'ios')">iOS</button>
   <button class="tablinks Android" onclick="openTab(event, 'Android')">Android</button>
 </div>
 
@@ -89,6 +136,34 @@ Include the following lines in your <code>body</code>:
 <div id="React-loadui" class="tabcontent code">
 {{< highlight typescript >}}
 TODO
+{{< /highlight >}}
+</div>
+
+<div id="ios-loadui" class="tabcontent code">
+Initialise the <code>TranscriptView</code> and <code>MicrophoneButtonView</code>,
+and add them in the <code>addViews</code> function of your manager class.
+{{< highlight swift >}}
+private let transcriptView = TranscriptView()
+private lazy var speechButton = MicrophoneButtonView(delegate: self)
+
+public func addViews(view: UIView) {
+        view.addSubview(transcriptView)
+        view.addSubview(speechButton)
+        ...
+}
+{{< /highlight >}}
+
+Implement an extension that maps the microphone button to
+starting and stopping the client.
+{{< highlight swift >}}
+extension SpeechlyManager: MicrophoneButtonDelegate {
+    func didOpenMicrophone(_ button: MicrophoneButtonView) {
+        self.client.startContext()
+    }
+    func didCloseMicrophone(_ button: MicrophoneButtonView) {
+        self.client.stopContext()
+    }
+}
 {{< /highlight >}}
 </div>
 
@@ -129,6 +204,7 @@ After an audio context has started, callback is called every time the Speechly A
 <div class="tab">
   <button class="tablinks WebClient active" onclick="openTab(event, 'WebClient')">Web Browser</button>
   <button class="tablinks React" onclick="openTab(event, 'React')">React</button>
+  <button class="tablinks ios" onclick="openTab(event, 'ios')">iOS</button>
   <button class="tablinks Android" onclick="openTab(event, 'Android')">Android</button>
 </div>
 
@@ -149,6 +225,22 @@ Listen for the broadcasted updates to <code>SpeechSegment</code>.
 <div id="React-callback" class="tabcontent code">
 {{< highlight typescript >}}
 TODO
+{{< /highlight >}}
+</div>
+
+<div id="ios-callback" class="tabcontent code">
+Implement the `Speechly.SpeechlyDelegate` for reacting to recognition results.
+{{< highlight swift >}}
+extension SpeechlyManager: SpeechlyDelegate {
+    func speechlyClientDidUpdateSegment(_ client: SpeechlyProtocol, segment: Segment) {
+        // segment handling logic goes here
+        ...
+        // If you are using the TranscriptView component, also add
+        DispatchQueue.main.async {
+            self.transcriptView.configure(segment: segment, animated: true)
+        }
+    }
+}
 {{< /highlight >}}
 </div>
 

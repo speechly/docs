@@ -1,7 +1,7 @@
 ---
 title: Importing data from CSV files
 description: Imports are an advanced SAL feature that enables you to define variables outside the SAL view, improving readability. The lookup entity type allows you to define a canonical output value for entities with synonyms.
-weight: 3
+weight: 6
 category: "User guide"
 aliases: [/editing-nlu-examples/imports-and-lookup/]
 menu:

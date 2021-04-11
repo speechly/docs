@@ -1,13 +1,12 @@
 ---
 title: "Standard Variables and Data Types"
 description: "Standard Variables make recognizing common expressions and Data Types easy by parsing them to a normalized format."
-weight: 3
+weight: 5
 category: "User guide"
 aliases: [/editing-nlu-examples/standard-variables/]
 menu:
   sidebar:
     title: "Standard Variables (dates, numbers, identifiers etc)"
-    weight: 3
     parent: "Configuring Your Application"
 ---
 

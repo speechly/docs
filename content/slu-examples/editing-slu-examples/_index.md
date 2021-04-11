@@ -1,13 +1,13 @@
 ---
 title: Speechly Annotation Language (SAL)
 description: Applications are configured by creating example utterances that are annotated with the Speechly Annotation Language (SAL). The configuration defines how the users can interact with the voice user interface.
-weight: 1
+weight: 10
 category: "User guide"
 aliases: [/editing-nlu-examples/slu-examples/]
+draft: True
 menu:
   sidebar:
     title: "Speechly Annotation Language (SAL)"
-    weight: 1
     parent: "Configuring Your Application"
 ---
 

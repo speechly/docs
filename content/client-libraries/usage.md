@@ -1,6 +1,6 @@
 ---
 title: Basic usage
-description: All Speechly Client Libraries follow the design paradigm outlined below.
+description: How to install, instantiate and use Speechly Client Libraries
 display: article
 category: "User guide"
 weight: 1
@@ -9,9 +9,10 @@ menu:
     title: "Basic usage"
     parent: "Client Libraries"
 ---
+*Note that you also need a Speechly application id. This you can obtain from the [Dashboard](https://api.speechly.com) for one of the ready-made example applications, or after having configured one yourself. And don't forget to deploy your application on the Dashboard as well!*
 
-# Import the client library
-Import and instantiate the client library.
+# Install and import the client library
+
 <div class="tab">
   <button class="tablinks WebClient active" onclick="openTab(event, 'WebClient')">Web Browser</button>
   <button class="tablinks React" onclick="openTab(event, 'React')">React</button>
@@ -72,7 +73,7 @@ let client: Speechly.Client
 
 public init() {
     client = try! Speechly.Client(
-        appId: UUID(uuidString: "your-speechly-app-id")!,
+        appId: UUID(uuidString: "YOUR_APP_ID_HERE")!,
     )
     client.delegate = self
     ...
@@ -113,7 +114,7 @@ private var button: SpeechlyButton? = null
 
 # Take UI components to use
 We provide ready-made UI components that implement a Push-to-Talk Button for
-starting and stopping voice recording, and a display component for showing the returned transcript.
+starting and stopping voice recording, and a display component for showing the returned transcript (not yet available on Android). It is not necessary to use these, but we highly recommend this as a first step to get started quickly.
 <div class="tab">
   <button class="tablinks WebClient active" onclick="openTab(event, 'WebClient')">Web Browser</button>
   <button class="tablinks React" onclick="openTab(event, 'React')">React</button>
@@ -128,7 +129,7 @@ Include the following lines in your <code>body</code>:
   <big-transcript></big-transcript>
 </div>
 <div class="PushToTalkContainer">
-  <push-to-talk-button appid="your-app-id-comes-here"></push-to-talk-button>
+  <push-to-talk-button appid="YOUR_APP_ID_HERE"></push-to-talk-button>
 </div>
 {{< /highlight >}}
 </div>
@@ -143,8 +144,8 @@ TODO
 Initialise the <code>TranscriptView</code> and <code>MicrophoneButtonView</code>,
 and add them in the <code>addViews</code> function of your manager class.
 {{< highlight swift >}}
-private let transcriptView = TranscriptView()
-private lazy var speechButton = MicrophoneButtonView(delegate: self)
+let transcriptView = TranscriptView()
+lazy var speechButton = MicrophoneButtonView(delegate: self)
 
 public func addViews(view: UIView) {
         view.addSubview(transcriptView)
@@ -215,7 +216,8 @@ Listen for the broadcasted updates to <code>SpeechSegment</code>.
   window.addEventListener("message", (e) => {
     if (e.data.type === "segment-update") {
       const segment = e.data.segment;
-      console.log("segment-update message:", segment);
+      // segment handling logic goes here
+      ...
     }
   });
 </script>

@@ -1,12 +1,11 @@
 ---
 title: Example configurations
 description: See some examples of SLU configurations! Use them as the scaffold for your application, or learn how to improve your own configuration.
-weight: 9
+weight: 4
 aliases: [/editing-nlu-examples/example-configuration/]
 menu:
   sidebar:
     title: "Example Configurations"
-    weight: 8
     parent: "Configuring Your Application"
 ---
 

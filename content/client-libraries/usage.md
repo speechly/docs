@@ -4,12 +4,13 @@ description: How to install, instantiate and use Speechly Client Libraries
 display: article
 category: "User guide"
 weight: 1
+aliases: [/client-libraries/web-client/, /client-libraries/react/tutorial/, /client-libraries/ios/tutorial/, /client-libraries/react-native/]
 menu:
   sidebar:
     title: "Basic usage"
     parent: "Client Libraries"
 ---
-*Note that you also need a Speechly application id. This you can obtain from the [Dashboard](https://api.speechly.com) for one of the ready-made example applications, or after having configured one yourself. And don't forget to deploy your application on the Dashboard as well!*
+*Note that you also need a Speechly application id. This you can obtain from the [Dashboard](https://api.speechly.com) for one of the ready-made example applications, or after having [configured](/slu-examples/) one yourself. And don't forget to deploy your application on the Dashboard as well!*
 
 # Install and import the client library
 
@@ -35,6 +36,7 @@ Include the resources in your <code>head</code> block:
 Install the client with npm:
 {{< highlight bash >}}
 npm install --save @speechly/react-client
+npm install --save @speechly/react-ui
 {{< /highlight >}}
 And import the components into your application:
 {{< highlight typescript >}}
@@ -82,7 +84,7 @@ public init() {
 </div>
 
 <div id="Android-import" class="tabcontent code">
-<p>First, obtain the client package from our Github repository:<br>
+<p>The client package is available from our Github repository:<br>
 <a href="https://github.com/speechly/android-client/releases/latest">https://github.com/speechly/android-client/releases/latest</a>.</p>
 Add android-client to your build.gradle dependencies.
 {{< highlight gradle >}}
@@ -135,8 +137,32 @@ Include the following lines in your <code>body</code>:
 </div>
 
 <div id="React-loadui" class="tabcontent code">
+Import the components:
 {{< highlight typescript >}}
-TODO
+import {
+  PushToTalkButton,
+  PushToTalkButtonContainer,
+  BigTranscript,
+  BigTranscriptContainer,
+  ErrorPanel
+} from "@speechly/react-ui";
+{{< /highlight >}}
+Place the components inside your <SpeechProvider> block
+{{< highlight typescript >}}
+function App() {
+  return (
+    <SpeechProvider appId="014ce3a6-9bbf-4605-976f-087a8f3ec178" language="en-US">
+      <BigTranscriptContainer>
+        <BigTranscript />
+      </BigTranscriptContainer>
+
+      <PushToTalkButtonContainer>
+        <PushToTalkButton captureKey=" " />
+        <ErrorPanel/>
+      </PushToTalkButtonContainer>
+    </SpeechProvider>
+  );
+}
 {{< /highlight >}}
 </div>
 
@@ -226,7 +252,14 @@ Listen for the broadcasted updates to <code>SpeechSegment</code>.
 
 <div id="React-callback" class="tabcontent code">
 {{< highlight typescript >}}
-TODO
+function SpeechlyApp() {
+  const { segment } = useSpeechContext()
+  return (
+    <div>
+      {segment ? <div className="segment">{segment.words.map(w => w.value).join(' ')}</div> : null}
+    </div>
+  )
+}
 {{< /highlight >}}
 </div>
 

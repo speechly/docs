@@ -1,11 +1,12 @@
 ---
-title: Speechly API Guide
+title: Speechly gRPC API Guide
 description: How to use the Speechly server-side API
 category: "References"
 display: article
+weight: 1
 menu:
   sidebar:
-    title: "Speechly API Guide"
+    title: "API Guide"
     parent: "Speechly gRPC API"
 ---
 

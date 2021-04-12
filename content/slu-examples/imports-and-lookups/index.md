@@ -4,6 +4,7 @@ description: Imports are an advanced SAL feature that enables you to define vari
 weight: 6
 category: "User guide"
 aliases: [/editing-nlu-examples/imports-and-lookup/]
+draft: True
 menu:
   sidebar:
     title: "Importing data from CSVs"

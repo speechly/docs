@@ -48,22 +48,11 @@ sizes = [600]
 type = "monospace"
 
 [[menu.main]]
-name = "Docs"
-identifier = "docs"
-url = "/"
-weight = 1
-
-[[menu.main]]
-name = "API References"
-url = "/speechly-api/api-reference/"
-weight = 2
-
-[[menu.main]]
 name = "GitHub" 
 url = "https://github.com/speechly/"
-weight = 3
+weight = 1
 
 [[menu.main]]
 name = "Speechly website"
 url = "https://www.speechly.com/"
-weight = 4
+weight = 2

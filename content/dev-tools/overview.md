@@ -20,7 +20,7 @@ Our development library offering consists of
 
 The Client libraries take care of audio capture, bidirectional streaming, authentication, and other technical complexities. We also provide some common UI components (a microphone button, transcript view) that come bundled with the Client libraries.
 
-For other platforms / programming languages we provide [precomiled gRPC stubs](https://github.com/speechly/api), some of which (e.g. Python and node.js) are available through a package manager (pip, npm). Unlike the Client libraries, these provide no additional functionality besides interacting with the Speechly gRPC API. We recommend these for advanced use-cases where none of the Client libraries can be used.
+For other platforms / programming languages you must rely on our [gRPC API](/speechly-api/). We provide [precomiled gRPC stubs](https://github.com/speechly/api), some of which (e.g. Python and node.js) are available through a package manager (pip, npm). Unlike the Client libraries, these provide no additional functionality besides interacting with the Speechly gRPC API. We recommend these for advanced use-cases where none of the Client libraries can be used.
 
 Finally, the [gRPC protocol definitions](https://github.com/speechly/api/tree/master/proto) are there for you if none of the previous solutions suits your requirements. We only recommend these for users who know their way around gRPC.
 

@@ -37,7 +37,7 @@ For example:
 *An end user utterance "Show jeans" will return the value `jeans` for entity name `category`.*
 
 # Template notation
-Template notation is used to define *Templates* that can be expanded to *Example utterances*. (See also [SAL Semantics](/slu-examples/semantics).)
+Template notation is used to define *Templates* that are expanded to *Example utterances* during deployment. See also [SAL Semantics](/slu-examples/semantics) for a more detailed description about how *Example utterances* and *Templates* relate to each other.
 
 ## Lists
 
@@ -88,6 +88,8 @@ symbol = [hash | slash | dash]
 product_code = $digit $digit $symbol $digit $digit $digit $digit
 ```
 Above, `product_code` defines a template that expands to all possible utterances that start with two digits, followed by one of the symbols, followed by four digits, such as *"six four dash nine nine zero four"* or "*one two hash three four five six"*.
+
+*Note: We provide you with several predefined [Standard Variables](/slu-examples/standard-variables/) that you can take into use in your configuration! These are useful when your configuration must support numbers, dates, times, sequences of alphanumeric characters, email addresses, etc.*
 
 Note that any varible `x` *must* be declared in your configuration before it can be used with the `$x` notation. This is ok:
 ```

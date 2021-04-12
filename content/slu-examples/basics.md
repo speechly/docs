@@ -1,6 +1,6 @@
 ---
 title: Configuration basics
-description: Introduction to configuring a Speechly application
+description: The configuration is used both to adapt the speech recognition model, as well as to train models for detecting intents and entities for your specific application.
 weight: 1
 category: "User guide"
 aliases: [/editing-nlu-examples/]
@@ -10,7 +10,7 @@ menu:
     parent: "Configuring Your Application"
 ---
 # What is a configuration?
-A Speechly configuration consists of a number of *example utterances* that your users might be saying. They are written in a Markdown-like syntax:
+A Speechly configuration describes a number of *example utterances* that your users might be saying. They are written in a Markdown-like syntax:
 ```
 *search show me [blue](color) [jackets](product)
 ```
@@ -33,20 +33,16 @@ They are defined using the syntax `[entity name](entity value)`.
 In the shopping example above, the entities are `color` and `product` that have the values `blue` and `jackets`, respectively. An entity can take different values, and your configuration should give a variety of examples of these.
 
 # How many example utterances must I provide?
-Quite a few, but this is not as tedious as you might think. Even simple Speechly configurations can be written as compact *templates* that expand into a large set of example utterances. For example, the configuration
+Quite a few, but this is not as tedious as you might think. Even simple Speechly configurations can be written as compact *Templates* that expand into a large set of example utterances. For example, the configuration
 ```
 product = [t shirts | hoodies | jackets | jeans | slacks | shorts | sneakers | sandals]
 color = [black | white | blue | red | green | yellow | purple | brown | gray]
 *search show me $color(color) $product(product)
 ```
-declares two variables, `product` and `color`, and assigns to both a list of relevant values. The 3rd line defines a *template* that generates 72 example utterances that each have "show me" followed by a color entity and a product entity, with their values taken from the respective lists.
+declares two variables, `product` and `color`, and assigns to both a list of relevant values. The 3rd line defines a *Template* that generates 72 example utterances that each have "show me" followed by a color entity and a product entity, with their values taken from the respective lists.
 
 # How do intents and entities appear in my application?
 Our spoken language understanding system extracts intents and entities from the user's speech input, and returns these to your application. When using one of our [Client Libraries](/client-libraries/), handling of intents and entities is done via our [Client API](/client-libraries/client-api-reference). The same API provides your application with a raw transcript of the users speech.
-
-
-
-However, we provide a collection of [standard variables](/slu-examples/standard-variables/) that capture different ways to phrase many common entities, such as various types of numbers, dates, time expressions, email addresses, person names, and so on.
 
 # What is a well-designed example utterance?
 Since Speechly is a **spoken language** understanding system, it is important to use example utterances that as precisely as possible reflect how users **talk**. An example utterance is (probably) good, if it sounds natural when spoken out aloud.
@@ -54,10 +50,10 @@ Since Speechly is a **spoken language** understanding system, it is important to
 Notice that how something spoken can depend on the *context*. For example, the number 16500 could be either the price of a car, or a (US) zip-code. However, it is spoken quite differently depending on the context: *"sixteen thousand five hundred"* (price) vs *"one six five zero zero"* (zip-code). A good configuration takes such contextual details into account.
 
 # Where can I learn more about Speechly Annotation Language?
-- Start by browsing the [SAL syntax summary](/slu-examples/cheat-sheet/).
-- Armed with that, you can take a look at [example configurations](/slu-examples/example-configuration/) and see how they have been designed.
+- Take a look at [example configurations](/slu-examples/example-configuration/) and try to understand how they work.
+- The [SAL syntax summary](/slu-examples/cheat-sheet/) should be helpful.
 - Try designing your own configurations on the [Dashboard](https://api.speechly.com). Start with something simple, and then expand this little by little.
-- If you want to dig deeper, there is also a longer article that describes how to design example utterances, as well as instructions on how to use [advanced SAL features](slu-examples/advanced-features/).
+- [SAL semantics](/slu-examples/semantics) is a useful resource once you have familiarised yourself with the very basics and have written a few simple configurations.
 
 # Other things to remember
 - Intent and entity names can only contain letters (a-z) in lower and upper case, numbers, and characters `-` and `_`.

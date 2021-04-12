@@ -1,13 +1,13 @@
 ---
 title: API Reference
 description: API reference for the Speechly API
-weight: 99
+weight: 2
 category: "References"
 display: article
 menu:
   sidebar:
-    title: "Speechly API Reference"
-    parent: "Speechly API References"
+    title: "API Reference"
+    parent: "Speechly gRPC API"
 ---
 
 # Speechly gRPC Api Reference

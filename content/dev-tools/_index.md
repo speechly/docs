@@ -11,7 +11,7 @@ menu:
 
 # Speechly libraries
 
-We offer [a variety of libraries](/dev-tools/overview) for integrating Speechly to your application. Our high-level [Client libraries](/client-libraries/), available for for Web, React, iOS, and Android, are the most advanced. They make it easier to interact with the Speechly gRPC API in a conforming way, and you should use them whenever possible.
+We offer [a variety of libraries](/dev-tools/overview) for integrating Speechly to your application. Our high-level [Client libraries](/client-libraries/), available for for Web, React, iOS, and Android, are the most advanced. They make it easy to interact with the Speechly gRPC API in a conforming way, and we recommend using them whenever possible.
 
 # Dashboard
 

@@ -8,7 +8,7 @@ menu:
   sidebar:
     title: "Quick Start"
 ---
-Below are three different ways for you to start trying out Speechly.
+Below are three different ways for you to start trying out Speechly. They are self-contained, and you can freely choose which one you would like to start with. However, the first one (Video Quick Start) is recommended for everyone.
 
 # 1) Video Quick Start
 

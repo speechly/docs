@@ -10,7 +10,7 @@ menu:
 ---
 The Speechly gRPC API is the low-level API for integrating your application with Speechly. For most users we strongly recommend using the [Client Libraries](/client-libraries/). The gRPC API is mainly for users who cannot use the Client Libraries.
 
-Knowledge of [gRPC](https://grpc.io) is a prerequisite before taking this API into use! Unfortunately we can only provide limited support for general gRPC related questions.
+Knowledge of [gRPC](https://grpc.io) is a prerequisite before taking this API into use.
 
 Here you can find
 - a [gRPC API Guide](api-guide) that explains how the gRPC API works in general, and

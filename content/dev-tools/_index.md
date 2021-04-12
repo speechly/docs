@@ -15,7 +15,7 @@ We offer [a variety of libraries](/dev-tools/overview) for integrating Speechly 
 
 # Dashboard
 
-The Speechly [Dashboard](/dev-tools/dashboard) is where you create, deplly and configure Speechly applications.
+The Speechly [Dashboard](/dev-tools/dashboard) is where you create, deplly and configure Speechly applications. The Dashboard provides some simple usage instructions when you log in for the first time.
 
 # Command line tool
 

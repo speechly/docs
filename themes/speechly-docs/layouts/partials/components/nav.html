@@ -1,8 +1,22 @@
 {{ $here := .RelPermalink }}
 {{ $currentPage := . }}
-{{ define "links" }}
-{{ $here := .here }}
 
+{{ define "header" }}
+{{ $isHere := eq .here .url }}
+<header class="nav-section-header">
+  <a{{ if $isHere }} class="is-active"{{ end }} href="{{ .url }}">
+    {{ .title }}
+  </a>
+</header>
+{{ end }}
+
+{{ define "submenu" }}
+{{ $isHere := eq .here .url }}
+<li class="nav-subitem">
+  <a{{ if $isHere }} class="is-active"{{ end }} href="{{ .url }}">
+    {{ .title }}
+  </a>
+</li>
 {{ end }}
 
 <nav class="nav is-sticky">
@@ -25,26 +39,17 @@
 
   <div class="nav-container is-scrollable">
     <div class="nav-section">
-      {{ range .Site.Menus.sidebar }} 
-        <header class="nav-section-header">     
-          <a href="{{.URL}}">
-            {{ .Title }}
-          </a>
-          </header>
-          {{ if .HasChildren }} 
-            {{ if or ($currentPage.IsMenuCurrent "sidebar" .) ($currentPage.HasMenuCurrent "sidebar" .)}} 
-              <ul class="nav-section-links">
-                {{ range .Children }}
-                <li class="nav-subitem">
-                  <a href="{{.URL}}">
-                    {{ .Title }}
-                  </a>
-                </li>
-                {{end }}
-              </ul>
-
-            {{ end }}
-          {{ end }} 
+      {{ range .Site.Menus.sidebar }}
+        {{ template "header" (dict "title" .Title "url" .URL "here" $here) }}
+        {{ if .HasChildren }} 
+          {{ if or ($currentPage.IsMenuCurrent "sidebar" .) ($currentPage.HasMenuCurrent "sidebar" .)}} 
+            <ul class="nav-section-links">
+            {{ range .Children }}
+              {{ template "submenu" (dict "title" .Title "url" .URL "here" $here) }}
+            {{end }}
+            </ul>
+          {{ end }}
+        {{ end }} 
       {{ end }}
     </div>
   </div>

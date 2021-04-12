@@ -1,13 +1,20 @@
 ---
 title: Supported Browsers
 description: Speechly supports most modern browsers on mobile and desktop.
-weight: 9
 display: article
+menu:
+  sidebar:
+    title: "Browser support"
+    parent: "Client Libraries"
 ---
 
-[Speechly Browser Client](/client-libraries/web-client/) and [Speechly React Client](/client-libraries/react/) are both supported in the same set of browsers. 
+Our Web Client and React Client are both supported in the same set of browsers. 
 
-## Mobile browsers
+# Desktop
+
+On desktop, Speechly is supported on all modern browsers. If you require a support for older browser version, please contact our [support](mailto:hello@speechly.com).
+
+# Mobile browsers
 
 | Supported   | Browser  |   Version    |
 | :----------------: | :--------------------: | ------- |
@@ -31,11 +38,6 @@ display: article
 | Not supported     | Opera Mini           | all     |
 | Not supported     | KaiOS Browser        | \-2.5   |
 
-##### NOTE
+# Please note
 
 Alibaba Browser, QQ Browser and Baidu Browser have non-standard implementations of certain APIs that Speechly relies upon. If you require support for these browsers, make sure to test properly.
-
-
-## Desktop
-
-On desktop, Speechly is supported on all modern browsers. If you require a support for older browser version, please contact our [support](mailto:hello@speechly.com)

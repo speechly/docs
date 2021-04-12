@@ -80,12 +80,32 @@ $max-character-width: 80ch
 
 // Custom styles
 
-h1
-  font-family: Sansation
+// font-family: Sansation
+
+.hero-body
+  padding: 1.5rem !important
+  padding-top: 3rem !important
+
+.is-size-2
+  font-size: 22px !important
+  font-weight: 600 !important
+
+.is-size-4
+  font-size: 1.15rem !important
+
+.content
+  h1
+    font-size: 20px !important
+    margin-top: 2em !important
+  h2
+    font-size: 18px !important
+    margin-top: 2em !important
+
+code
+  font-size: 13px !important
 
 h3,h4,h5,h6 
   color: #888 !important
-
 
 .footer
   margin-top: 1.5rem
@@ -101,3 +121,39 @@ h3,h4,h5,h6
 .release-notes h5 
   font-size: 1rem
   font-weight: 100
+
+.tab
+  overflow: hidden
+  border: none
+
+.tab button
+  background-color: inherit
+  font-size: 16px
+  float: left
+  // border: 1px solid #ccc
+  border: none
+  border-bottom: none
+  outline: none
+  cursor: pointer
+  padding: 14px 16px
+  transition: 0.3s
+
+.tab button:hover
+  // background-color: #ddd
+  foreground-color: #000
+
+.tab button.active
+  // background-color: #ccc
+  border-bottom: 2px solid #444
+
+.tabcontent
+  animation: fadeEffect 0.5s
+  display: none
+  padding: 1em 0px
+  border: none
+  // border-top: 1px solid #ccc
+  // border-bottom: 1px solid #ccc
+
+@keyframes fadeEffect 
+  from {opacity: 0;}
+  to {opacity: 1;}

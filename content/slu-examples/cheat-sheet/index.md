@@ -1,90 +1,121 @@
 ---
-title: Syntax Cheat Sheet
-description: All supported SAL features and when to use them
+title: Speechly Annotation Language Syntax
+description: Reference of all SAL features with simple usage examples
+weight: 2
 menu:
   sidebar:
-    weight: 5
     parent: "Configuring Your Application"
+    title: "SAL Syntax"
 ---
+SAL syntax consists of *Annotation syntax* and *Template notation*.
+
+# Annotation syntax
+The annotation syntax is used to annotate intents and entities.
 
 ## Intent
 
-`*show_products Show all products`
+Intents are defined by prepending the example with `*intent_name`. The remaining sentence after the `*intent_name` part will be recognized as having intent `intent_name`.
 
-*An end user utterance "Show all products" will return an intent `show_products`*
+For example:
 
-Intents are defined by an asterisk `*`. The whole sentence after the `*`-sign will be recognized as this intent.
+```
+*show_products show all products
+```
+
+*An end user utterance "Show all products" will return the intent `show_products`*
+
 
 ## Entity
 
-`*show_products Show [jeans](category)`
+Entities are defined by `[entity value](entity name)` notation.
 
-Entities are defined by `[entity value](entity type)` notation.
+For example:
 
-*An end user utterance "Show jeans" will return an entity `jeans` for entity type `category`.*
+```
+*show_products show [jeans](category)
+```
+*An end user utterance "Show jeans" will return the value `jeans` for entity name `category`.*
+
+# Template notation
+Template notation is used to define *Templates* that are expanded to *Example utterances* during deployment. See also [SAL Semantics](/slu-examples/semantics) for a more detailed description about how *Example utterances* and *Templates* relate to each other.
+
+## Lists
+
+Lists are defined by `[exp1 | exp2 | ... | exp_N]`, where `exp1`, `exp2` ... are arbitrary SAL expressions.
+
+When a template having a list is expanded, only one of the list elements is used in the final example utterance. For example, the template:
+
+```
+*show_products [show | view | i want to see] products
+```
+Is equivalent to writing
+```
+*show_products show products
+*show_products view products
+*show_products i want to see products
+```
+
+## Optional parts
+A substring of an example utterance can be declared as optional by enclosing it in curly braces `{this substring is optional}`. The optional part can be an arbitrary SAL expression.
+
+The optional parts of an example utterance may or may not exist. The template
+```
+*show_products {show} products {please}
+```
+is equivalent to writing
+```
+*show_products show products please
+*show_products show products
+*show_products products please
+*show_products products
+```
 
 ## Variables
 
+Variables are declared with the syntax `variable_name = arbitrary-SAL-expression`, and their value is accessed by `$variable_name`. You can assign any arbitrary SAL expression to a variable.
+
+For example, a common use case for variables are lists of various entity values:
 ```
-category = [
-    jeans
-    shoes
-]
-
-*show_products Show $category(category)
+categories = [jeans | shoes | shirts | accessories]
+*show_products show $categories(category)
 ```
+Note that above `$categories(category)` is shorthand for `[$categories](category)`. When the entity value is looked up from a variable, the brackets are not necessary.
 
-Variables are defined by `variable = []` notation and used by `$variable`. Variables can contain all valid SAL syntax.
+Variables can also be used to assemble complex phrases from simple components
+```
+digit = [one | two | three | four | five | six | seven | eight | nine | zero]
+symbol = [hash | slash | dash]
+product_code = $digit $digit $symbol $digit $digit $digit $digit
+```
+Above, `product_code` defines a template that expands to all possible utterances that start with two digits, followed by one of the symbols, followed by four digits, such as *"six four dash nine nine zero four"* or "*one two hash three four five six"*.
 
-{{< warning title="Define variables before using them" >}} Variables need to be defined before you use them in your examples. {{</warning >}}
+*Note: We provide you with several predefined [Standard Variables](/slu-examples/standard-variables/) that you can take into use in your configuration! These are useful when your configuration must support numbers, dates, times, sequences of alphanumeric characters, email addresses, etc.*
 
-## Inline lists
-
-`*show_products [Show|view] products` 
-
-Inline lists are a type of variable shorthand that can be used for simple substations.
-
-## Optional input
-
-`*show_products Show products {please}`
-
-Optional input is a part of end user utterance that may or may not exist.
-
-## Multi-intent utterances
-
-`*show_products Show products {and} *order order by price`
-
-You can define multiple intents in one sentence. This example would return two intents for the end user utterance "Show products and order by price"
-
-## Dates
-
-`*book Book a restaurant for $SPEECHLY.DATE(date)`
-
-*Supports end user utterances such as "Book a resturant for next Monday" or "Book a restaurant for the fifth of July"*
-
-`$SPEECHLY.DATE` is a [standard entity](/slu-examples/standard-variables/) type for dates. 
-
-## Numbers
-
-`*add_expense Add an expense for $SPEECHLY.NUMBER(amount) dollars"`
-
-*Supports end user utterances such as "Add an expense for two thousand five hundred and sixty dollars"*
-
-`$SPEECHLY.NUMBER` is a [standard entity](/slu-examples/standard-variables/) type for numbers.
-
-## Alphanumeric sequences
-
-`*add_product add $SPEECHLY.IDENTIFIER_MEDIUM(product_id) to cart`
-
-*Supports end user utterance such as "Add ABC123 to cart" or "Add 4FG13L to cart"
-
-`$SPEECHLY.IDENTIFIER_SHORT, $SPEECHLY.IDENTIFIER_MEDIUM and $SPEECHLY.IDENTIFIER_LONG` are [standard entity](/slu-examples/standard-variables/) types for alphanumeric sequences of various lengths. These can be used for product codes, license plates or other identifiers.
+Note that any varible `x` *must* be declared in your configuration before it can be used with the `$x` notation. This is ok:
+```
+x = [hello | hi | greetings]
+*greet $x
+```
+This is **not** ok:
+```
+*greet $x
+x = [hello | hi | greetings]
+```
 
 ## Permutations
 
-`*book Book a ticket ![[from Helsinki](from) | [to London](to) | for [two](amount)]`
+A permutation generates all possible permutations of the given list of expressions. It is defined with the syntax `![exp1 | exp2 | ... | exp_N]`, where `exp1`, `exp2`, ... can be arbitrary SAL expressions.
 
-*Supports end user utterances such as "Book a ticket for two from Helsinki to London" or "Book a ticket for two to Helsinki from London"
-
-Permutations enable users to utter the parts of the utterance in any order.
-
+For example:
+```
+*book Book a ticket ![from [New York](from) | to [London](to) | for [two](num_passengers)]
+```
+is equivalent to writing:
+```
+*book Book a ticket from [New York](from) to [London](to) for [two](num_passengers)
+*book Book a ticket from [New York](from) for [two](num_passengers)] to [London](to)
+*book Book a ticket to [London](to) from [New York](from) for [two](num_passengers)
+*book Book a ticket to [London](to) for [two](num_passengers) from [New York](from)
+*book Book a ticket for [two](num_passengers) from [New York](from) to [London](to)
+*book Book a ticket for [two](num_passengers) to [London](to) from [New York](from)
+```

@@ -1,33 +1,26 @@
 ---
-title: Integrations
-description: Speechly client libraries help you get up and running with Speechly in a breeze.
-weight: 9
+title: Client Libraries
+description: Available for Web, React, iOS, and Android.
+weight: 3
+category: "References"
 display: article
-category: "User guide"
+menu:
+  sidebar:
+    title: "Client Libraries"
 ---
 
-Speechly offers client libraries for various platforms including web, iOS, Android, and React. If you are developing on another platform, you can either use our [API reference](/speechly-api/api-reference/) or [let us know](mailto:hello@speechly.com), and we'll help you out.
+The Client libraries take care of audio capture, bidirectional streaming, authentication, and other technical complexities. They also come bundled with common UI components (a microphone button, transcript view).
 
-Our official client libraries make it easier to interact with the Speechly API in a conforming way, and you should always use them when possible.
+# Installing and using the Client Libraries
+See [Basic usage instructions](usage) to learn how to install and use the Client libraries.
 
-## Speechly Client Libraries
+All Client libraries also adhere to the same [high-level API](client-api-reference). There are some platform specific differences, but conceptually we have tried to make the Clients as similar as possible. If you know how to use one, getting started with another should be easy (provided both platforms are familiar to you).
 
-We currently offer client libraries for the following platforms:
+# More information
+Our Client libraries are open source. You can find more information about them as well as other usage examples on Github:
+- [Web client](https://github.com/speechly/browser-client)
+- [React client](https://github.com/speechly/react-client)
+- [iOS client](https://github.com/speechly/ios-client)
+- [Android client](https://github.com/speechly/android-client)
 
-[Browser](/client-libraries/web-client/)
-([GitHub](https://github.com/speechly/browser-client/)) ([Documentation](/client-libraries/web-client/))
-
-[React](/client-libraries/react/)
-([GitHub](https://github.com/speechly/react-client/)) ([Documentation](/client-libraries/react/))
-
-[iOS](/client-libraries/ios/)
-([GitHub](https://github.com/speechly/ios-client/)) ([Documentation](/client-libraries/ios/))
-
-[Android](/client-libraries/android/)
-([GitHub](https://github.com/speechly/android-client/)) ([Documentation](/client-libraries/android/))
-
-[React Native](/client-libraries/react-native/)
-Coming soon!
-
-[Flutter](/client-libraries/flutter/)
-Coming soon!
+We are very happy to receive pull requests to the above repositories, but it is a good idea to be in touch with us first, for example by opening an issue or by sending email to hello@speechly.com.

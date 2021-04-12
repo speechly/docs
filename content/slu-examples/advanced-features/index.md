@@ -1,13 +1,13 @@
 ---
 title: Advanced SAL Features
 description: SAL is a pretty expressive language that can be used to create complex voice configurations easily. 
-weight: 3
+weight: 4
 category: "User guide"
 aliases: [/editing-nlu-examples/slu-examples/]
+draft: True
 menu:
   sidebar:
     title: "Advanced SAL Features"
-    weight: 2
     parent: "Configuring Your Application"
 ---
 

@@ -3,10 +3,7 @@ title: Flutter Client Library
 description:  The official Speechly client libraries for Flutter clients. 
 weight: 9
 display: article
-menu:
-  integrations:
-    title: "Flutter"
-    weight: 5
+draft: true
 ---
 
 ## Coming soon!

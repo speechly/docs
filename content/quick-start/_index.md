@@ -1,100 +1,43 @@
 ---
 title: Quick Start
 description: The Speechly Quick Start helps you get started on developing with Speechly Dashboard. 
-weight: -999
+weight: 1
 display: article
 category: "User guide"
 menu:
   sidebar:
     title: "Quick Start"
-    weight: 2
 ---
+Below are three different ways for you to start trying out Speechly. They are self-contained, and you can freely choose which one you would like to start with. However, the first one (Video Quick Start) is recommended for everyone.
 
-## What is Speechly?
-
-Speechly is a tool for building real-time multi modal voice user interfaces for touch screens and web applications. 
-
-Speechly improves your application's user experience by adding a natural and intuitive way of interacting with it.
-
-This tutorial walks you through building your first Speechly voice application and testing it out in Speechly Playground. 
-
-You can read more on [Speechly website](https://www.speechly.com/).
-
-{{< figure src="developing-applications-docs.png" alt="Developing voice apps with Speechly" >}}
-
---- 
-**Are you a developer? Jump straight into a tutorial!**
-
-{{< button "/client-libraries/react/tutorial" "flash-outline" "light" "React Tutorial" >}}
-
-{{< button "/client-libraries/web-client/tutorial" "flash-outline" "light" "Browser Tutorial" >}}
-
-{{< button "/client-libraries/ios/tutorial" "flash-outline" "light" "iOS Tutorial" >}}
-
---- 
-
-### Welcome to Speechly Quick Start!
-
-{{<youtube PVYEMqnykro>}}
-
-Video Quick Start
+# 1) Video Quick Start
 
 This Quick Start will guide you through the basics of building Spoken Language Understanding models with Speechly Dashboard. It covers the following steps:
 
-1. **[Creating an application](#1-creating-an-application)**
-2. **[Creating your first SLU configuration](#2-deploying-your-first-slu-model)**
-3. **[Trying out the application in the Speechly Playground](#3-trying-out-the-application)**
-4. **[Integrating Speechly to your application](#learn-more)**
+1. Creating an application
+2. Creating your first Configuration
+3. Trying out the application in the Speechly Playground
 
-The best way to start developing with Speechly is to complete this Quick Start.
+{{<youtube PVYEMqnykro>}}
 
-### 1 Creating an application
+# 2) Web Integration Quick Start
 
-The first step is to navigate to the [Speechly Dashboard](https://www.speechly.com/dashboard/) in order to create an account and accept the terms and conditions. 
+A walk-through on integrating Speechly to a Web based application can be found in this [simple and plain but very informative tutorial](https://speechly.github.io/browser-ui/v1/). You can either use the ready-made Application Id on the page (Usage section), or replace this with your own (maybe after completing the Video Quick Start).
 
-{{< figure src="create_account.png" class="is-half" img-class="no-zoom" title="Creating a Speechly account screenshot." alt="Screenshot from the Speechly Dashboard signup screen">}}
+# 3) Complete Integration
+Do you already have an application that you would like to integrate with Speechly?
 
-After creating a user account, you will land on the Speechly Dashboard main page, where you manage your applications.
+1. Sign-up on the [Speechly Dashboard](https://api.speechly.com).
+2. Deploy the Home Automation Configuration that you can find on the Dashboard when creating a new application. (Also see the video tutorial above.)
+3. Install and take a [Client Library](/client-libraries/usage) of your choice into use. They are available for Web, React, iOS and Android. Use the Application Id that you obtained in step 2. above.
+4. Make a test utterance from your own application.
 
-Proceed to creating a new application by clicking the blue `Create application` button. 
+Once you've completed this, the next step is to [design a configuration](/slu-examples/) that is tailored for your application.
 
-{{< figure class="is-128x128" src="dashboard.png" title="The Speechly Dashboard screenshot." alt="Screenshot from the Speechly Dashboard opening screen" >}} 
+# Learn more!
 
-Name your application, select English as the language and `Home Automation` as the template.
-
-{{< figure src="new_application.png" title="New Speechly application screenshot." alt="Screenshot from the Speechly Dashboard New Application screen">}}
-
-#### 2 Deploying your first SLU model
-
-{{< figure src="rule-editor.png" title="The SLU Example configuration view." alt="Screenshot from the Speechly Dashboard SLU Example configuration view">}}
-
-A Speechly application is configured by providing it with a set of annotated example utterances. Your Home Automation application contains a ready-made configuration that you can deploy by clicking the blue `Deploy` button in the bottom right corner of the screen. 
-
-The deploying should take 1-2 minutes. 
-
-{{< figure src="utterance-intent-entities.png" title="An utterance annotated using the Speechly Annotation Language." alt="A figure explaining one utterance with its intent and entities tagged by using Speechly Annotation Language">}}
-
-{{< info title="Advanced SLU Examples" >}} Please take a look at [advanced SLU examples](https://docs.speechly.com/slu-examples/editing-slu-examples/#advanced-syntax-features) to learn more about the [SAL syntax](/slu-examples/editing-slu-examples/).{{< /info >}}
-
-#### 3 Trying out the application
-
-Once the application has been deployed, the `Try` button next to `Deploy` should turn active, and the status bar shows a green dot reading "Deployed". Now it's time to test your application, so click `Try` to go to the Playground.
-
-Click on `Tap to start` on the bottom of the page, and give your browser the permissions to use the microphone. A microphone button appears.
-
-{{<videoloop src="permissions-in-playground.webm" >}}
-
-Now you can click and hold the microphone to start sending audio to the Speechly API. Click and hold either the microphone button or the space bar and say, "Switch off the lights in the kitchen." You'll now see the transcript of what you said along with the intent (`turn_off`) and the entities (`lights` and `kitchen`).
-
-You're done! Now you can continue trying out different utterances. Or else, you can go back to the configuration screen to edit your example phrases in order to teach your model to understand a greater variety of commands. 
-
-### Learn more!
-
-Next, you can try adding a new intent to the configuration. A useful function to add to a Home Automation application could be that of adjusting the brightness of the lights. Add a new intent, say, `set_brightness`, which can change the light brightness to a value ranging from 1 to 100 in different rooms. You can learn more about the SAL syntax [here](/slu-examples/editing-slu-examples/).
-
-### React Tutorial 
-
-Learn how you can create a simple React application with a real-time multimodal voice user interface.
-
-[Read more &raquo;](/client-libraries/react-client/)
-
+- Take a look at our [Development tool offering](/dev-tools).
+- Read about how to [Configure](/slu-examples/) Speechly for the needs of your Application.
+- Check out some [Example Configurations](/slu-examples/example-configuration/).
+- Explore the [Documentation](/).
+- Browse our [public GitHub repositories](https://github.com/speechly/).

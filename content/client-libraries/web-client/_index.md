@@ -1,11 +1,8 @@
 ---
 title: Browser Client
+draft: true
 description: The official Speechly client libraries for browser clients.
 display: article
-menu:
-  integrations:
-    title: "Web Browser"
-    weight: 2
 ---
 
 {{< button "/client-libraries/web-client/tutorial/" "flash-outline" "light" "Browser Client Tutorial" >}}

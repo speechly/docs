@@ -2,12 +2,8 @@
 title: React Native Client
 description: The official Speechly client libraries for React Native clients. 
 display: article
+draft: true
 weight: 1
-menu:
-  integrations:
-    title: React Native
-    weight: 9
-    pre: <i class="fab fa-react"></i>
 ---
 
 ## Coming soon!

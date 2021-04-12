@@ -1,12 +1,9 @@
 ---
+draft: true
 title: Speechly React client
 description: The official Speechly client for React apps
 display: article
 weight: 1
-menu:
-  integrations:
-    title: React
-    weight: 2
 ---
 
 {{< button "/client-libraries/react/tutorial/" "flash-outline" "light" "Tutorial" >}}

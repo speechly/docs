@@ -2,6 +2,7 @@
 title: iOS client tutorial
 description: Get started with iOS and Speechly
 display: article
+draft: True
 menu:
   sidebar:
     title: "iOS / Swift"

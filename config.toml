@@ -48,11 +48,75 @@ sizes = [600]
 type = "monospace"
 
 [[menu.main]]
-name = "GitHub" 
-url = "https://github.com/speechly/"
+name = "Menu"
 weight = 1
 
 [[menu.main]]
-name = "Speechly website"
-url = "https://www.speechly.com/"
+name = "Quick Start"
+url = "/quick-start/"
+weight = 1
+parent = "Menu"
+
+[[menu.main]]
+name = "Development Tools"
+url = "/dev-tools/"
 weight = 2
+parent = "Menu"
+
+[[menu.main]]
+name = "Speechly libraries"
+url = "/dev-tools/overview"
+weight = 1
+parent = "Development Tools"
+
+[[menu.main]]
+name = "Client Libraries"
+url = "/client-libraries/"
+weight = 3
+parent = "Menu"
+
+[[menu.main]]
+name = "Configuration"
+url = "/slu-examples/"
+weight = 4
+parent = "Menu"
+
+[[menu.main]]
+name = "Design"
+url = "/design-philosophy/"
+weight = 5
+parent = "Menu"
+
+[[menu.main]]
+name = "How-to guides"
+url = "/tutorials/"
+weight = 6
+parent = "Menu"
+
+[[menu.main]]
+name = "Speechly gRPC API"
+url = "/speechly-api/"
+weight = 7
+parent = "Menu"
+
+[[menu.main]]
+name = "FAQ"
+url = "/faq/"
+weight = 8
+parent = "Menu"
+
+[[menu.main]]
+name = "Product updates"
+url = "/release-notes/"
+weight = 9
+parent = "Menu"
+
+[[menu.main]]
+name = "Speechly Website"
+weight = 2
+url = "https://www.speechly.com"
+
+[[menu.main]]
+name = "GitHub"
+url = "https://github.com/speechly/"
+weight = 3

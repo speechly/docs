@@ -1,22 +1,21 @@
----
 title: API Reference
-description: API reference for the Speechly API
-weight: 2
-category: "References"
-display: article
-menu:
-  sidebar:
-    title: "API Reference"
-    parent: "Speechly gRPC API"
----
+ description: API reference for the Speechly API
+ weight: 2
+ category: "References"
+ display: article
+ menu:
+   sidebar:
+     title: "API Reference"
+     parent: "Speechly gRPC API"
+ ---
 
-# Speechly gRPC Api Reference
+ # Speechly gRPC Api Reference
 
-The following lists the most important APIs which are used for spoken language understanding. This document is created based on the API definitions in Github: [https://github.com/speechly/api](https://github.com/speechly/api).
+ The following lists the most important APIs which are used for spoken language understanding. This document is created based on the API definitions in Github: [https://github.com/speechly/api](https://github.com/speechly/api).
 
-APIs:
-- [Spoken Language Understanding, SLU](#speechly.slu.v1.SLU)
-- Access management, login: [Identity](#speechly.identity.v2.IdentityAPI)
+ APIs:
+ - [Spoken Language Understanding, SLU](#speechly.slu.v1.SLU)
+ - Access management, login: [Identity](#speechly.identity.v2.IdentityAPI)
 
 <a name="speechly.slu.v1.SLU"></a>
 # speechly.slu.v1.SLU
@@ -387,9 +386,7 @@ Describes a single word token in a segment.
 <a name="speechly.identity.v2.IdentityAPI"></a>
 # speechly.identity.v2.IdentityAPI
 
-Service that implements Speechly Identity API (https://speechly.com/docs/api/identity).
-
-This service is used for generating access token for the Speechly API.
+Speechly Identity API is used for creating access tokens for the Speechly APIs.
 
 ## Methods
 

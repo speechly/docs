@@ -16,7 +16,7 @@ During deployment, we adapt the speech recognition model to the vocabulary prese
 
 # Getting started
 - [Configuration basics](basics) gives a brief introduction to basic configuration concepts.
-- [Example configurations](/example-configuration/) are useful learning material.
+- [Example configurations](/slu-examples/example-configuration/) are useful learning material.
 - [Speechly Annotation Language Syntax](/slu-examples/cheat-sheet/) explains the details of SAL syntax.
 - [Speechly Annotation Language Semantics](/slu-examples/semantics) explains the details of SAL semantics.
 - [Standard Variables](/slu-examples/standard-variables) are useful when your configuration must support numbers, dates, times, etc.

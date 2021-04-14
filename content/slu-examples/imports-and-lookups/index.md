@@ -1,19 +1,16 @@
 ---
-title: Importing data from CSV files
+title: Imports and Lookups
 description: Imports are an advanced SAL feature that enables you to define variables outside the SAL view, improving readability. The lookup entity type allows you to define a canonical output value for entities with synonyms.
-weight: 6
+weight: 7
 category: "User guide"
 aliases: [/editing-nlu-examples/imports-and-lookup/]
-draft: True
 menu:
   sidebar:
-    title: "Importing data from CSVs"
+    title: "Imports and Lookups"
     parent: "Configuring Your Application"
 ---
 
-{{< info title="Advanced use" >}} This part of the documentation deals with data heavy applications.{{< /info >}}
-
-## Importing a list variable from CSV
+# Importing a list variable from CSV
 
 The imports feature enables you to define a SAL variable list outside the SAL configuration. Normally, the list variables are written in plain SAL, like the following:
 ```
@@ -63,7 +60,7 @@ The lookup maps the recognized entities, matching one of the values in the input
 
 Let us demonstrate how this works:
 
-## Example of imports and the lookup entity type
+# Example of imports and the lookup entity type
 
 First, we need a training configuration file. Let's call it app_config.yaml:
 
@@ -129,9 +126,9 @@ cookery,kitchen
 
 We also have defined two lookup entities: *device* and *room*. The *device* lookup entity maps, for example: 'lamp' -> 'light', 'telly' -> 'tv', and 'fm' -> 'radio'. The *room* lookup, then, has mappings like: 'lounge' -> 'living room', 'chamber' -> 'bedroom', and 'cookery' -> 'kitchen'.
 
-## How to deploy an app with imports and the lookup entity type? 
+# How to deploy an app with imports and the lookup entity type? 
 
-### Install Speechly CLI
+## Install Speechly CLI
 The imports and the lookup entity type are only available via the [Speechly CLI](https://github.com/speechly/cli). 
 
 You can install them to macOS, Linux, or Windows. Please follow the installation [instructions](https://github.com/speechly/cli#installation).
@@ -140,7 +137,7 @@ After installation, navigate to the Speechly Dashboard. Choose your project (on 
 
 Then configure your Speechly CLI client with the API Token you just created, following the instructions found [here](https://github.com/speechly/cli#usage).
 
-### Deploy using Speechly CLI
+## Deploy using Speechly CLI
 
 Start by creating an app at the Speechly [Dashboard](https://www.speechly.com/dashboard/), if you haven't already, and copy and save your app ID. You can find more information about creating apps in [Quick Start](https://www.speechly.com/docs/client-libraries/web-client/).
 

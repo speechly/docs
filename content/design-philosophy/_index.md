@@ -33,5 +33,5 @@ They are split into four short "chapters", with the following content:
 # [Chapter 4: Recovering from Mistakes](/design-philosophy/mitigate-fails/)
 - Show the text transcript
 - Fail fast
-- Use touch for corrections
-- Offer an alternative way to get the task done without voice
+- Enable corrections both verbally and by using touch
+- Offer an alternative way to complete the task

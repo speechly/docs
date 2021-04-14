@@ -34,6 +34,6 @@ Another way to make corrections is touch. Touch corrections are typically best d
 
 If your user is filling a form by using voice commands, for example, they might only need to correct one field. It can be the most intuitive to tap the correct field and make the correction by using touch. Make sure you support both ways for corrections.
 
-# Offer an alternative way to get the task done without voice.
+# Offer an alternative way to complete the task
 
 The big issue with voice assistants is that they are hard to use by using touch. While voice is a great user interface for many use cases, sometimes it’s not feasible. This is why all features in your application should be usable with both voice and touch. For example, you can use a traditional search filtering with dropdown menus and include a microphone for using the filters by using voice. This enables users to choose the modality they need.

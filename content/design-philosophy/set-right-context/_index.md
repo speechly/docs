@@ -8,13 +8,13 @@ menu:
     title: "Setting the Context"
     parent: "Speechly Design Philosophy"
 ---
-# Don't try to build a voice assistant
+# Resist the temptation to build an assistant
 
 Voice assistants are digital assistants that react to voice commands, most often by using voice themselves, too. While there are good use cases for voice assistants, their way of using voice is not suitable for touch screen devices.
 
-Instead of question-answer based dialogues, touch screen voice experiences should be based on real-time visual feedback. As the user speaks, the user interface should be instantaneously updated.
+Instead of question-answer based dialogues, touch screen voice experiences should be based on direct voice input and real-time visual feedback. As the user speaks, the user interface should be instantaneously updated.
 
-# Users don’t want to converse
+# Design the interactions around commanding not conversing
 
 When we humans talk with each other, we do more than transmit information by using words. We might greet, persuade, declare, ask or apologize and even the same words can have a different meaning, depending on how we say it and in which situations. This is very human-like, but not the way we want to communicate with a computer.
 

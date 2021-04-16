@@ -13,8 +13,8 @@ Speechly is solving voice in a completely novel way. Our API is fully streaming 
 They are split into four short "chapters", with the following content:
 
 # [Chapter 1: Setting the right Context](/design-philosophy/set-right-context/)
-- Don’t try to build a voice assistant
-- Users don’t want to converse
+- Resist the temptation to build an assistant
+- Design the interactions around commanding not conversing
 - Give visual guidance on what the user can say
 - Use voice for the tasks it is good for
 

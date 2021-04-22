@@ -3,7 +3,12 @@ function openTab(evt, tabName) {
 
     tabcontent = document.getElementsByClassName('code');
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        if (!tabcontent[i].className.includes(tabName)) {
+            tabcontent[i].style.display = "none";
+        }
+        else {
+            tabcontent[i].style.display = "block";
+        }
     }
 
     tablinks = document.getElementsByClassName('tablinks');
@@ -15,10 +20,6 @@ function openTab(evt, tabName) {
             tablinks[i].className += " active";
         }
     }
-
-    document.getElementById(tabName + '-import').style.display = "block";
-    document.getElementById(tabName + '-loadui').style.display = "block";
-    document.getElementById(tabName + '-callback').style.display = "block";
 }
 
 const navbarMenu = () => {

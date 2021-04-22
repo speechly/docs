@@ -38,7 +38,7 @@ Stops the "audio context", i.e., closes the microphone, stops streaming audio. E
 ---
 
 ## onClientStateChanged(state_handler: function)
-Defines a callback function for handling client state changes. See [Client state management](/client-libraries/state-mgmt) for details about this.
+Defines a callback function for handling client state changes.
 
 ---
 

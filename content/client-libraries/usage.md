@@ -21,7 +21,7 @@ menu:
   <button class="tablinks Android" onclick="openTab(event, 'Android')">Android</button>
 </div>
 
-<div id="WebClient-import" class="tabcontent code" style="display: block;">
+<div class="WebClient tabcontent code" style="display: block;">
 Include the resources in your <code>head</code> block:
 {{< highlight html >}}
 <head>
@@ -32,7 +32,7 @@ Include the resources in your <code>head</code> block:
 {{< /highlight >}}
 </div>
 
-<div id="React-import" class="tabcontent code">
+<div class="React tabcontent code">
 Install the client with npm:
 {{< highlight bash >}}
 npm install --save @speechly/react-client
@@ -45,7 +45,7 @@ import { SpeechProvider, useSpeechContext } from "@speechly/react-client";
 {{< /highlight >}}
 </div>
 
-<div id="ios-import" class="tabcontent code">
+<div class="ios tabcontent code">
 The Speechly iOS client is distributed using Swift Package Manager,
 add it as a dependency to your <code>Package.swift</code>:
 {{< highlight swift >}}
@@ -83,7 +83,7 @@ public init() {
 {{< /highlight >}}
 </div>
 
-<div id="Android-import" class="tabcontent code">
+<div class="Android tabcontent code">
 <p>The client package is available from our Github repository:<br>
 <a href="https://github.com/speechly/android-client/releases/latest">https://github.com/speechly/android-client/releases/latest</a>.</p>
 Add android-client to your build.gradle dependencies.
@@ -124,7 +124,7 @@ starting and stopping voice recording, and a display component for showing the r
   <button class="tablinks Android" onclick="openTab(event, 'Android')">Android</button>
 </div>
 
-<div id="WebClient-loadui" class="tabcontent code" style="display: block;">
+<div class="WebClient tabcontent code" style="display: block;">
 Include the following lines in your <code>body</code>:
 {{< highlight html >}}
 <div class="BigTranscriptContainer">
@@ -136,7 +136,7 @@ Include the following lines in your <code>body</code>:
 {{< /highlight >}}
 </div>
 
-<div id="React-loadui" class="tabcontent code">
+<div class="React tabcontent code">
 Import the components:
 {{< highlight typescript >}}
 import {
@@ -166,7 +166,7 @@ function App() {
 {{< /highlight >}}
 </div>
 
-<div id="ios-loadui" class="tabcontent code">
+<div class="ios tabcontent code">
 Initialise the <code>TranscriptView</code> and <code>MicrophoneButtonView</code>,
 and add them in the <code>addViews</code> function of your manager class.
 {{< highlight swift >}}
@@ -194,7 +194,7 @@ extension SpeechlyManager: MicrophoneButtonDelegate {
 {{< /highlight >}}
 </div>
 
-<div id="Android-loadui" class="tabcontent code">
+<div class="Android tabcontent code">
 In your main activity,
 define a touch listener that
 activates and deactivates audio transmission.
@@ -235,7 +235,7 @@ After an audio context has started, callback is called every time the Speechly A
   <button class="tablinks Android" onclick="openTab(event, 'Android')">Android</button>
 </div>
 
-<div id="WebClient-callback" class="tabcontent code" style="display: block;">
+<div class="WebClient tabcontent code" style="display: block;">
 Listen for the broadcasted updates to <code>SpeechSegment</code>.
 {{< highlight html >}}
 <script type="text/javascript">
@@ -250,7 +250,7 @@ Listen for the broadcasted updates to <code>SpeechSegment</code>.
 {{< /highlight >}}
 </div>
 
-<div id="React-callback" class="tabcontent code">
+<div class="React tabcontent code">
 {{< highlight typescript >}}
 function SpeechlyApp() {
   const { segment } = useSpeechContext()
@@ -263,7 +263,7 @@ function SpeechlyApp() {
 {{< /highlight >}}
 </div>
 
-<div id="ios-callback" class="tabcontent code">
+<div class="ios tabcontent code">
 Implement the `Speechly.SpeechlyDelegate` for reacting to recognition results.
 {{< highlight swift >}}
 extension SpeechlyManager: SpeechlyDelegate {
@@ -279,7 +279,7 @@ extension SpeechlyManager: SpeechlyDelegate {
 {{< /highlight >}}
 </div>
 
-<div id="Android-callback" class="tabcontent code">
+<div class="Android tabcontent code">
 In the <code>onCreate</code> method,
 define the callback to be used for handling a <code>Segment</code>.
 {{< highlight kotlin >}}

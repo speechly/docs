@@ -1,6 +1,6 @@
 ---
 title: Imports and Lookups
-description: Imports are an advanced SAL feature that enables you to define variables outside the SAL view, improving readability. The lookup entity type allows you to define a canonical output value for entities with synonyms.
+description: Imports are an advanced SAL feature that enables you to define long lists outside the SAL syntax. The lookup entity type allows you to define a normalized return value for entities that have several synonyms.
 weight: 7
 category: "User guide"
 aliases: [/editing-nlu-examples/imports-and-lookup/]
@@ -10,143 +10,132 @@ menu:
     parent: "Configuring Your Application"
 ---
 
-# Importing a list variable from CSV
+***Note!** These functionalities are not available on the Dashboard. Using Imports and Lookups requires deploying your application using the [Command Line Tool](/dev-tools/command-line-client/)!*
 
-The imports feature enables you to define a SAL variable list outside the SAL configuration. Normally, the list variables are written in plain SAL, like the following:
+# Importing a List from file
+
+The imports feature enables you to define lists outside the SAL configuration, and load them to variables that you can use as part of your SAL templates.
+
+Normally, a *List* is assigned to a variable in SAL as follows:
 ```
-my_sal_list = [first item|second item|third item]
-$my_sal_list # here using the list
+fruit = [apple | orange | blood orange | banana | lemon | apricot | peach | pineapple]
 ```
-With the imports, you can put these items in a CSV file and import them to your app configuration. Just add the following lines to your app configuration:
+However, if your list contains hundreds of items, the above becomes cumbersome to write and maintain.
+
+Using the import functionality, you can import the list from a CSV file. The CSV file must have the list items in one of its columns, and the file must be located in the same directory as your [Configuration YAML file](/dev-tools/command-line-client/#configuration-yaml).
+
+## A simple import example
+
+In the simplest case the CSV file to be imported contains only one column, with one list item per row. Suppose the file is called `fruits.csv`, and it has the following content:
+```bash
+apple
+orange
+blood orange
+banana
+lemon
+apricot
+peach
+pineapple
 ```
+To import this list from `fruits.csv` and store it in a variable called `fruit`, add the following lines to your Configuration YAML:
+```yaml
 imports: 
-  - name: products
-    source: product_list.csv
+  - name: fruit
+    source: fruits.csv
     field: 1
-templates: |
-    $add_to_cart Add $produdcts to cart 
 ```
-Now one list variable is imported: `products`. The key *source* is the path to the file that contains the variable, and the *field* key defines the number of the column where the variable is located (direction from left to right, "1" standing for the *first* column). The imported variable can be used in the familiar manner by prepending the dollar (`$`) sign to the variable name: `$products`.
+Now, you can use `$fruit` in your templates, exactly as you would after having defined it in a SAL expression. The imported variable is like any other variable in SAL.
 
-## Using lookup tables for synonyms
-
-The lookup entity type enables defining special outputs for recognized entity values. This is useful, for instance, if you want the Speechly API to return product codes when user uses a name of the product. This feature can also be used for synonyms, such as always returning `TV` for utterances that contain "television", "TV", or "telly".
-
->   Example SAL: `*add_to_cart Add $product(product) to cart`  
->   Example utterance: "Add iPhone XS to cart"   
->   Speechly API returns:   
->   intent: add_to_cart   
->   product: ASG241F
-
-To use the lookup entity type, add the following lines to your app configuration along with your imports and entities:
+You can specify as many imports as you like. If you had a similar list in another file called `vegetables.csv`, you can import both lists to their respective variables (`fruit` and `vegetable`) by defining:
+```yaml
+imports: 
+  - name: fruit
+    source: fruits.csv
+    field: 1
+  - name: vegetable
+    source: vegetables.csv
+    field: 1
 ```
+
+## Import Reference
+Imports are defined by adding the `imports` key to your [Configuration YAML](/dev-tools/command-line-client/#configuration-yaml). The value of `imports` must be a list of dictionaries that each have the keys `name`, `source` and `field`:
+```yaml
 imports:
   ...
-  - name: products
-    source: lookup.csv
-    field: 1
-  - name: inventory_ids
-    source: lookup.csv
-    field: 2
-entities:
+  - name: name of the variable to which the list is stored
+    source: name of the CSV file that contains the list items
+    field: the column index (1-based) in the source file that contains the list items
   ...
-  - name: inventory_id
-    type: lookup
-    input_items: $products
-    output_items: $inventory_ids
-```
-Here we have defined an entity named `inventory_id` whose type is `lookup`. As the *input_items* we have the imported variable `products`, and as the *output_items* we have the imported variable `inventory_ids`. These variables need to be imported for them to be available for use in the lookup. Also, the number of input and output items must be the same.
-The lookup maps the recognized entities, matching one of the values in the input items to the corresponding values in the output items.
-
-Let us demonstrate how this works:
-
-# Example of imports and the lookup entity type
-
-First, we need a training configuration file. Let's call it app_config.yaml:
-
-```
-asr_biasing: moderate
-imports: 
-  - name: device_names
-    source: device.csv
-    field: 1
-  - name: devices
-    source: device.csv
-    field: 2
-  - name: room_names
-    source: room.csv
-    field: 1
-  - name: rooms
-    source: room.csv
-    field: 2
-entities:
-  - name: device
-    type: lookup
-    input_items: $device_names
-    output_items: $devices
-  - name: room
-    type: lookup
-    input_items: $room_names
-    output_items: $rooms
-templates: |
-    action = [turn|set|put|switch]
-
-    *turn_on $action on the $device_names(device) 
-    *turn_off $action off the $device_names(device)
-
-    *turn_on $action the $device_names(device) on
-    *turn_off $action the $device_names(device) off
-
-    *turn_on $action on the $device_names(device) in the $room_names(room)
-    *turn_off $action off the $device_names(device) in the $room_names(room)
 ```
 
-Here we have two imports that point to the file *device.csv*: `device_names` and `devices`. The next two imports point to the file *room.csv*: `room_names` and `rooms`. These CSV files could have the following content:
+# The lookup Entity Data Type
 
-*device.csv*
-```
+The returned values of entities having Entity Data Type `lookup` are normalized according to a simple lookup mechanism. This is useful for mapping synonyms to a normalized value, such as always returning the entity value `TV` even if the user said "television", "TV", or "telly".
+
+## A simple Lookup example
+
+To define a `lookup` entity, you must specify an *explicit mapping that provides for every synonym its normalized value* that is returned by the API. This is done by preparing a CSV file with two columns, one of which contains a list of synonyms, and another that contains the normalized values.
+
+For example, suppose the file `devices.csv` has the following content:
+```bash
 light,light
+lights,light
 lamp,light
 tv,tv
 telly,tv
 television,tv
 radio,radio
-fm,radio
+stereo,radio
 ```
+Above, each row defines synonym in the 1st column, and its normalised value in the 2nd column. That is, the synonyms "light", "lights", and "lamp" are all mapped to *light*, the synonyms "tv", "telly", and "television" are mapped to *tv*, and "radio" and "stereo" are both mapped to *radio*.
 
-*room.csv*
+Defining a *Lookup* entity is done by first importing both columns of `devices.csv` into two variables using the list import mechanism described [above](#importing-a-list-from-file):
+```yaml
+imports:
+  - name: device_as_spoken
+    source: devices.csv
+    field: 1
+  - name: device_normalized
+    source: devices.csv
+    field: 2
 ```
-living room,living room
-lounge,living room
-bedroom,bedroom
-chamber,bedroom
-kitchen,kitchen
-cookery,kitchen
+Now `$device_as_spoken` is a list that contains the 1st column of `devices.csv`, and `$device_normalized` contains the 2nd column.
+
+The lookup entity itself is defined using these two variables in the `entities` section of your Configuration YAML, by specifying the `type` of the entity as `lookup`, and defining two additional keys: `input_items` and `output_items` as follows:
+```yaml
+entities:
+  - name: device
+    type: lookup
+    input_items: $device_as_spoken
+    output_items: $device_normalized
 ```
+Unlike other [Entity Data Types](/slu-examples/postprocessing) that are defined simply by specifying the `name` of the entity together with its type, the `lookup` type  requires two additional parameters: `input_items` and `output_items`, which here are assigned the `$device_as_spoken` and `$device_as_normalized` lists, respectively.
 
-We also have defined two lookup entities: *device* and *room*. The *device* lookup entity maps, for example: 'lamp' -> 'light', 'telly' -> 'tv', and 'fm' -> 'radio'. The *room* lookup, then, has mappings like: 'lounge' -> 'living room', 'chamber' -> 'bedroom', and 'cookery' -> 'kitchen'.
+When defining your SAL templates, you should only use `$device_as_spoken`, because remember that the *Example utterances* you define must accurately reflect how your users talk. For example:
+```yaml
+templates: |
+  *turn_on [turn | switch] on the $device_as_spoken(device)
+  *turn_on [turn | switch] the $device_as_spoken(device) on
+```
+Now, when the user says "turn on the stereo", the returned `device` entity has the value `radio`.
 
-# How to deploy an app with imports and the lookup entity type? 
+## Some remarks about lookup entities
+There are a couple of things to remember when using lookups:
+1. If the user says something that the entity detector can identify as a `device`, but the corresponding synonym is *not* present in the lookup mapping, the system returns verbatim the user's expression. For example, if the user says "turn the music player on", the entity detector probably identifies "music player" as a `device`, but since "music player" is not defined in the lookup, the returned `device` entity would have the value `music player`.
 
-## Install Speechly CLI
-The imports and the lookup entity type are only available via the [Speechly CLI](https://github.com/speechly/cli). 
+## Lookup reference
+Lookups are defined by
+1. importing two lists of equal length, called *input list* and *output list*, using the list import mechanism,
+2. defining one of these lists as the `input_items`, and the other as `output_items` of the lookup entity.
 
-You can install them to macOS, Linux, or Windows. Please follow the installation [instructions](https://github.com/speechly/cli#installation).
-
-After installation, navigate to the Speechly Dashboard. Choose your project (on the top right corner of the screen) and go to Project Settings. Create a new API Token and copy it.
-
-Then configure your Speechly CLI client with the API Token you just created, following the instructions found [here](https://github.com/speechly/cli#usage).
-
-## Deploy using Speechly CLI
-
-Start by creating an app at the Speechly [Dashboard](https://www.speechly.com/dashboard/), if you haven't already, and copy and save your app ID. You can find more information about creating apps in [Quick Start](https://www.speechly.com/docs/client-libraries/web-client/).
-
-Then, go to the directory you want to deploy.
-
-`speechly deploy . -a APP_ID -w`
-
-Here, the APP_ID is your application ID. The flag `-w` means watch; the CLI will hang until the app is deployed or failed.
-
-If the deploy fails, you can see the error message by 
-
-`speechly describe -a APP_ID`
+The lookup entity definition has the fields:
+```yaml
+entities:
+  ...
+  - name: name of the entity
+    type: lookup
+    input_items: reference to the variable with the imported input list
+    output_items: reference to the variable with the imported output list
+  ...
+```
+While we recommend to import both lists from the same CSV file, this is not a requirement. But it is important that the two lists are of equal length, and that the item in the *i*th position of the *output list* is the normalized value of the item in the *i*th position of the *input list*.

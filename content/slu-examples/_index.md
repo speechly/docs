@@ -10,7 +10,7 @@ menu:
     weight: 4
 ---
 
-In order to build a voice based user interface, your application needs to understand what is being said. This is done by providing example utterances, which are annotated using our unique Speechly Annotation Language (SAL).
+In order to build a voice based user interface, your application needs to understand what is being said. This is done by providing example utterances, which are annotated using our unique Speechly Annotation Language (SAL). The example utterances are used as training data for our machine learning models.
 
 During deployment, we adapt the speech recognition model to the vocabulary present in your cofiguration, as well as train models for detecting **intents** and **entities** from users speech. The intents and entities are returned to your application by our API.
 
@@ -21,6 +21,7 @@ During deployment, we adapt the speech recognition model to the vocabulary prese
 - [Speechly Annotation Language Semantics](/slu-examples/semantics) explains the details of SAL semantics.
 - [Standard Variables](/slu-examples/standard-variables) are useful when your configuration must support numbers, dates, times, etc.
 - [Entity Data Types](/slu-examples/postprocessing) are useful when combined with the Standard Variables to obtain entity values in a normalized format.
+- [Imports and Lookups](/slu-examples/imports-and-lookups/) allow you to import external data to your configuration, and have the API return normalised entity values by using simple lookup tables.
 
 # Why must I configure my application?
 In general it is necessary to design the utterances for each application separately. With Speechly, the configuration serves *two* equally important purposes:

@@ -1,3 +1,5 @@
 docs/
 resources/
 .DS_Store
+*.orig
+*~

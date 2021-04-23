@@ -11,6 +11,7 @@ menu:
 
 # April 23, 2021
 
+- **Speechly CLI Tool**: Version 0.4, with support for displaying utterance statistics for each app_id.
 - **Documentation** Major update to developer documentation.
 - **Small bugfixes** Several fixes to handling entities and segments.
 

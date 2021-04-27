@@ -9,10 +9,9 @@ menu:
     title: "Configuration"
     weight: 4
 ---
+The Speechly API takes an audio stream as input, and returns a *transcript* of the users speech, together with the identified *intents* and *entities* to your application. The Speechly API achieves this by applying machine learning. However, training the machine learning models requires example utterances annotated with the information specific to your application.
 
-In order to build a voice based user interface, your application needs to understand what is being said. This is done by providing example utterances, which are annotated using our unique Speechly Annotation Language (SAL). The example utterances are used as training data for our machine learning models.
-
-During deployment, we adapt the speech recognition model to the vocabulary present in your cofiguration, as well as train models for detecting **intents** and **entities** from users speech. The intents and entities are returned to your application by our API.
+When "configuring" a Speechly application, you are essentially providing this training data. During deployment, this data is used both to adapt a speech-to-text model to the vocabulary present in the training examples, as well as to train NLU models for detecting application-specific intents and entities.
 
 # Getting started
 - [Configuration basics](basics) gives a brief introduction to basic configuration concepts.

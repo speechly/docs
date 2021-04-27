@@ -1,5 +1,5 @@
 ---
-title: Configuration basics
+title: Speechly Configuration basics
 description: The configuration is used both to adapt the speech recognition model, as well as to train models for detecting intents and entities for your specific application.
 weight: 1
 category: "User guide"
@@ -10,15 +10,32 @@ menu:
     parent: "Configuring Your Application"
 ---
 # What is a configuration?
-A Speechly configuration describes a number of *example utterances* that your users might be saying. They are written in a Markdown-like syntax:
+A Speechly configuration contains **training data for machine learning models**. It describes a number of *example utterances* that your users might be saying, and from which an *intent* and possibly a number of *entities* should be parsed. The example utterances are written in a Markdown-like syntax:
 ```
-*search show me [blue](color) [jackets](product)
+*search do you have [blue](color) [jackets](product)
 ```
-The above example defines the user utterance *"show me blue jackets"*, assigns this to have intent `search`, and defines two entities that are named `color` and `product`, with values `blue` and `jackets`, respectively.
+The above example defines the user utterance *"do you have blue jackets"*, assigns this to have intent `search`, and defines two entities that are named `color` and `product`, with values `blue` and `jackets`, respectively. The intent and entities are returned to your application, and based on these your voice UI can carry out the action requested by the user. In this case the UI should update a search result view to show only blue jackets.
 
-*You must provide example utterancs for every functionality of your voice UI.*
+# How many example utterances must I provide?
+A configuration must contain at least a few example utterances for every functionality of your voice UI. In general, the more example utterances you can provide, the better.
 
-The intent and entities are returned to your application, and based on these your voice UI can carry out the action requested by the user. In this case the UI should update a search result view to show only blue jackets.
+However, this is not as tedious as you might think! Even simple Speechly configurations can be written as compact *Templates* that are then expanded into a large set of example utterances during model training. For example, the configuration
+```
+product = [t shirts | hoodies | jackets | jeans | slacks | shorts | sneakers | sandals]
+color = [black | white | blue | red | green | yellow | purple | brown | gray]
+*search do you have $color(color) $product(product)
+```
+declares two variables, `product` and `color`, and assigns to both a list of relevant values. The 3rd line defines a *Template* that generates 72 example utterances that each start with "do you have", followed by a color entity and a product entity, with their values taken from the respective lists:
+```
+*search do you have [black](color) [t shirts](product)
+*search do you have [white](color) [t shirts](product)
+*search do you have [blue](color) [t shirts](product)
+...
+*search do you have [gray](color) [sandals](product)
+```
+All of these 72 example utterances are compactly defined just by the three lines of "code" above.
+
+It is useful to think of preparing the example utterances as the task of "programming" a data generator. You can learn more about how this is done from the [Speechly Annotation Language Syntax Reference](/slu-examples/cheat-sheet/) as well as [Speechly Annotation Language Semantics](/slu-examples/semantics/).
 
 # What is an intent?
 The intent of an utterance that indicates what the user in general wants. It is defined in the beginning of an example with the syntax `*intent_name`, i.e. the name of the intent prefixed by an asterisk. Every example utterance must have an intent assigned to it.
@@ -32,14 +49,6 @@ They are defined using the syntax `[entity name](entity value)`.
 
 In the shopping example above, the entities are `color` and `product` that have the values `blue` and `jackets`, respectively. An entity can take different values, and your configuration should give a variety of examples of these.
 
-# How many example utterances must I provide?
-Quite a few, but this is not as tedious as you might think. Even simple Speechly configurations can be written as compact *Templates* that expand into a large set of example utterances. For example, the configuration
-```
-product = [t shirts | hoodies | jackets | jeans | slacks | shorts | sneakers | sandals]
-color = [black | white | blue | red | green | yellow | purple | brown | gray]
-*search show me $color(color) $product(product)
-```
-declares two variables, `product` and `color`, and assigns to both a list of relevant values. The 3rd line defines a *Template* that generates 72 example utterances that each have "show me" followed by a color entity and a product entity, with their values taken from the respective lists.
 
 # How do intents and entities appear in my application?
 Our spoken language understanding system extracts intents and entities from the user's speech input, and returns these to your application. When using one of our [Client Libraries](/client-libraries/), handling of intents and entities is done via our [Client API](/client-libraries/client-api-reference). The same API provides your application with a raw transcript of the users speech.

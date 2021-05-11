@@ -9,6 +9,12 @@ menu:
     weight: 999
 ---
 
+# May 11, 2021
+
+- **Browser client**: v1.0.13, stability improvements.
+- **SLU engine**: Make entity and intent detectors more robust against inadvertent non-device-directed speech.
+- **Speechly CLI Tool**: Version 0.4.1, show amount of annotated audio for each app_id.
+
 # April 23, 2021
 
 - **Speechly CLI Tool**: Version 0.4, with support for displaying utterance statistics for each app_id.
@@ -22,7 +28,7 @@ menu:
 
 # March 19, 2021
 
-- **SLU improvements** Update to entity detection model with increased accuracy.
+- **SLU engine** Update to entity detection model with increased accuracy.
 - **Documentation** More examples of gRPC API usage.
 - **Browser client** More robust audio recording.
 - **ASR improvements** New basline ASR model.

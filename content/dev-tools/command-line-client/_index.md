@@ -57,9 +57,9 @@ Of course you can also build the client from source if you need to run this on a
 </div>
 
 # Setup
-After installing the CLI, you must obtain an API token from the [Dashboard](https://api.speechly.com). Please follow these steps to create an API token:
+After installing the CLI, you must obtain an API token from the [Dashboard](https://api.speechly.com/dashboard). Please follow these steps to create an API token:
 
-1. Log on to the [Dashboard](https://api.speechly.com).
+1. Log on to the [Dashboard](https://api.speechly.com/dashboard).
 2. Click on the project menu in the top right corner (to the left of your username), and select "Project settings".
 3. On the page that opens, click on "Create API Token" and give the token a name (this can be whatever).
 4. Click "Show" to see the API Token (It is a long, random string.), and click "Copy" to copy the token to the clipboard.

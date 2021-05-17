@@ -37,6 +37,8 @@ All of these 72 example utterances are compactly defined just by the three lines
 
 It is useful to think of preparing the example utterances as the task of "programming" a data generator. You can learn more about how this is done from the [Speechly Annotation Language Syntax Reference](/slu-examples/cheat-sheet/) as well as [Speechly Annotation Language Semantics](/slu-examples/semantics/).
 
+Note! You can see the example utterances that are generated from the *Templates* using either the "show sample" button in the Speechly dashboard, or using the the `sample` command in the [command line tool](/dev-tools/command-line-client/#print-random-example-utterances).
+
 # What is an intent?
 The intent of an utterance that indicates what the user in general wants. It is defined in the beginning of an example with the syntax `*intent_name`, i.e. the name of the intent prefixed by an asterisk. Every example utterance must have an intent assigned to it.
 
@@ -61,7 +63,7 @@ Notice that how something spoken can depend on the *context*. For example, the n
 # Where can I learn more about Speechly Annotation Language?
 - Take a look at [example configurations](/slu-examples/example-configuration/) and try to understand how they work.
 - The [SAL syntax summary](/slu-examples/cheat-sheet/) should be helpful.
-- Try designing your own configurations on the [Dashboard](https://api.speechly.com). Start with something simple, and then expand this little by little.
+- Try designing your own configurations on the [Dashboard](https://api.speechly.com/dashboard). Start with something simple, and then expand this little by little.
 - [SAL semantics](/slu-examples/semantics) is a useful resource once you have familiarised yourself with the very basics and have written a few simple configurations.
 
 # Other things to remember

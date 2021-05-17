@@ -10,7 +10,7 @@ menu:
     title: "Basic usage"
     parent: "Client Libraries"
 ---
-*Note that you also need a Speechly application id. This you can obtain from the [Dashboard](https://api.speechly.com) for one of the ready-made example applications, or after having [configured](/slu-examples/) one yourself. And don't forget to deploy your application on the Dashboard as well!*
+*Note that you also need a Speechly application id. This you can obtain from the [Dashboard](https://api.speechly.com/dashboard) for one of the ready-made example applications, or after having [configured](/slu-examples/) one yourself. And don't forget to deploy your application on the Dashboard as well!*
 
 # Install and import the client library
 

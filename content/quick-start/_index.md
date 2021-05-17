@@ -27,7 +27,7 @@ A walk-through on integrating Speechly to a Web based application can be found i
 # 3) Complete Integration
 Do you already have an application that you would like to integrate with Speechly?
 
-1. Sign-up on the [Speechly Dashboard](https://api.speechly.com).
+1. Sign-up on the [Speechly Dashboard](https://api.speechly.com/dashboard).
 2. As a simple example, deploy the Home Automation Configuration that you can find on the Dashboard when creating a new application. (Also see the video tutorial above.)
 3. Install and take a [Client Library](/client-libraries/usage) of your choice into use. They are available for Web, React, iOS and Android. Use the Application Id that you obtained in step 2. above. There is no need to do anything in particular with the events returned by the API yet. Just log them to a console.
 4. Make a test utterance from your own application, and inspect the returned events to get an idea of how the API works.

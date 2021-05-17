@@ -61,7 +61,7 @@ Notice that how something spoken can depend on the *context*. For example, the n
 # Where can I learn more about Speechly Annotation Language?
 - Take a look at [example configurations](/slu-examples/example-configuration/) and try to understand how they work.
 - The [SAL syntax summary](/slu-examples/cheat-sheet/) should be helpful.
-- Try designing your own configurations on the [Dashboard](https://api.speechly.com). Start with something simple, and then expand this little by little.
+- Try designing your own configurations on the [Dashboard](https://api.speechly.com/dashboard). Start with something simple, and then expand this little by little.
 - [SAL semantics](/slu-examples/semantics) is a useful resource once you have familiarised yourself with the very basics and have written a few simple configurations.
 
 # Other things to remember

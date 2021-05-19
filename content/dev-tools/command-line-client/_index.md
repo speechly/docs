@@ -15,7 +15,7 @@ menu:
 The Command Line Tool (CLI) is a simple program that works in a Unix shell or Windows Terminal. It allows you to create, maintain and deploy Speechly applications on the command line. It provides the same functionalities as the Dashboard, as well as the following additional benefits:
 
 1. The CLI gives you access to some advanced configuration options (most notably [Imports and Lookups](/slu-examples/imports-and-lookups/)) that are not available on the Dashboard.
-2. Uusing the CLI allows you to use standard tools to maintain Speechly configurations as part of your other development workflow.
+2. Using the CLI allows you to use standard tools to maintain Speechly configurations as part of your other development workflow.
 
 # Installation
 

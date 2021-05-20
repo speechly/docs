@@ -23,7 +23,7 @@ menu:
 
 # April 9, 2021
 
-- **iOS client** Version 0.3 released, includes updatde UI components and other improvements.
+- **iOS client** Version 0.3 released, includes update UI components and other improvements.
 - **Project-based login** Support for logging in using a project_id. This allows an application to easily switch between app_ids.
 
 # March 19, 2021

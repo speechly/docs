@@ -13,6 +13,7 @@ menu:
 
 - **ASR improvements** New basline ASR model.
 - **Dashboard** The dashboard now has a button ("SHOW SAMPLE") that displays a set of random example utterances generated from the given SAL configuration.
+- **Web UI components** Major update with a unified API for both JS and React, a new TranscriptDrawer component with just-in-time usage hints for an improved user onboarding experience, a listening prompt to indicate when the app is listening, and a developer-triggerable command to acknowledge that an utterance was received.
 
 # May 11, 2021
 

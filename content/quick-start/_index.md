@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-description: The Speechly Quick Start helps you get started on developing with Speechly Dashboard. 
+description: The Speechly Quick Start helps you get started on developing with Speechly.
 weight: 1
 display: article
 category: "User guide"
@@ -22,13 +22,15 @@ This Quick Start will guide you through the basics of building Spoken Language U
 
 # 2) Web Integration Quick Start
 
-A walk-through on integrating Speechly to a Web based application can be found in this [simple and plain but very informative tutorial](https://speechly.github.io/browser-ui/v1/). You can either use the ready-made Application Id on the page (Usage section), or replace this with your own (maybe after completing the Video Quick Start).
+Option 1: A walk-through on integrating the Speechly Browser-client to a Web based application can be found in this [simple but informative tutorial](https://speechly.github.io/browser-ui/v1/). You can either use the ready-made Application Id given on the page (Usage section), but we recommend replacing this with your own (maybe after completing the Video Quick Start).
+
+Option 2: As an alternative to the above tutorial, we also provide a [Web Speech API](https://wicg.github.io/speech-api/) compliant [speech recognition polyfill](https://github.com/speechly/speech-recognition-polyfill). This is especially recommended if you already have an application that uses the Web Speech API, and only need speech-to-text functionality. Instructions for deploying a speech-to-text Application ID can be found [here](/quick-start/stt-only).
 
 # 3) Complete Integration
 Do you already have an application that you would like to integrate with Speechly?
 
 1. Sign-up on the [Speechly Dashboard](https://api.speechly.com/dashboard).
-2. As a simple example, deploy the Home Automation Configuration that you can find on the Dashboard when creating a new application. (Also see the video tutorial above.)
+2. Create a new application on the Dashboard, and deploy the Home Automation Configuration. (Also see the video tutorial above.)
 3. Install and take a [Client Library](/client-libraries/usage) of your choice into use. They are available for Web, React, iOS and Android. Use the Application Id that you obtained in step 2. above. There is no need to do anything in particular with the events returned by the API yet. Just log them to a console.
 4. Make a test utterance from your own application, and inspect the returned events to get an idea of how the API works.
 

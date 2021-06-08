@@ -56,11 +56,11 @@ The release package contains a README as well as the binary. Just put it anywher
 Of course you can also build the client from source if you need to run this on an exotic architecture.
 </div>
 
-# Setup
+# Adding an API token
 After installing the CLI, you must obtain an API token from the [Dashboard](https://api.speechly.com/dashboard). Please follow these steps to create an API token:
 
 1. Log on to the [Dashboard](https://api.speechly.com/dashboard).
-2. Click on the project menu in the top right corner (to the left of your username), and select "Project settings".
+2. Click on the project menu in the top right corner (to the left of your user name), and select "Project settings".
 3. On the page that opens, click on "Create API Token" and give the token a name (this can be whatever).
 4. Click "Show" to see the API Token (It is a long, random string.), and click "Copy" to copy the token to the clipboard.
 
@@ -72,10 +72,22 @@ speechly config add --name project_name --apikey <API_Token> --host api.speechly
 ```
 Now you are ready to start using the CLI!
 
-*Note: If you have split your applications to multiple projects, you must configure the CLI for each of the projects by following the above steps separately for each project. Switching between projects is done by invoking*
+
+# Managing multiple projects
+
+If you have split your applications to multiple projects, you must configure the CLI for each of the projects by following the steps in [Adding an API token](#adding-an-api-token) separately for each project. NOTE: Before selecting "Project settings", please ensure that you have the correct project currently selected in the Dashboard!
+
+You can see a list of all projects (called "Contexts" in the CLI) that have an API token, as well as the one that is currently active, by invoking
+```bash
+speechly config
+```
+The project that is currently active is indicated by "Current config" in the listing.
+
+Switching between projects is done by invoking
 ```bash
 speechly config use --name name_of_my_other_project
 ```
+
 
 # Basic usage and getting help
 
@@ -103,6 +115,7 @@ speechly deploy name_of_directory -a deployment_app_id -w
 where `deployment_app_id` should be replaced with the app_id you want to deploy the application to. The `-w` flag means the Command Line Tool will wait until model training is complete.
 
 Note that the CLI builds and uploads a deployment package that contains *all files* in the specified directory! It is thus highly recommended to store there only files that are relevant to the configuration. In the simplest case this is only the Configuration YAML.
+
 
 # Configuration YAML
 The configuration YAML defines a dictionary of `(key, value)` pairs that contain definitions both for SAL templates and Entity Data Types as described below. Also, [Imports and Lookups](/slu-examples/imports-and-lookups/) are configured within the same Configuration YAML.
@@ -149,6 +162,27 @@ templates: |
 1. Create a directory for your application's configuration.
 2. Save files in git or other version control system.
 3. Use `speechly deploy` in your CI pipeline for deploying the configuration.
+
+
+# Updating the API token
+
+Updating the API token of a project in the command line tool is done by modifying the CLI config file. You can see where the config file is located by invoking
+```
+speechly config
+```
+The first output line should indicate the "Config file used". The name of the config file should be `.speechly.yaml` and it should be located in your home directory. Open this file in a text editor. You should see something like
+```yaml
+contexts:
+- apikey: A_REALLY_LONG_SEEMINGLY_RANDOM_STRING
+  host: api.speechly.com
+  name: my_project
+current-context: my_project
+```
+where `A_REALLY_LONG_SEEMINGLY_RANDOM_STRING` is the current API token of project `my_project`. If you have several projects, they are all shown separately, each with their own API token.
+
+You can generate a new API token by following steps 1-4 in [Adding an API token](#adding-an-api-token). (Ensure that you are viewing the appropriate project in the Dashboard before generating the token!) When you have copied the new token, replace `A_REALLY_LONG_SEEMINGLY_RANDOM_STRING` with the new token, which is just another really long seemingly random string. Save the config file, and the new API token for project `my_project` is immediately in use.
+
+If you have several projects, you must separately replace the API token for each of these by creating a new token for every project in the Dashboard, and pasting it in the config file.
 
 
 # CLI Reference

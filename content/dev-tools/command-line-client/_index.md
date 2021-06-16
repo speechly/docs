@@ -208,6 +208,19 @@ speechly deploy . -a app-id
 ```
 where `app-id` is replaced with the app_id to which you want to deploy the configuration. (Note that `app_id` must belong to the project that is currently active in the Command Line Tool. See also `speechly config`.)
 
+## See usage statistics
+You can view statistics about the usage of your applications by typing
+```bash
+speechly stats
+```
+This will print hourly usage statistics for all appications in the current project for the past two weeks. The output shows the total number of utterances, as well as the total amount of *received* and *annotated* audio (in secods), respectively.
+
+You can view statistics only of a given application by adding the flag `-a APP_ID`, where `APP_ID` is the relevant application id. To adjust the time interval of the results, use the `--start-date` and `--end-date` flags. For example
+```bash
+speechly statys -a APPLICATION_ID --start-date 2021-03-01 --end-date 2021-04-01
+```
+shows usage statistics for March 2021 (the `--end-date` value is exclusive) for `APPLICATION_ID`.
+
 ## Print random Example utterances
 When working on a configuration, it can be very useful to inspect the Example utterances that the templates are expanded to. This way you can spot mistakes and other problems with your configuration.
 

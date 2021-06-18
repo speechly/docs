@@ -9,6 +9,12 @@ menu:
     weight: 999
 ---
 
+# June 18, 2021
+
+- **Speechly API** A new and improved load balancer.
+- **Browser client** Version 1.0.15, better handling of audio capture and websockets.
+- **Various bugfixes**
+
 # May 25, 2021
 
 - **ASR improvements** New basline ASR model.

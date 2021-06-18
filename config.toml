@@ -22,7 +22,7 @@ style = "solarized-dark"
 category = "categories"
 
 [params]
-description = "Developer tools for next-generation voice user interfaces"
+description = "Speechly is the Fast, Accurate, and Simple Voice Interface API for Web and Mobile Apps"
 icon_set = "ionicons"
 
 [params.colors]

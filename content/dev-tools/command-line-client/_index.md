@@ -213,7 +213,7 @@ You can view statistics about the usage of your applications by typing
 ```bash
 speechly stats
 ```
-This will print hourly usage statistics for all appications in the current project for the past two weeks. The output shows the total number of utterances, as well as the total amount of *received* and *annotated* audio (in secods), respectively.
+This will print hourly usage statistics for all applications in the current project for the past two weeks. The output shows the total number of utterances, as well as the total amount of *received* and *annotated* audio (in secods), respectively.
 
 You can view statistics only of a given application by adding the flag `-a APP_ID`, where `APP_ID` is the relevant application id. To adjust the time interval of the results, use the `--start-date` and `--end-date` flags. For example
 ```bash

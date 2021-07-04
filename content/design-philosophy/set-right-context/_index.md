@@ -14,7 +14,7 @@ Voice assistants are digital assistants that react to voice commands, most often
 
 Instead of question-answer based dialogues, touch screen voice experiences should be based on direct voice input and real-time visual feedback. As the user speaks, the user interface should be instantaneously updated.
 
-[Read more](https://www.smashingmagazine.com/2021/06/alternative-voice-ui-voice-assistants/) 
+Read more: [An Alternative Voice UI To Voice Assistants](https://www.smashingmagazine.com/2021/06/alternative-voice-ui-voice-assistants/) on Smashing Magazine. 
 
 # Design the interactions around commanding not conversing
 

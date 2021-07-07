@@ -32,7 +32,7 @@ When the configuration is done, the stream moves into the “SLU event loop” s
 
 # SLU event loop
 
-{< figure src="/speechly-api/server-client-speechly-docs.png" title="The Speechly event loop." alt="Speechly audio event loop.">}
+{{< figure src="server-client-speechly-docs.png" title="The Speechly event loop." alt="Speechly audio event loop.">}}
 
 The process of the SLU event loop is the following:
 
@@ -58,7 +58,7 @@ The audio stream sent to the server can consist of one or more segments, and it 
 
 The audio stream stays open until stopped with the `SLUEvent.Event.STOP`. If the user pauses and then continues speaking, the utterance is divided into two segments — the first segment gets the final results, and the tentative results begin for the new segment. 
 
-{< figure src="tentative-final-results.png" title="The Speechly server starts sending tentative results as soon as it gets audio." alt="Diagram on how Speechly API responds to user audio">}
+{{< figure src="tentative-final-results.png" title="The Speechly server starts sending tentative results as soon as it gets audio." alt="Diagram on how Speechly API responds to user audio">}}
 
 # Glossary
 
